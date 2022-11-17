@@ -1,5 +1,5 @@
 import { RouteRecordRaw } from 'vue-router';
-
+import GithubNotes from 'src/pages/notes/GithubNotes.vue';
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
@@ -9,9 +9,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/notes',
     component: () => import('layouts/MainLayout.vue'),
-    children: [
-      { path: '', component: () => import('pages/notes/GithubNotes.vue') },
-    ],
+    children: [{ path: '', component: GithubNotes }],
   },
 
   // Always leave this as last one,
