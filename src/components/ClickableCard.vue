@@ -4,10 +4,16 @@
     class="card cursor-pointer q-hoverable"
     bordered
     square
-    :style="{ width: width, height: height }"
+    :style="{
+      width: cardWidth.endsWith('px') ? cardWidth : `${cardWidth}px`,
+      height: cardHeight.endsWith('px') ? cardHeight : `${cardHeight}px`,
+    }"
   >
     <q-card-section align="center">
-      <q-icon :name="icon" :size="`${iconSize.toString()}px`" />
+      <q-icon
+        :name="icon"
+        :size="iconSize.endsWith('px') ? iconSize : `${iconSize}px`"
+      />
     </q-card-section>
     <q-separator />
     <q-card-section align="center"> {{ name }} </q-card-section>
@@ -28,20 +34,17 @@ export default defineComponent({
       type: String,
       required: true,
     },
-    height: {
+    cardHeight: {
       type: String,
-      default: '192px',
-      required: false,
+      default: '192',
     },
-    width: {
+    cardWidth: {
       type: String,
-      default: '192px',
-      required: false,
+      default: '192',
     },
     iconSize: {
-      type: Number,
-      default: 96,
-      required: false,
+      type: String,
+      default: '96',
     },
   },
 });
