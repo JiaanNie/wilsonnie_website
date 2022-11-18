@@ -1,8 +1,23 @@
 <template>
+  <div>notes page</div>
   <q-page class="row items-center justify-evenly">
-    <div>notes page</div>
     <clickable-card-vue
       name="Github Notes"
+      icon="fa-brands fa-github"
+      @click="test"
+    />
+    <clickable-card-vue
+      name="AWS Notes"
+      icon="fa-brands fa-aws"
+      @click="test"
+    />
+    <clickable-card-vue
+      name="Docker Notes"
+      icon="fa-brands fa-docker"
+      @click="test"
+    />
+    <clickable-card-vue
+      name="Others Notes"
       icon="fa-solid fa-folder"
       @click="test"
     />

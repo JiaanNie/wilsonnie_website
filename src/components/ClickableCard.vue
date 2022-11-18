@@ -1,7 +1,7 @@
 <template>
   <q-card
     v-ripple
-    class="card cursor-pointer q-hoverable"
+    class="card cursor-pointer q-hoverable shadow-24"
     bordered
     square
     :style="{
