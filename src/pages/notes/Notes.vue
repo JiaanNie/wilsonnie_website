@@ -1,7 +1,7 @@
 <template>
   <q-page class="row items-center justify-evenly">
     <div>notes page</div>
-    <q-card v-ripple class="cursor-pointer q-hoverable" bordered square>
+    <q-card v-ripple class="card cursor-pointer q-hoverable" bordered square>
       <q-card-section align="center">
         <q-icon name="fa-solid fa-folder" size="xl" />
       </q-card-section>
@@ -20,3 +20,9 @@ export default defineComponent({
   name: 'GithubNotes',
 });
 </script>
+
+<style>
+.card:hover {
+  background-color: lightgray;
+}
+</style>
