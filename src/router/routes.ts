@@ -10,8 +10,12 @@ const routes: RouteRecordRaw[] = [
     path: '/notes',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/notes/Notes.vue') },
-      { path: 'github-notes', component: GithubNotes },
+      {
+        path: '',
+        name: 'Notes',
+        component: () => import('pages/notes/Notes.vue'),
+      },
+      { path: 'github-notes', name: 'GithubNotes', component: GithubNotes },
     ],
   },
 

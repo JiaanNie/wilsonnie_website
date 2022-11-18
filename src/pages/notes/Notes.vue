@@ -1,33 +1,26 @@
 <template>
   <q-page class="row items-center justify-evenly">
     <div>notes page</div>
-    <q-card
-      v-ripple
-      class="card cursor-pointer q-hoverable"
-      bordered
-      square
+    <clickable-card-vue
+      name="Github Notes"
+      icon="fa-solid fa-folder"
       @click="test"
-    >
-      <q-card-section align="center">
-        <q-icon name="fa-solid fa-folder" size="xl" />
-      </q-card-section>
-      <q-separator />
-      <q-card-section align="center"> Github Notes </q-card-section>
-    </q-card>
-    <q-icon name="fa-solid fa-folder" size="xl" />
-    <i class="fa-solid fa-user"></i>
+    />
   </q-page>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { useRouter, useRoute } from 'vue-router';
+import { useRouter } from 'vue-router';
+import ClickableCardVue from 'src/components/ClickableCard.vue';
 
 export default defineComponent({
   name: 'GithubNotes',
+  components: {
+    ClickableCardVue,
+  },
   setup() {
     const router = useRouter();
-    const route = useRoute();
     const test = () => {
       router.push({ path: '/notes/github-notes' });
     };
