@@ -1,7 +1,7 @@
 <template>
   <q-page class="row items-center justify-evenly">
     <div>Welcome to my site</div>
-    <ClickableCard name="test dsfsddfa" icon="fa-solid fa-folder" />
+    <ClickableCard name="test" icon="fa-solid fa-folder" />
   </q-page>
 </template>
 
