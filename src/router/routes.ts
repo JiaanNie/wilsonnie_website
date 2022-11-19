@@ -2,6 +2,7 @@ import { RouteRecordRaw } from 'vue-router';
 import GithubNotes from 'src/pages/notes/GithubNotes.vue';
 import AWSNotes from 'src/pages/notes/AWSNotes.vue';
 import DockerNotes from 'src/pages/notes/DockerNotes.vue';
+import GridNotes from 'src/pages/notes/CSS/GridNotes.vue';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -21,6 +22,7 @@ const routes: RouteRecordRaw[] = [
       { path: 'github-notes', name: 'GithubNotes', component: GithubNotes },
       { path: 'aws-notes', name: 'AWSNotes', component: AWSNotes },
       { path: 'docker-notes', name: 'DockerNotes', component: DockerNotes },
+      { path: 'css-grid-notes', name: 'GridNotes', component: GridNotes },
     ],
   },
 

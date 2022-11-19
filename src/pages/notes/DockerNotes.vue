@@ -1,6 +1,6 @@
 <template>
   <q-page class="row items-center justify-evenly">
-    <code-block></code-block>
+    <code-block codeString="sdfkanfmnxckvjhndfjk "></code-block>
   </q-page>
 </template>
 

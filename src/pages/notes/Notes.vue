@@ -40,6 +40,11 @@
       icon="fa-solid fa-folder"
       @click="test()"
     />
+    <clickable-card-vue
+      name="CSS Grids"
+      icon="fa-solid fa-grip"
+      @click="test('css-grid')"
+    />
   </q-page>
 </template>
 
