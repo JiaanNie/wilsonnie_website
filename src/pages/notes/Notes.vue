@@ -23,22 +23,22 @@
     <clickable-card-vue
       name="Github Notes"
       icon="fa-brands fa-github"
-      @click="test"
+      @click="test('github')"
     />
     <clickable-card-vue
       name="AWS Notes"
       icon="fa-brands fa-aws"
-      @click="test"
+      @click="test('aws')"
     />
     <clickable-card-vue
       name="Docker Notes"
       icon="fa-brands fa-docker"
-      @click="test"
+      @click="test('docker')"
     />
     <clickable-card-vue
       name="Others Notes"
       icon="fa-solid fa-folder"
-      @click="test"
+      @click="test()"
     />
   </q-page>
 </template>
@@ -55,8 +55,8 @@ export default defineComponent({
   },
   setup() {
     const router = useRouter();
-    const test = () => {
-      router.push({ path: '/notes/github-notes' });
+    const test = (path = 'github') => {
+      router.push({ path: `/notes/${path}-notes` });
     };
     return { test };
   },

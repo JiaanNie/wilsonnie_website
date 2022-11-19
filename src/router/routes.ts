@@ -1,5 +1,8 @@
 import { RouteRecordRaw } from 'vue-router';
 import GithubNotes from 'src/pages/notes/GithubNotes.vue';
+import AWSNotes from 'src/pages/notes/AWSNotes.vue';
+import DockerNotes from 'src/pages/notes/DockerNotes.vue';
+
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
@@ -16,6 +19,8 @@ const routes: RouteRecordRaw[] = [
         component: () => import('pages/notes/Notes.vue'),
       },
       { path: 'github-notes', name: 'GithubNotes', component: GithubNotes },
+      { path: 'aws-notes', name: 'AWSNotes', component: AWSNotes },
+      { path: 'docker-notes', name: 'DockerNotes', component: DockerNotes },
     ],
   },
 
