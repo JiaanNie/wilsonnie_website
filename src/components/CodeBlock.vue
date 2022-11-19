@@ -3,7 +3,7 @@
     v-ripple
     bordered
     class="code-block shadow-24 cursor-pointer q-hoverable"
-    @click="showNotif"
+    @click="copyCodeToClipBoard(codeString)"
   >
     <q-card-section>
       # {{ codeString }}
@@ -27,20 +27,13 @@ export default defineComponent({
   },
   setup() {
     const $q = useQuasar();
-    const showNotif = () => {
-      $q.notify({
-        message: 'Jim pinged you.',
-        color: 'purple',
-      });
-    };
 
     function copyCodeToClipBoard(codeString: string) {
       copyToClipboard(codeString)
         .then(() => {
           // success!
           $q.notify({
-            message: 'Jim pinged you.',
-            caption: '5 minutes ago',
+            message: 'Copied to clipboard ',
             color: 'secondary',
           });
         })
@@ -48,15 +41,12 @@ export default defineComponent({
           // fail
         });
     }
-    const test = () => {
-      console.log('test');
-    };
-    return { copyCodeToClipBoard, test, showNotif };
+    return { copyCodeToClipBoard };
   },
 });
 </script>
 
-<style scoped>
+<style lang="sass" scoped>
 .code-block {
   width: 80%;
   background-color: #80d8ff;
