@@ -3,7 +3,7 @@
     v-ripple
     bordered
     class="code-block shadow-24 cursor-pointer q-hoverable"
-    @click="copyCodeToClipBoard(codeString)"
+    @click="showNotif"
   >
     <q-card-section>
       # {{ codeString }}
@@ -15,6 +15,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { copyToClipboard } from 'quasar';
+import { useQuasar } from 'quasar';
 
 export default defineComponent({
   name: 'CodeBlock',
@@ -25,11 +26,23 @@ export default defineComponent({
     },
   },
   setup() {
+    const $q = useQuasar();
+    const showNotif = () => {
+      $q.notify({
+        message: 'Jim pinged you.',
+        color: 'purple',
+      });
+    };
+
     function copyCodeToClipBoard(codeString: string) {
       copyToClipboard(codeString)
         .then(() => {
           // success!
-          console.log(codeString);
+          $q.notify({
+            message: 'Jim pinged you.',
+            caption: '5 minutes ago',
+            color: 'secondary',
+          });
         })
         .catch(() => {
           // fail
@@ -38,7 +51,7 @@ export default defineComponent({
     const test = () => {
       console.log('test');
     };
-    return { copyCodeToClipBoard, test };
+    return { copyCodeToClipBoard, test, showNotif };
   },
 });
 </script>
