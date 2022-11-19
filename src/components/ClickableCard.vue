@@ -52,6 +52,6 @@ export default defineComponent({
 
 <style>
 .card:hover {
-  background-color: lightgray;
+  background-color: #00b8d4;
 }
 </style>
