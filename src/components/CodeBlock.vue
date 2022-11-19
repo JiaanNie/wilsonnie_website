@@ -46,14 +46,14 @@ export default defineComponent({
 });
 </script>
 
-<style lang="sass" scoped>
+<style lang="scss" scoped>
 .code-block {
   width: 80%;
-  background-color: #80d8ff;
+  background-color: $secondary;
 }
 
 .code-block:hover {
-  background-color: #0091ea;
+  background-color: $primary;
 }
 
 .copy-icon {
