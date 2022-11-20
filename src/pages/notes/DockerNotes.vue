@@ -1,12 +1,17 @@
 <template>
   <q-page class="col items-center justify-evenly">
-    <h5>{{ dockerCommandslist[0].name }}</h5>
-    <code-block :codeString="dockerCommandslist[0].command" />
-    <ol>
-      <li v-for="detail in dockerCommandslist[0].details" :key="detail">
-        {{ detail }}
-      </li>
-    </ol>
+    <div
+      v-for="dockerCommand in dockerCommandslist"
+      :key="dockerCommand.command"
+    >
+      <h5>{{ dockerCommand.name }}</h5>
+      <code-block :codeString="dockerCommand.command" />
+      <ol>
+        <li v-for="detail in dockerCommand.details" :key="detail">
+          {{ detail }}
+        </li>
+      </ol>
+    </div>
   </q-page>
 </template>
 
@@ -36,6 +41,24 @@ export default defineComponent({
     //   'docker exec <container-id>'
     // ])
     const dockerCommandslist = reactive<DockerCommand[]>([
+      {
+        name: 'Docker Run',
+        command: 'docker run -d -p 80:3060 docker/getting-started',
+        details: [
+          '-d is a flag that allow the container running in the background',
+          '-p 80:3060 is a arugments that allow user to map a host port 80 to a container port 3060',
+          'docker/getting-started is a image that we are running',
+        ],
+      },
+      {
+        name: 'Docker Run',
+        command: 'docker run -d -p 80:3060 docker/getting-started',
+        details: [
+          '-d is a flag that allow the container running in the background',
+          '-p 80:3060 is a arugments that allow user to map a host port 80 to a container port 3060',
+          'docker/getting-started is a image that we are running',
+        ],
+      },
       {
         name: 'Docker Run',
         command: 'docker run -d -p 80:3060 docker/getting-started',
