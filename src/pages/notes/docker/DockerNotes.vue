@@ -1,5 +1,5 @@
 <template>
-  <q-page class="col absolute-center justify-evenly">
+  <q-page class="col justify-evenly note-content">
     <div
       v-for="dockerCommand in dockerCommandslist"
       :key="dockerCommand.command"
@@ -88,3 +88,9 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped lang="scss">
+.note-content {
+  margin: 5% 20%;
+}
+</style>
