@@ -48,7 +48,6 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .code-block {
-  width: 80%;
   background-color: $code-block;
 }
 

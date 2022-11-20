@@ -1,5 +1,5 @@
 <template>
-  <q-page class="col items-center justify-evenly">
+  <q-page class="col fixed-center justify-evenly">
     <div
       v-for="dockerCommand in dockerCommandslist"
       :key="dockerCommand.command"
