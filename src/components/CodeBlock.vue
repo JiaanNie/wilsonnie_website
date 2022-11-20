@@ -49,11 +49,11 @@ export default defineComponent({
 <style lang="scss" scoped>
 .code-block {
   width: 80%;
-  background-color: $secondary;
+  background-color: $code-block;
 }
 
 .code-block:hover {
-  background-color: $primary;
+  background-color: $code-block-onhover;
 }
 
 .copy-icon {
