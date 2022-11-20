@@ -1,10 +1,28 @@
 <template>
   <q-page class="row items-center justify-evenly">
-    <div>Welcome to my site</div>
+    <clickable-card-vue
+      name="Notes"
+      icon="fas fa-graduation-cap"
+      @click="test"
+    />
   </q-page>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-export default defineComponent({});
+import { useRouter } from 'vue-router';
+import ClickableCardVue from 'src/components/ClickableCard.vue';
+
+export default defineComponent({
+  components: {
+    ClickableCardVue,
+  },
+  setup() {
+    const router = useRouter();
+    const test = () => {
+      router.push({ path: '/notes' });
+    };
+    return { test };
+  },
+});
 </script>
