@@ -1,0 +1,50 @@
+1. SSH into the ec2 instance
+
+- assuming this is a brand new instance we need to update the instace by running
+  - sudo apt-get update
+
+2. cloning the reop from github into the instance
+
+- git clone
+
+3. once we clone the project into the ec2 container. we need to install nodejs.
+
+- curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+  - this command allow the ec2 instance to know we want to install node16 if you want a different version you need to get the different nodesource link.
+
+4. install nodejs via sudo apt-get install -y nodejs
+
+5. next install quasasr global within your systemnpm install -g @quasar/cli
+
+6. do a quasar build to build your application. you should see a dist folder show up that where your production build located.
+
+7. install docker via command "sudo apt-get install docker.io"
+
+8. build the docker image for you application. using the command "sudo docker build -t <insert-image-name here> ."
+
+9 run the following command to create a nginx container.
+sudo docker run --detach \
+ --name nginx-proxy \
+ --publish 80:80 \
+ --publish 443:443 \
+ --volume certs:/etc/nginx/certs \
+ --volume vhost:/etc/nginx/vhost.d \
+ --volume html:/usr/share/nginx/html \
+ --volume /var/run/docker.sock:/tmp/docker.sock:ro \
+ nginxproxy/nginx-proxy
+
+10 run the next command to create another container.
+sudo docker run --detach \
+ --name nginx-proxy-acme \
+ --volumes-from nginx-proxy \
+ --volume /var/run/docker.sock:/var/run/docker.sock:ro \
+ --volume acme:/etc/acme.sh \
+ --env "wilson.nie13@gmail.com \
+ nginxproxy/acme-companion
+
+11. run the last command to run your builded image.
+    sudo docker run --detach \
+     --name pathfinder-frontend-test \
+     --env "VIRTUAL_HOST=wilsonnie.ca" \
+     --env "LETSENCRYPT_HOST=wilsonnie.ca" \
+     <image-id>

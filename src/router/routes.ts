@@ -1,7 +1,7 @@
 import { RouteRecordRaw } from 'vue-router';
-import GithubNotes from 'src/pages/notes/GithubNotes.vue';
-import AWSNotes from 'src/pages/notes/AWSNotes.vue';
-import DockerNotes from 'src/pages/notes/DockerNotes.vue';
+import GithubNotes from 'src/pages/notes/github/GithubNotes.vue';
+import AWSNotes from 'src/pages/notes/aws/AWSNotes.vue';
+import DockerNotes from 'src/pages/notes/docker/DockerNotes.vue';
 import GridNotes from 'src/pages/notes/CSS/GridNotes.vue';
 
 const routes: RouteRecordRaw[] = [
