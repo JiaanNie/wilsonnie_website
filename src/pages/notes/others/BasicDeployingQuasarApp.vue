@@ -1,8 +1,10 @@
 <template>
-  <q-page class="col items-center justify-evenly">
+  <q-page class="col items-center justify-evenly info">
     <div v-for="step in procedure" :key="step.step">
       <h5>{{ step.description }}</h5>
-      <code-block :codeString="step.command"></code-block>
+      <pre>
+        <code-block :codeString="step.command"></code-block>
+      </pre>
     </div>
   </q-page>
 </template>
@@ -71,55 +73,57 @@ export default defineComponent({
       {
         step: 9,
         description: 'create a nginx container',
-        command:
-          'sudo docker run --detach \
-                    --name nginx-proxy \
-                    --publish 80:80 \
-                    --publish 443:443 \
-                    --volume certs:/etc/nginx/certs \
-                    --volume vhost:/etc/nginx/vhost.d \
-                    --volume html:/usr/share/nginx/html \
-                    --volume /var/run/docker.sock:/tmp/docker.sock:ro \
-                    nginxproxy/nginx-proxy',
+        command: `sudo docker run --detach
+    --name nginx-proxy
+    --publish 80:80
+    --publish 443:443
+    --volume certs:/etc/nginx/certs
+    --volume vhost:/etc/nginx/vhost.d
+    --volume html:/usr/share/nginx/html
+    --volume /var/run/docker.sock:/tmp/docker.sock:ro
+    nginxproxy/nginx-proxy`,
       },
       {
         step: 10,
         description: 'cloning the repo from github into the instance',
-        command:
-          'sudo docker run --detach \
-                    --name nginx-proxy-acme \
-                    --volumes-from nginx-proxy \
-                    --volume /var/run/docker.sock:/var/run/docker.sock:ro \
-                    --volume acme:/etc/acme.sh \
-                    --env "wilson.nie13@gmail.com \
-                    nginxproxy/acme-companion',
+        command: `sudo docker run --detach
+    --name nginx-proxy-acme
+    --volumes-from nginx-proxy
+    --volume /var/run/docker.sock:/var/run/docker.sock:ro
+    --volume acme:/etc/acme.sh
+    --env "wilson.nie13@gmail.com
+    nginxproxy/acme-companion`,
       },
       {
         step: 11,
         description: 'cloning the repo from github into the instance',
-        command:
-          'sudo docker run --detach \
-                    --name pathfinder-frontend-test \
-                    --env "VIRTUAL_HOST=wilsonnie.ca" \
-                    --env "LETSENCRYPT_HOST=wilsonnie.ca" \
-                    <image-id>',
+        command: `sudo docker run --detach
+    --name pathfinder-frontend-test
+    --env "VIRTUAL_HOST=wilsonnie.ca"
+    --env "LETSENCRYPT_HOST=wilsonnie.ca"
+    <image-id>`,
       },
       {
         step: 12,
         description: 'cloning the repo from github into the instance',
-        command:
-          'sudo docker run --detach \
-                    --name nginx-proxy \
-                    --publish 80:80 \
-                    --publish 443:443 \
-                    --volume certs:/etc/nginx/certs \
-                    --volume vhost:/etc/nginx/vhost.d \
-                    --volume html:/usr/share/nginx/html \
-                    --volume /var/run/docker.sock:/tmp/docker.sock:ro \
-                    nginxproxy/nginx-proxy',
+        command: `sudo docker run --detach
+    --name nginx-proxy
+    --publish 80:80
+    --publish 443:443
+    --volume certs:/etc/nginx/certs
+    --volume vhost:/etc/nginx/vhost.d
+    --volume html:/usr/share/nginx/html
+    --volume /var/run/docker.sock:/tmp/docker.sock:ro
+    nginxproxy/nginx-proxy`,
       },
     ]);
     return { procedure };
   },
 });
 </script>
+
+<style scoped>
+.info {
+  margin: 5% 20%;
+}
+</style>
