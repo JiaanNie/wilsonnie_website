@@ -1,10 +1,14 @@
 <template>
-  <q-page class="col items-center justify-evenly info">
-    <div v-for="step in procedure" :key="step.step">
+  <q-page class="col items-center justify-evenly center-content">
+    <div v-for="step in procedure" :key="step.step" class="info-block">
       <h5>{{ step.description }}</h5>
+      <q-separator />
       <pre>
         <code-block :codeString="step.command"></code-block>
       </pre>
+      <ol>
+        <li v-for="detail in step.details" :key="detail">{{ detail }}</li>
+      </ol>
     </div>
   </q-page>
 </template>
@@ -122,8 +126,12 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-.info {
+<style lang="scss" scoped>
+.center-content {
   margin: 5% 20%;
+}
+
+.info-block {
+  background: #a7ffeb;
 }
 </style>

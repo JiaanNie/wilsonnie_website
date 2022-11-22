@@ -5,6 +5,7 @@
       :key="dockerCommand.command"
     >
       <h5>{{ dockerCommand.name }}</h5>
+      <q-separator/>
       <code-block :codeString="dockerCommand.command" />
       <ol>
         <li v-for="detail in dockerCommand.details" :key="detail">
