@@ -18,7 +18,7 @@
     <clickable-card-vue
       name="Others Notes"
       icon="fa-solid fa-folder"
-      @click="test()"
+      @click="test('basic-deploying-quasar-app')"
     />
     <clickable-card-vue
       name="CSS Grids"

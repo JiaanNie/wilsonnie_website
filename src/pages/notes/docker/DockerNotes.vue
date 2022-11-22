@@ -5,6 +5,7 @@
       :key="dockerCommand.command"
     >
       <h5>{{ dockerCommand.name }}</h5>
+      <q-separator/>
       <code-block :codeString="dockerCommand.command" />
       <ol>
         <li v-for="detail in dockerCommand.details" :key="detail">
@@ -18,13 +19,7 @@
 <script lang="ts">
 import { defineComponent, reactive } from 'vue';
 import CodeBlock from 'src/components/CodeBlock.vue';
-interface DockerCommand {
-  name: string;
-  command: string;
-  description?: string;
-  details: string[];
-}
-
+import { DockerCommand } from 'src/components/Schemas/ComponentSchema';
 export default defineComponent({
   name: 'DockerNotes',
   components: {
