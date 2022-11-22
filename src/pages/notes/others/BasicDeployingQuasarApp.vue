@@ -1,7 +1,9 @@
 <template>
   <q-page class="col items-center justify-evenly">
-    <h5>test</h5>
-    <code-block :codeString="procedure[0].command"></code-block>
+    <div v-for="step in procedure" :key="step.step">
+      <h5>{{ step.description }}</h5>
+      <code-block :codeString="step.command"></code-block>
+    </div>
   </q-page>
 </template>
 
