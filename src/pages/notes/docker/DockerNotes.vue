@@ -18,13 +18,7 @@
 <script lang="ts">
 import { defineComponent, reactive } from 'vue';
 import CodeBlock from 'src/components/CodeBlock.vue';
-interface DockerCommand {
-  name: string;
-  command: string;
-  description?: string;
-  details: string[];
-}
-
+import { DockerCommand } from 'src/components/Schemas/ComponentSchema';
 export default defineComponent({
   name: 'DockerNotes',
   components: {
