@@ -4,8 +4,8 @@
       v-for="dockerCommand in dockerCommandslist"
       :key="dockerCommand.command"
     >
-      <h5>{{ dockerCommand.name }}</h5>
-      <q-separator/>
+      <h5 class="header-space">{{ dockerCommand.name }}</h5>
+      <q-separator />
       <code-block :codeString="dockerCommand.command" />
       <ol>
         <li v-for="detail in dockerCommand.details" :key="detail">
@@ -87,5 +87,8 @@ export default defineComponent({
 <style scoped lang="scss">
 .note-content {
   margin: 5% 20%;
+}
+.header-space {
+  margin-bottom: 1%;
 }
 </style>

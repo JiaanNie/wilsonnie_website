@@ -1,7 +1,11 @@
 <template>
   <q-page class="col items-center justify-evenly center-content">
-    <div v-for="step in procedure" :key="step.step" class="info-block">
-      <h5>{{ step.description }}</h5>
+    <div
+      v-for="step in procedure"
+      :key="step.step"
+      class="info-block shadow-up-15 rounded-borders"
+    >
+      <h5 class="header-space">{{ step.description }}</h5>
       <q-separator />
       <pre>
         <code-block :codeString="step.command"></code-block>
@@ -133,5 +137,9 @@ export default defineComponent({
 
 .info-block {
   background: #a7ffeb;
+}
+.header-space {
+  padding: 2% 3%;
+  margin-bottom: 0;
 }
 </style>
