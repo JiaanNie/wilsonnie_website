@@ -13,13 +13,22 @@
         </li>
       </ol>
     </div>
+    <div class="q-pa-md q-gutter-sm">
+      <q-tree
+        :nodes="lazy"
+        default-expand-all
+        node-key="label"
+        @lazy-load="onLazyLoad"
+      />
+    </div>
   </q-page>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from 'vue';
+import { defineComponent, reactive, ref } from 'vue';
 import CodeBlock from 'src/components/CodeBlock.vue';
 import { DockerCommand } from 'src/components/Schemas/ComponentSchema';
+
 export default defineComponent({
   name: 'DockerNotes',
   components: {
@@ -54,6 +63,8 @@ export default defineComponent({
         details: [
           '-t is a flag that allow user to tag a container with the name they wanted to be',
           'the . at the end of the command will tell docker to look for a Dockerfile within the currecnt directory',
+          'Optional Flag you can add in --progress=plain this allow you print out the output of the command for debugging',
+          'Optional Flag you can add in --no-cache incase you want to do a fresh build',
         ],
       },
       {
@@ -79,7 +90,56 @@ export default defineComponent({
         ],
       },
     ]);
-    return { dockerCommandslist };
+    const nodes = [
+      {
+        label: 'Node 1',
+        children: [
+          { label: 'Node 1.1', lazy: true },
+          { label: 'Node 1.2', lazy: true },
+        ],
+      },
+      {
+        label: 'Node 2',
+        lazy: true,
+      },
+      {
+        label: 'Lazy load empty',
+        lazy: true,
+      },
+      {
+        label: 'Node is not expandable',
+        expandable: false,
+        children: [{ label: 'Some node' }],
+      },
+    ];
+
+    const lazy = ref(nodes);
+
+    const onLazyLoad = ({ node, key, done, fail }) => {
+      // call fail() if any error occurs
+
+      setTimeout(() => {
+        // simulate loading and setting an empty node
+        if (key.indexOf('Lazy load empty') > -1) {
+          done([]);
+          return;
+        }
+
+        const label = node.label;
+        done([
+          { label: `${label}.1` },
+          { label: `${label}.2`, lazy: true },
+          {
+            label: `${label}.3`,
+            children: [
+              { label: `${label}.3.1`, lazy: true },
+              { label: `${label}.3.2`, lazy: true },
+            ],
+          },
+        ]);
+      }, 100);
+    };
+    return { dockerCommandslist, onLazyLoad, nodes, lazy };
   },
 });
 </script>
