@@ -1,6 +1,6 @@
 <template>
   <q-page class="col justify-evenly">
-    <div
+    <!-- <div
       v-for="(dockerCommand, index) in dockerCommandslist"
       :key="dockerCommand.command"
       :id="`header-${index.toString()}`"
@@ -15,33 +15,33 @@
           {{ detail }}
         </li>
       </ol>
-    </div>
-    <div class="q-pa-md q-gutter-sm">
+    </div> -->
+    <!-- <div class="q-pa-md q-gutter-sm">
       <q-tree :nodes="simple" node-key="label" />
-    </div>
-    <!-- <content-block
+    </div> -->
+    <content-block
       v-for="(command, index) in dockerCommandslist"
       :key="index"
       :content-name="command.name"
       :content-description="command.description"
       :command-line="command.command"
       :content-details="command.details"
-    ></content-block> -->
+    />
   </q-page>
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive } from 'vue';
-import CodeBlock from 'src/components/single_components/CodeBlock.vue';
+// import CodeBlock from 'src/components/single_components/CodeBlock.vue';
 import { DockerCommand } from 'src/components/Schemas/ComponentSchema';
 import ContentBlock from 'src/components/composition-components/ContentBlock.vue';
-import { highLightNode } from 'src/utils/helper';
+// import { highLightNode } from 'src/utils/helper';
 
 export default defineComponent({
   name: 'DockerNotes',
   components: {
-    // ContentBlock,
-    CodeBlock,
+    ContentBlock,
+    // CodeBlock,
   },
   setup() {
     const dockerCommandslist = reactive<DockerCommand[]>([
@@ -99,47 +99,47 @@ export default defineComponent({
         ],
       },
     ]);
-    const simple = [
-      {
-        label: 'Docker Basic',
-        icon: 'fa-brands fa-docker',
-        children: [
-          {
-            label: 'Good food (with icon)',
-            icon: 'restaurant_menu',
-            children: [
-              { label: 'Quality ingredients' },
-              { label: 'Good recipe' },
-            ],
-            handler: highLightNode,
+    // const simple = [
+    //   {
+    //     label: 'Docker Basic',
+    //     icon: 'fa-brands fa-docker',
+    //     children: [
+    //       {
+    //         label: 'Good food (with icon)',
+    //         icon: 'restaurant_menu',
+    //         children: [
+    //           { label: 'Quality ingredients' },
+    //           { label: 'Good recipe' },
+    //         ],
+    //         handler: highLightNode,
 
-            // setTimeout(
-          },
-          {
-            label: 'Good service (disabled node with icon)',
-            icon: 'room_service',
-            disabled: true,
-            children: [
-              { label: 'Prompt attention' },
-              { label: 'Professional waiter' },
-            ],
-          },
-          {
-            label: 'Pleasant surroundings (with icon)',
-            icon: 'photo',
-            children: [
-              {
-                label: 'Happy atmosphere (with image)',
-                img: 'https://cdn.quasar.dev/img/logo_calendar_128px.png',
-              },
-              { label: 'Good table presentation' },
-              { label: 'Pleasing decor' },
-            ],
-          },
-        ],
-      },
-    ];
-    return { dockerCommandslist, simple };
+    //         // setTimeout(
+    //       },
+    //       {
+    //         label: 'Good service (disabled node with icon)',
+    //         icon: 'room_service',
+    //         disabled: true,
+    //         children: [
+    //           { label: 'Prompt attention' },
+    //           { label: 'Professional waiter' },
+    //         ],
+    //       },
+    //       {
+    //         label: 'Pleasant surroundings (with icon)',
+    //         icon: 'photo',
+    //         children: [
+    //           {
+    //             label: 'Happy atmosphere (with image)',
+    //             img: 'https://cdn.quasar.dev/img/logo_calendar_128px.png',
+    //           },
+    //           { label: 'Good table presentation' },
+    //           { label: 'Pleasing decor' },
+    //         ],
+    //       },
+    //     ],
+    //   },
+    // ];
+    return { dockerCommandslist };
   },
 });
 </script>

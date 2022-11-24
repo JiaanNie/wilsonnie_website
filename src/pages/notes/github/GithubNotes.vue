@@ -7,7 +7,7 @@
       :content-description="command.description"
       :command-line="command.command"
       :content-details="command.details"
-    ></content-block>
+    />
   </q-page>
 </template>
 
