@@ -26,6 +26,7 @@
 import { defineComponent, reactive } from 'vue';
 import CodeBlock from 'src/components/CodeBlock.vue';
 import { DockerCommand } from 'src/components/Schemas/ComponentSchema';
+import { highLightNode } from 'src/utils/helper';
 
 export default defineComponent({
   name: 'DockerNotes',
@@ -100,20 +101,9 @@ export default defineComponent({
               { label: 'Quality ingredients' },
               { label: 'Good recipe' },
             ],
-            handler: function () {
-              const element = document.getElementById('header-0');
-              element.scrollIntoView({
-                behavior: 'smooth',
-                block: 'end',
-                inline: 'nearest',
-              });
-              element.classList.add('test');
-              setTimeout(() => {
-                element.classList.remove('test');
-              }, 1000);
+            handler: highLightNode,
 
-              // setTimeout(
-            },
+            // setTimeout(
           },
           {
             label: 'Good service (disabled node with icon)',
@@ -139,11 +129,6 @@ export default defineComponent({
         ],
       },
     ];
-    // const { ready } = dom;
-    // ready(() => {
-    //   console.log(dom);
-    //   console.log(document.getElementById('header-0'));
-    // });
     return { dockerCommandslist, simple };
   },
 });
