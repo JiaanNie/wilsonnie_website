@@ -3,9 +3,9 @@
     <div
       v-for="(dockerCommand, index) in dockerCommandslist"
       :key="dockerCommand.command"
+      :id="`header-${index.toString()}`"
     >
-      {{ index }}
-      <h5 class="header-space" :id="`header-${index.toString()}`">
+      <h5 class="header-space">
         {{ dockerCommand.name }}
       </h5>
       <q-separator />
@@ -23,10 +23,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, ref } from 'vue';
+import { defineComponent, reactive } from 'vue';
 import CodeBlock from 'src/components/CodeBlock.vue';
 import { DockerCommand } from 'src/components/Schemas/ComponentSchema';
-import { dom } from 'quasar';
 
 export default defineComponent({
   name: 'DockerNotes',
@@ -101,12 +100,14 @@ export default defineComponent({
               { label: 'Quality ingredients' },
               { label: 'Good recipe' },
             ],
-            handler: function (node) {
-              console.log(node);
-              console.log('test');
-              document
-                .getElementById('header-0')
-                .scrollIntoView({ behavior: 'smooth' });
+            handler: function () {
+              document.getElementById('header-0').scrollIntoView({
+                behavior: 'smooth',
+                block: 'end',
+                inline: 'nearest',
+              });
+              document.getElementById('header-0').classList.add('test');
+              // setTimeout(
             },
           },
           {
@@ -133,21 +134,12 @@ export default defineComponent({
         ],
       },
     ];
-    const test = (node) => {
-      // console.log('node being pressed');
-      // console.log(node);
-      // document.getElementById('header-0').scrollIntoView();
-    };
-    onMounted(() => {
-      console.log('mounted');
-      console.log(document.getElementById('header-0'));
-    });
     // const { ready } = dom;
     // ready(() => {
     //   console.log(dom);
     //   console.log(document.getElementById('header-0'));
     // });
-    return { dockerCommandslist, simple, test };
+    return { dockerCommandslist, simple };
   },
 });
 </script>
@@ -158,5 +150,20 @@ export default defineComponent({
 }
 .header-space {
   margin-bottom: 1%;
+}
+.test {
+  background-color: orange;
+  animation-name: bckanim;
+  animation-fill-mode: forwards;
+  animation-duration: 3s;
+  animation-delay: 0s;
+}
+@keyframes bckanim {
+  0% {
+    background-color: orange;
+  }
+  100% {
+    background-color: transparent;
+  }
 }
 </style>
