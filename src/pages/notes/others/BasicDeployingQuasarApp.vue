@@ -3,16 +3,19 @@
     <div
       v-for="step in procedure"
       :key="step.step"
-      class="info-block shadow-up-15 rounded-borders"
+      class="inset-shadow rounded-borders teste"
     >
       <h5 class="header-space">{{ step.description }}</h5>
       <q-separator />
       <pre>
         <code-block :codeString="step.command"></code-block>
       </pre>
-      <ol>
-        <li v-for="detail in step.details" :key="detail">{{ detail }}</li>
+      <ol class="test">
+        <li v-for="detail in step.details" :key="detail">
+          {{ detail }}
+        </li>
       </ol>
+      <q-space></q-space>
     </div>
   </q-page>
 </template>
@@ -133,13 +136,15 @@ export default defineComponent({
 <style lang="scss" scoped>
 .center-content {
   margin: 5% 20%;
+  background-color: white;
 }
 
-.info-block {
-  background: #a7ffeb;
-}
 .header-space {
   padding: 2% 3%;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+.test {
   margin-bottom: 0;
 }
 </style>

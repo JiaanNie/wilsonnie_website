@@ -2,7 +2,7 @@
   <q-card
     v-ripple
     bordered
-    class="code-block shadow-24 cursor-pointer q-hoverable"
+    class="code-block cursor-pointer q-hoverable"
     @click="copyCodeToClipBoard(codeString)"
   >
     <q-card-section>

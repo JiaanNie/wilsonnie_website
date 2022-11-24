@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="lHh Lpr lFf" class="light-gray-background">
     <q-header elevated>
       <q-toolbar>
         <q-btn
@@ -30,7 +30,7 @@
       </q-list>
     </q-drawer>
 
-    <q-page-container>
+    <q-page-container class="light-gray-background">
       <router-view />
     </q-page-container>
   </q-layout>
@@ -93,3 +93,9 @@ function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value;
 }
 </script>
+
+<style scoped>
+.light-gray-background {
+  background-color: #eeeeee;
+}
+</style>
