@@ -1,5 +1,5 @@
 <template>
-  <q-page class="col justify-evenly note-content">
+  <q-page class="col justify-evenly">
     <div
       v-for="(dockerCommand, index) in dockerCommandslist"
       :key="dockerCommand.command"
@@ -19,6 +19,14 @@
     <div class="q-pa-md q-gutter-sm">
       <q-tree :nodes="simple" node-key="label" />
     </div>
+    <!-- <content-block
+      v-for="(command, index) in dockerCommandslist"
+      :key="index"
+      :content-name="command.name"
+      :content-description="command.description"
+      :command-line="command.command"
+      :content-details="command.details"
+    ></content-block> -->
   </q-page>
 </template>
 
@@ -26,11 +34,13 @@
 import { defineComponent, reactive } from 'vue';
 import CodeBlock from 'src/components/single_components/CodeBlock.vue';
 import { DockerCommand } from 'src/components/Schemas/ComponentSchema';
+import ContentBlock from 'src/components/composition-components/ContentBlock.vue';
 import { highLightNode } from 'src/utils/helper';
 
 export default defineComponent({
   name: 'DockerNotes',
   components: {
+    // ContentBlock,
     CodeBlock,
   },
   setup() {
