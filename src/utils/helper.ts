@@ -1,5 +1,5 @@
 export function highLightNode() {
-  const element = document.getElementById('header-0');
+  const element: HTMLElement = document.getElementById('header-0');
   element.scrollIntoView({
     behavior: 'smooth',
     block: 'end',

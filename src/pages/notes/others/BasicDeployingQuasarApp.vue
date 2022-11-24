@@ -19,7 +19,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive } from 'vue';
-import CodeBlock from 'src/components/CodeBlock.vue';
+import CodeBlock from 'src/components/single_components/CodeBlock.vue';
 import { Step } from 'src/components/Schemas/ComponentSchema';
 
 export default defineComponent({
