@@ -101,12 +101,17 @@ export default defineComponent({
               { label: 'Good recipe' },
             ],
             handler: function () {
-              document.getElementById('header-0').scrollIntoView({
+              const element = document.getElementById('header-0');
+              element.scrollIntoView({
                 behavior: 'smooth',
                 block: 'end',
                 inline: 'nearest',
               });
-              document.getElementById('header-0').classList.add('test');
+              element.classList.add('test');
+              setTimeout(() => {
+                element.classList.remove('test');
+              }, 1000);
+
               // setTimeout(
             },
           },
