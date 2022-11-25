@@ -5,7 +5,7 @@
       v-for="(command, index) in dockerCommandslist"
       :key="index"
       :content-name="command.name"
-      :content-description="command.description"
+      :content-description="command.name"
       :command-line="command.command"
       :content-details="command.details"
     />
