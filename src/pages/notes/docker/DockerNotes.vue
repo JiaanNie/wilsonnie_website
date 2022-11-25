@@ -1,8 +1,6 @@
 <template>
   <q-page class="col justify-evenly">
-    <div class="q-pa-md q-gutter-sm">
-      <q-tree :nodes="simple" node-key="label" />
-    </div>
+    <table-of-content class="row" table-name="test" :table-section="['test']" />
     <content-block
       v-for="(command, index) in dockerCommandslist"
       :key="index"
@@ -16,16 +14,15 @@
 
 <script lang="ts">
 import { defineComponent, reactive } from 'vue';
-// import CodeBlock from 'src/components/single_components/CodeBlock.vue';
 import { DockerCommand } from 'src/components/Schemas/ComponentSchema';
 import ContentBlock from 'src/components/composition-components/ContentBlock.vue';
-// import { highLightNode } from 'src/utils/helper';
+import TableOfContent from 'src/components/single_components/TableOfContent.vue';
 
 export default defineComponent({
   name: 'DockerNotes',
   components: {
     ContentBlock,
-    // CodeBlock,
+    TableOfContent,
   },
   setup() {
     const dockerCommandslist = reactive<DockerCommand[]>([
@@ -83,70 +80,13 @@ export default defineComponent({
         ],
       },
     ]);
-    const simple = [
-      {
-        label: 'Docker Basic',
-        icon: 'fa-brands fa-docker',
-        children: [
-          {
-            label: 'Good food (with icon)',
-            icon: 'restaurant_menu',
-            children: [
-              { label: 'Quality ingredients' },
-              { label: 'Good recipe' },
-            ],
+    // console.log(
+    //   dockerCommandslist.map(({ x: e }) => {
+    //     e.name;
+    //   })
+    // );
 
-            // setTimeout(
-          },
-          {
-            label: 'Good service (disabled node with icon)',
-            icon: 'room_service',
-            disabled: true,
-            children: [
-              { label: 'Prompt attention' },
-              { label: 'Professional waiter' },
-            ],
-          },
-          {
-            label: 'Pleasant surroundings (with icon)',
-            icon: 'photo',
-            children: [
-              {
-                label: 'Happy atmosphere (with image)',
-                img: 'https://cdn.quasar.dev/img/logo_calendar_128px.png',
-              },
-              { label: 'Good table presentation' },
-              { label: 'Pleasing decor' },
-            ],
-          },
-        ],
-      },
-    ];
-    return { dockerCommandslist, simple };
+    return { dockerCommandslist };
   },
 });
 </script>
-
-<!-- <style scoped lang="scss">
-.note-content {
-  margin: 5% 20%;
-}
-.header-space {
-  margin-bottom: 1%;
-}
-.test {
-  background-color: orange;
-  animation-name: bckanim;
-  animation-fill-mode: forwards;
-  animation-duration: 3s;
-  animation-delay: 0s;
-}
-@keyframes bckanim {
-  0% {
-    background-color: orange;
-  }
-  100% {
-    background-color: transparent;
-  }
-}
-</style> -->

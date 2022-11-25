@@ -33,6 +33,7 @@ export default defineComponent({
         step: 2,
         description: 'cloning the repo from github into the instance',
         command: 'git clone <repo url>',
+        details: [],
       },
       {
         step: 3,
@@ -47,28 +48,35 @@ export default defineComponent({
         step: 4,
         description: 'install nodejs',
         command: 'sudo apt-get install -y nodejs',
+        details: [],
       },
       {
         step: 5,
         description:
           'next install quasasr global within your system or ec2 instance',
         command: 'npm install -g @quasar/cli',
+        details: [],
       },
       {
         step: 6,
         description:
-          'attempt to build quasar application. you should see a dist folder show up that where your production build located',
+          'bundle the quasar project',
         command: 'quasar build',
+        details: [
+          'attempt to build quasar application. you should see a dist folder show up that where your production build located'
+        ],
       },
       {
         step: 7,
         description: 'install docker via command',
         command: 'sudo apt-get install docker.io',
+        details: [],
       },
       {
         step: 8,
         description: 'build the docker image for you application',
         command: 'sudo docker build -t <insert-image-name here> .',
+        details: [],
       },
       {
         step: 9,
@@ -82,6 +90,7 @@ export default defineComponent({
     --volume html:/usr/share/nginx/html
     --volume /var/run/docker.sock:/tmp/docker.sock:ro
     nginxproxy/nginx-proxy`,
+        details: [],
       },
       {
         step: 10,
@@ -93,6 +102,7 @@ export default defineComponent({
     --volume acme:/etc/acme.sh
     --env "wilson.nie13@gmail.com
     nginxproxy/acme-companion`,
+        details: [],
       },
       {
         step: 11,
@@ -102,6 +112,7 @@ export default defineComponent({
     --env "VIRTUAL_HOST=wilsonnie.ca"
     --env "LETSENCRYPT_HOST=wilsonnie.ca"
     <image-id>`,
+        details: [],
       },
       {
         step: 12,
@@ -115,6 +126,7 @@ export default defineComponent({
     --volume html:/usr/share/nginx/html
     --volume /var/run/docker.sock:/tmp/docker.sock:ro
     nginxproxy/nginx-proxy`,
+        details: [],
       },
     ]);
     return { procedure };
