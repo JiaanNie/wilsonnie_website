@@ -1,5 +1,5 @@
 <template>
-  <div class="note-content shadow-15">
+  <div class="note-content inset-shadow">
     <h4 class="text-h4 content-header">{{ contentName }}</h4>
     <q-separator color="primary" />
     <code-block
