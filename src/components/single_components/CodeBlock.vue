@@ -48,11 +48,17 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .code-block {
-  background-color: $code-block;
+  // background-color: $code-block;
+  // #B2DFDB
+  color: white;
+  background-color: $primary;
+  margin-top: 2%;
+  margin-bottom: 2%;
 }
 
 .code-block:hover {
-  background-color: $code-block-onhover;
+  // background-color: $code-block-onhover;
+  background-color: $secondary;
 }
 
 .copy-icon {

@@ -94,8 +94,9 @@ function toggleLeftDrawer() {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .light-gray-background {
-  background-color: #eeeeee;
+  background-color: $light-gray-background;
+  /* background-color: lightgray; */
 }
 </style>
