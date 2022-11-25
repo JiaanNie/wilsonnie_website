@@ -5,8 +5,8 @@ export function highLightNode(elementId: string) {
     block: 'end',
     inline: 'nearest',
   });
-  element.classList.add('on-click-highlight ');
+  element.classList.add('on-click-highlight');
   setTimeout(() => {
-    element.classList.remove('on-click-highlight ');
+    element.classList.remove('on-click-highlight');
   }, 1000);
 }

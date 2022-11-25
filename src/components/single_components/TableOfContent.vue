@@ -1,6 +1,6 @@
 <template>
   <div class="q-pa-md q-gutter-sm sticky-table-of-content">
-    <q-tree :nodes="nodes" node-key="label" />
+    <q-tree selectable :nodes="nodes" node-key="label" />
   </div>
 </template>
 
@@ -38,6 +38,7 @@ export default defineComponent({
         children: props.tableSections.map((item, index) => {
           const result = {
             label: item.label,
+            children: [],
             handler: () => {
               item.handler(
                 `${item.label.replace(/\s/g, '')}-${index.toString()}`
