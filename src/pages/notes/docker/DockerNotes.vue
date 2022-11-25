@@ -1,6 +1,10 @@
 <template>
   <q-page class="col justify-evenly">
-    <table-of-content class="row" table-name="test" :table-section="['test']" />
+    <table-of-content
+      table-name="Docker Basic"
+      table-icon="test"
+      :table-section="tableSections"
+    />
     <content-block
       v-for="(command, index) in dockerCommandslist"
       :key="index"
@@ -13,10 +17,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from 'vue';
+import { defineComponent, reactive, ref } from 'vue';
 import { DockerCommand } from 'src/components/Schemas/ComponentSchema';
 import ContentBlock from 'src/components/composition-components/ContentBlock.vue';
 import TableOfContent from 'src/components/single_components/TableOfContent.vue';
+import { TableContent } from 'src/components/Schemas/ComponentSchema';
 
 export default defineComponent({
   name: 'DockerNotes',
@@ -80,13 +85,15 @@ export default defineComponent({
         ],
       },
     ]);
-    // console.log(
-    //   dockerCommandslist.map(({ x: e }) => {
-    //     e.name;
-    //   })
-    // );
 
-    return { dockerCommandslist };
+    let tableSections: Array<TableContent> = dockerCommandslist.map((x) => {
+      const item: TableContent = {
+        label: x.name,
+      };
+      return item;
+    });
+
+    return { dockerCommandslist, tableSections };
   },
 });
 </script>

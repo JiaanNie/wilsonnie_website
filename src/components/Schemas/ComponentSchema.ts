@@ -15,3 +15,8 @@ export interface Step {
   details?: string[];
   link?: string;
 }
+
+export interface TableContent {
+  label: string
+  icon?: string
+}

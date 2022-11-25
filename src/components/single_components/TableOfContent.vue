@@ -6,6 +6,8 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
+import { TableContent } from 'src/components/schemas/ComponentSchema';
+
 // import { highLightNode } from 'src/utils/helper';
 
 export default defineComponent({
@@ -15,8 +17,12 @@ export default defineComponent({
       type: String,
       required: true,
     },
-    tableSection: {
-      type: Array as PropType<Array<string>>,
+    tableIcon: {
+      type: String,
+      required: true,
+    },
+    tableSections: {
+      type: Array as PropType<Array<TableContent>>,
       required: true,
     },
     iconName: {
@@ -24,7 +30,7 @@ export default defineComponent({
       required: false,
     },
   },
-  setup() {
+  setup(props) {
     const simple = [
       {
         label: 'Docker Basic',
@@ -64,6 +70,7 @@ export default defineComponent({
         ],
       },
     ];
+    console.log(props.tableSections);
     return { simple };
   },
 });
