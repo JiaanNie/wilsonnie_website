@@ -1,0 +1,9 @@
+when use 3 value the order are
+top right_left bottom
+
+when use 4 value the order are
+top right bottom left (clock wise)
+
+when use 2 value the order are
+
+top_bottom right_left

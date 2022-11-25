@@ -11,7 +11,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { useRouter } from 'vue-router';
-import ClickableCardVue from 'src/components/ClickableCard.vue';
+import ClickableCardVue from 'src/components/single_components/ClickableCard.vue';
 
 export default defineComponent({
   components: {

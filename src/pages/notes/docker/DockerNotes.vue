@@ -1,29 +1,31 @@
 <template>
-  <q-page class="col justify-evenly note-content">
-    <div
-      v-for="dockerCommand in dockerCommandslist"
-      :key="dockerCommand.command"
-    >
-      <h5 class="header-space">{{ dockerCommand.name }}</h5>
-      <q-separator />
-      <code-block :codeString="dockerCommand.command" />
-      <ol>
-        <li v-for="detail in dockerCommand.details" :key="detail">
-          {{ detail }}
-        </li>
-      </ol>
+  <q-page class="col justify-evenly">
+    <div class="q-pa-md q-gutter-sm">
+      <q-tree :nodes="simple" node-key="label" />
     </div>
+    <content-block
+      v-for="(command, index) in dockerCommandslist"
+      :key="index"
+      :content-name="command.name"
+      :content-description="command.description"
+      :command-line="command.command"
+      :content-details="command.details"
+    />
   </q-page>
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive } from 'vue';
-import CodeBlock from 'src/components/CodeBlock.vue';
+// import CodeBlock from 'src/components/single_components/CodeBlock.vue';
 import { DockerCommand } from 'src/components/Schemas/ComponentSchema';
+import ContentBlock from 'src/components/composition-components/ContentBlock.vue';
+// import { highLightNode } from 'src/utils/helper';
+
 export default defineComponent({
   name: 'DockerNotes',
   components: {
-    CodeBlock,
+    ContentBlock,
+    // CodeBlock,
   },
   setup() {
     const dockerCommandslist = reactive<DockerCommand[]>([
@@ -54,6 +56,8 @@ export default defineComponent({
         details: [
           '-t is a flag that allow user to tag a container with the name they wanted to be',
           'the . at the end of the command will tell docker to look for a Dockerfile within the currecnt directory',
+          'Optional Flag you can add in --progress=plain this allow you print out the output of the command for debugging',
+          'Optional Flag you can add in --no-cache incase you want to do a fresh build',
         ],
       },
       {
@@ -79,16 +83,70 @@ export default defineComponent({
         ],
       },
     ]);
-    return { dockerCommandslist };
+    const simple = [
+      {
+        label: 'Docker Basic',
+        icon: 'fa-brands fa-docker',
+        children: [
+          {
+            label: 'Good food (with icon)',
+            icon: 'restaurant_menu',
+            children: [
+              { label: 'Quality ingredients' },
+              { label: 'Good recipe' },
+            ],
+
+            // setTimeout(
+          },
+          {
+            label: 'Good service (disabled node with icon)',
+            icon: 'room_service',
+            disabled: true,
+            children: [
+              { label: 'Prompt attention' },
+              { label: 'Professional waiter' },
+            ],
+          },
+          {
+            label: 'Pleasant surroundings (with icon)',
+            icon: 'photo',
+            children: [
+              {
+                label: 'Happy atmosphere (with image)',
+                img: 'https://cdn.quasar.dev/img/logo_calendar_128px.png',
+              },
+              { label: 'Good table presentation' },
+              { label: 'Pleasing decor' },
+            ],
+          },
+        ],
+      },
+    ];
+    return { dockerCommandslist, simple };
   },
 });
 </script>
 
-<style scoped lang="scss">
+<!-- <style scoped lang="scss">
 .note-content {
   margin: 5% 20%;
 }
 .header-space {
   margin-bottom: 1%;
 }
-</style>
+.test {
+  background-color: orange;
+  animation-name: bckanim;
+  animation-fill-mode: forwards;
+  animation-duration: 3s;
+  animation-delay: 0s;
+}
+@keyframes bckanim {
+  0% {
+    background-color: orange;
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+</style> -->

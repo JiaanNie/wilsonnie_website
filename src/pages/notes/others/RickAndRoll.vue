@@ -1,7 +1,17 @@
 <template>
   <q-page ref="video" class="row items-center justify-evenly">
     <div class="q-pa-md">
-      <q-video auto src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0" />
+      <!-- <q-video
+        id="video"
+        src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0"
+      /> -->
+      <iframe
+        id="video"
+        src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
+        frameborder="0"
+        allow="autoplay"
+        allowfullscreen
+      />
     </div>
   </q-page>
 </template>
@@ -14,7 +24,13 @@ export default defineComponent({
   setup() {
     const video = ref(null);
     onMounted(() => {
-      console.log(video.value);
+      console.log('test');
+      const clickEvent = new KeyboardEvent('click');
+      const element: HTMLElement = document.getElementById('video');
+      setTimeout(() => {
+        element.dispatchEvent(new KeyboardEvent('keydown', { key: 'k' }));
+      }, 100);
+      element.dispatchEvent(clickEvent);
     });
     return { video };
   },
