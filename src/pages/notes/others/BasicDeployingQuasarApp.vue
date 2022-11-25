@@ -1,34 +1,23 @@
 <template>
-  <q-page class="col items-center justify-evenly center-content">
-    <div
-      v-for="step in procedure"
-      :key="step.step"
-      class="inset-shadow rounded-borders teste"
-    >
-      <h5 class="header-space">{{ step.description }}</h5>
-      <q-separator />
-      <pre>
-        <code-block :codeString="step.command"></code-block>
-      </pre>
-      <ol class="test">
-        <li v-for="detail in step.details" :key="detail">
-          {{ detail }}
-        </li>
-      </ol>
-      <q-space></q-space>
-    </div>
-  </q-page>
+  <content-block
+    v-for="(command, index) in procedure"
+    :key="index"
+    :content-name="command.description"
+    :content-description="command.description"
+    :command-line="command.command"
+    :content-details="command.details"
+  />
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive } from 'vue';
-import CodeBlock from 'src/components/single_components/CodeBlock.vue';
 import { Step } from 'src/components/Schemas/ComponentSchema';
+import ContentBlock from 'src/components/composition-components/ContentBlock.vue';
 
 export default defineComponent({
   name: 'BasicDeployment',
   components: {
-    CodeBlock,
+    ContentBlock,
   },
   setup() {
     const procedure = reactive<Step[]>([
@@ -132,19 +121,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style lang="scss" scoped>
-.center-content {
-  margin: 5% 20%;
-  background-color: white;
-}
-
-.header-space {
-  padding: 2% 3%;
-  margin-bottom: 0;
-  margin-top: 0;
-}
-.test {
-  margin-bottom: 0;
-}
-</style>

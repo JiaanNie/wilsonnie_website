@@ -59,8 +59,7 @@ export default defineComponent({
 }
 
 .note-content {
-  // border-style: solid;
-  // border-width: 1px;
+  border-radius: 10px;
   margin: 5% 20% 0;
   padding: 1%;
   background-color: white;
