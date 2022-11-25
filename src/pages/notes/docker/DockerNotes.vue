@@ -1,18 +1,24 @@
 <template>
-  <q-page class="col justify-evenly">
-    <table-of-content
-      table-name="Docker Basic"
-      table-icon="test"
-      :table-sections="tableSections"
-    />
-    <content-block
-      v-for="(command, index) in dockerCommandslist"
-      :key="index"
-      :content-name="command.name"
-      :content-description="command.name"
-      :command-line="command.command"
-      :content-details="command.details"
-    />
+  <q-page class="row justify-evenly">
+    <div class="col-2">
+      <table-of-content
+        table-name="Docker Basic"
+        table-icon="test"
+        :table-sections="tableSections"
+      />
+    </div>
+    <div class="col">
+      <h3 class="text-h4 content-header">Docker Basic</h3>
+      <q-separator></q-separator>
+      <content-block
+        v-for="(command, index) in dockerCommandslist"
+        :key="index"
+        :content-name="command.name"
+        :content-description="command.name"
+        :command-line="command.command"
+        :content-details="command.details"
+      />
+    </div>
   </q-page>
 </template>
 
@@ -53,7 +59,7 @@ export default defineComponent({
         details: ['list out all of the image within your docker'],
       },
       {
-        name: 'Docker build a DockerFile into a DockerImage',
+        name: 'Docker build a DockerFile into a Docker Image',
         command: 'docker build -t <container-tag-name> .',
         details: [
           '-t is a flag that allow user to tag a container with the name they wanted to be',

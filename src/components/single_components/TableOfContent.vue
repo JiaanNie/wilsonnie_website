@@ -1,6 +1,6 @@
 <template>
-  <div class="q-pa-md q-gutter-sm">
-    <q-tree :nodes="simple" node-key="label" />
+  <div class="q-pa-md q-gutter-sm sticky-table-of-content">
+    <q-tree :nodes="nodes" node-key="label" />
   </div>
 </template>
 
@@ -31,7 +31,7 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const simple = [
+    const nodes = [
       {
         label: props.tableName,
         icon: 'fa-brands fa-docker',
@@ -39,7 +39,14 @@ export default defineComponent({
       },
     ];
     console.log(props.tableSections);
-    return { simple };
+    return { nodes };
   },
 });
 </script>
+
+<style scoped>
+.sticky-table-of-content {
+  position: sticky;
+  top: 0;
+}
+</style>
