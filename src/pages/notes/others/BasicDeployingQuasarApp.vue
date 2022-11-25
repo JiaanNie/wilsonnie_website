@@ -1,34 +1,23 @@
 <template>
-  <q-page class="col items-center justify-evenly center-content">
-    <div
-      v-for="step in procedure"
-      :key="step.step"
-      class="inset-shadow rounded-borders teste"
-    >
-      <h5 class="header-space">{{ step.description }}</h5>
-      <q-separator />
-      <pre>
-        <code-block :codeString="step.command"></code-block>
-      </pre>
-      <ol class="test">
-        <li v-for="detail in step.details" :key="detail">
-          {{ detail }}
-        </li>
-      </ol>
-      <q-space></q-space>
-    </div>
-  </q-page>
+  <content-block
+    v-for="(command, index) in procedure"
+    :key="index"
+    :content-name="command.description"
+    :content-description="command.description"
+    :command-line="command.command"
+    :content-details="command.details"
+  />
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive } from 'vue';
-import CodeBlock from 'src/components/single_components/CodeBlock.vue';
 import { Step } from 'src/components/Schemas/ComponentSchema';
+import ContentBlock from 'src/components/composition-components/ContentBlock.vue';
 
 export default defineComponent({
   name: 'BasicDeployment',
   components: {
-    CodeBlock,
+    ContentBlock,
   },
   setup() {
     const procedure = reactive<Step[]>([
@@ -44,6 +33,7 @@ export default defineComponent({
         step: 2,
         description: 'cloning the repo from github into the instance',
         command: 'git clone <repo url>',
+        details: [],
       },
       {
         step: 3,
@@ -58,28 +48,35 @@ export default defineComponent({
         step: 4,
         description: 'install nodejs',
         command: 'sudo apt-get install -y nodejs',
+        details: [],
       },
       {
         step: 5,
         description:
           'next install quasasr global within your system or ec2 instance',
         command: 'npm install -g @quasar/cli',
+        details: [],
       },
       {
         step: 6,
         description:
-          'attempt to build quasar application. you should see a dist folder show up that where your production build located',
+          'bundle the quasar project',
         command: 'quasar build',
+        details: [
+          'attempt to build quasar application. you should see a dist folder show up that where your production build located'
+        ],
       },
       {
         step: 7,
         description: 'install docker via command',
         command: 'sudo apt-get install docker.io',
+        details: [],
       },
       {
         step: 8,
         description: 'build the docker image for you application',
         command: 'sudo docker build -t <insert-image-name here> .',
+        details: [],
       },
       {
         step: 9,
@@ -93,6 +90,7 @@ export default defineComponent({
     --volume html:/usr/share/nginx/html
     --volume /var/run/docker.sock:/tmp/docker.sock:ro
     nginxproxy/nginx-proxy`,
+        details: [],
       },
       {
         step: 10,
@@ -104,6 +102,7 @@ export default defineComponent({
     --volume acme:/etc/acme.sh
     --env "wilson.nie13@gmail.com
     nginxproxy/acme-companion`,
+        details: [],
       },
       {
         step: 11,
@@ -113,6 +112,7 @@ export default defineComponent({
     --env "VIRTUAL_HOST=wilsonnie.ca"
     --env "LETSENCRYPT_HOST=wilsonnie.ca"
     <image-id>`,
+        details: [],
       },
       {
         step: 12,
@@ -126,25 +126,10 @@ export default defineComponent({
     --volume html:/usr/share/nginx/html
     --volume /var/run/docker.sock:/tmp/docker.sock:ro
     nginxproxy/nginx-proxy`,
+        details: [],
       },
     ]);
     return { procedure };
   },
 });
 </script>
-
-<style lang="scss" scoped>
-.center-content {
-  margin: 5% 20%;
-  background-color: white;
-}
-
-.header-space {
-  padding: 2% 3%;
-  margin-bottom: 0;
-  margin-top: 0;
-}
-.test {
-  margin-bottom: 0;
-}
-</style>

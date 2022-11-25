@@ -1,12 +1,8 @@
 <template>
-  <div class="note-content shadow-15">
+  <div class="note-content inset-shadow">
     <h4 class="text-h4 content-header">{{ contentName }}</h4>
     <q-separator color="primary" />
-    <code-block
-      v-if="commandLine"
-      :code-string="commandLine"
-      class="shadow-15 text-weight-bold"
-    />
+    <code-block v-if="commandLine" :code-string="commandLine" />
     <ol v-if="contentDetails">
       <li
         v-for="detail in contentDetails"
@@ -59,9 +55,8 @@ export default defineComponent({
 }
 
 .note-content {
-  // border-style: solid;
-  // border-width: 1px;
-  margin: 5% 20% 0;
+  border-radius: 10px;
+  margin: 5% 20% 0 0;
   padding: 1%;
   background-color: white;
 }

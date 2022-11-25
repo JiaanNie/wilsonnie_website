@@ -2,7 +2,7 @@
   <q-card
     v-ripple
     bordered
-    class="code-block cursor-pointer q-hoverable"
+    class="code-block cursor-pointer q-hoverable shadow-10 text-weight-bold"
     @click="copyCodeToClipBoard(codeString)"
   >
     <q-card-section>
@@ -48,8 +48,6 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .code-block {
-  // background-color: $code-block;
-  // #B2DFDB
   color: white;
   background-color: $primary;
   margin-top: 2%;
@@ -57,8 +55,9 @@ export default defineComponent({
 }
 
 .code-block:hover {
-  // background-color: $code-block-onhover;
-  background-color: $secondary;
+  background-color: $on-card-hover;
+  border-style: soild;
+  box-shadow: 2px 2px 2px 2px darkblue;
 }
 
 .copy-icon {

@@ -1,1 +1,16 @@
 // app global css in SCSS form
+.on-click-highlight {
+  background-color: #18ffff;
+  animation-name: bckanim;
+  animation-fill-mode: forwards;
+  animation-duration: 3s;
+  animation-delay: 0s;
+}
+@keyframes bckanim {
+  0% {
+    background-color: #18ffff;
+  }
+  100% {
+    background-color: transparent;
+  }
+}

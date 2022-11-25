@@ -1,31 +1,41 @@
 <template>
-  <q-page class="col justify-evenly">
-    <div class="q-pa-md q-gutter-sm">
-      <q-tree :nodes="simple" node-key="label" />
+  <q-page class="row justify-evenly">
+    <div class="col-2">
+      <table-of-content
+        table-name="Docker Basic"
+        table-icon="test"
+        :table-sections="tableSections"
+      />
     </div>
-    <content-block
-      v-for="(command, index) in dockerCommandslist"
-      :key="index"
-      :content-name="command.name"
-      :content-description="command.description"
-      :command-line="command.command"
-      :content-details="command.details"
-    />
+    <div class="col">
+      <h3 class="text-h4 content-header">Docker Basic</h3>
+      <q-separator></q-separator>
+      <content-block
+        v-for="(command, index) in dockerCommandslist"
+        :key="index"
+        :content-name="command.name"
+        :content-description="command.name"
+        :command-line="command.command"
+        :content-details="command.details"
+        :id="`${command.name.replace(/\s/g, '')}-${index.toString()}`"
+      />
+    </div>
   </q-page>
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive } from 'vue';
-// import CodeBlock from 'src/components/single_components/CodeBlock.vue';
 import { DockerCommand } from 'src/components/Schemas/ComponentSchema';
 import ContentBlock from 'src/components/composition-components/ContentBlock.vue';
-// import { highLightNode } from 'src/utils/helper';
+import TableOfContent from 'src/components/single_components/TableOfContent.vue';
+import { TableContent } from 'src/components/Schemas/ComponentSchema';
+import { highLightNode } from 'src/utils/helper';
 
 export default defineComponent({
   name: 'DockerNotes',
   components: {
     ContentBlock,
-    // CodeBlock,
+    TableOfContent,
   },
   setup() {
     const dockerCommandslist = reactive<DockerCommand[]>([
@@ -51,7 +61,7 @@ export default defineComponent({
         details: ['list out all of the image within your docker'],
       },
       {
-        name: 'Docker build a DockerFile into a DockerImage',
+        name: 'Docker build a DockerFile into a Docker Image',
         command: 'docker build -t <container-tag-name> .',
         details: [
           '-t is a flag that allow user to tag a container with the name they wanted to be',
@@ -83,70 +93,15 @@ export default defineComponent({
         ],
       },
     ]);
-    const simple = [
-      {
-        label: 'Docker Basic',
-        icon: 'fa-brands fa-docker',
-        children: [
-          {
-            label: 'Good food (with icon)',
-            icon: 'restaurant_menu',
-            children: [
-              { label: 'Quality ingredients' },
-              { label: 'Good recipe' },
-            ],
 
-            // setTimeout(
-          },
-          {
-            label: 'Good service (disabled node with icon)',
-            icon: 'room_service',
-            disabled: true,
-            children: [
-              { label: 'Prompt attention' },
-              { label: 'Professional waiter' },
-            ],
-          },
-          {
-            label: 'Pleasant surroundings (with icon)',
-            icon: 'photo',
-            children: [
-              {
-                label: 'Happy atmosphere (with image)',
-                img: 'https://cdn.quasar.dev/img/logo_calendar_128px.png',
-              },
-              { label: 'Good table presentation' },
-              { label: 'Pleasing decor' },
-            ],
-          },
-        ],
-      },
-    ];
-    return { dockerCommandslist, simple };
+    let tableSections: Array<TableContent> = dockerCommandslist.map((item) => {
+      const result: TableContent = {
+        label: item.name,
+        handler: highLightNode,
+      };
+      return result;
+    });
+    return { dockerCommandslist, tableSections };
   },
 });
 </script>
-
-<!-- <style scoped lang="scss">
-.note-content {
-  margin: 5% 20%;
-}
-.header-space {
-  margin-bottom: 1%;
-}
-.test {
-  background-color: orange;
-  animation-name: bckanim;
-  animation-fill-mode: forwards;
-  animation-duration: 3s;
-  animation-delay: 0s;
-}
-@keyframes bckanim {
-  0% {
-    background-color: orange;
-  }
-  100% {
-    background-color: transparent;
-  }
-}
-</style> -->
