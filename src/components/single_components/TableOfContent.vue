@@ -35,10 +35,20 @@ export default defineComponent({
       {
         label: props.tableName,
         icon: 'fa-brands fa-docker',
-        children: props.tableSections,
+        children: props.tableSections.map((item, index) => {
+          const result = {
+            label: item.label,
+            handler: () => {
+              item.handler(
+                `${item.label.replace(/\s/g, '')}-${index.toString()}`
+              );
+            },
+          };
+          return result;
+        }),
       },
     ];
-    console.log(props.tableSections);
+
     return { nodes };
   },
 });

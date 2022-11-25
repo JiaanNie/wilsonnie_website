@@ -17,6 +17,7 @@ export interface Step {
 }
 
 export interface TableContent {
-  label: string
-  icon?: string
+  label: string;
+  icon?: string;
+  handler: (elementId: string) => void;
 }

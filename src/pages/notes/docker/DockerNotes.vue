@@ -17,17 +17,19 @@
         :content-description="command.name"
         :command-line="command.command"
         :content-details="command.details"
+        :id="`${command.name.replace(/\s/g, '')}-${index.toString()}`"
       />
     </div>
   </q-page>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref } from 'vue';
+import { defineComponent, reactive } from 'vue';
 import { DockerCommand } from 'src/components/Schemas/ComponentSchema';
 import ContentBlock from 'src/components/composition-components/ContentBlock.vue';
 import TableOfContent from 'src/components/single_components/TableOfContent.vue';
 import { TableContent } from 'src/components/Schemas/ComponentSchema';
+import { highLightNode } from 'src/utils/helper';
 
 export default defineComponent({
   name: 'DockerNotes',
@@ -92,13 +94,13 @@ export default defineComponent({
       },
     ]);
 
-    let tableSections: Array<TableContent> = dockerCommandslist.map((x) => {
-      const item: TableContent = {
-        label: x.name,
+    let tableSections: Array<TableContent> = dockerCommandslist.map((item) => {
+      const result: TableContent = {
+        label: item.name,
+        handler: highLightNode,
       };
-      return item;
+      return result;
     });
-
     return { dockerCommandslist, tableSections };
   },
 });
