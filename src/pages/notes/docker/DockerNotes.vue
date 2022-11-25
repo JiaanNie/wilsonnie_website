@@ -1,24 +1,8 @@
 <template>
   <q-page class="col justify-evenly">
-    <!-- <div
-      v-for="(dockerCommand, index) in dockerCommandslist"
-      :key="dockerCommand.command"
-      :id="`header-${index.toString()}`"
-    >
-      <h5 class="header-space">
-        {{ dockerCommand.name }}
-      </h5>
-      <q-separator />
-      <code-block :codeString="dockerCommand.command" />
-      <ol>
-        <li v-for="detail in dockerCommand.details" :key="detail">
-          {{ detail }}
-        </li>
-      </ol>
-    </div> -->
-    <!-- <div class="q-pa-md q-gutter-sm">
+    <div class="q-pa-md q-gutter-sm">
       <q-tree :nodes="simple" node-key="label" />
-    </div> -->
+    </div>
     <content-block
       v-for="(command, index) in dockerCommandslist"
       :key="index"
@@ -99,52 +83,51 @@ export default defineComponent({
         ],
       },
     ]);
-    // const simple = [
-    //   {
-    //     label: 'Docker Basic',
-    //     icon: 'fa-brands fa-docker',
-    //     children: [
-    //       {
-    //         label: 'Good food (with icon)',
-    //         icon: 'restaurant_menu',
-    //         children: [
-    //           { label: 'Quality ingredients' },
-    //           { label: 'Good recipe' },
-    //         ],
-    //         handler: highLightNode,
+    const simple = [
+      {
+        label: 'Docker Basic',
+        icon: 'fa-brands fa-docker',
+        children: [
+          {
+            label: 'Good food (with icon)',
+            icon: 'restaurant_menu',
+            children: [
+              { label: 'Quality ingredients' },
+              { label: 'Good recipe' },
+            ],
 
-    //         // setTimeout(
-    //       },
-    //       {
-    //         label: 'Good service (disabled node with icon)',
-    //         icon: 'room_service',
-    //         disabled: true,
-    //         children: [
-    //           { label: 'Prompt attention' },
-    //           { label: 'Professional waiter' },
-    //         ],
-    //       },
-    //       {
-    //         label: 'Pleasant surroundings (with icon)',
-    //         icon: 'photo',
-    //         children: [
-    //           {
-    //             label: 'Happy atmosphere (with image)',
-    //             img: 'https://cdn.quasar.dev/img/logo_calendar_128px.png',
-    //           },
-    //           { label: 'Good table presentation' },
-    //           { label: 'Pleasing decor' },
-    //         ],
-    //       },
-    //     ],
-    //   },
-    // ];
-    return { dockerCommandslist };
+            // setTimeout(
+          },
+          {
+            label: 'Good service (disabled node with icon)',
+            icon: 'room_service',
+            disabled: true,
+            children: [
+              { label: 'Prompt attention' },
+              { label: 'Professional waiter' },
+            ],
+          },
+          {
+            label: 'Pleasant surroundings (with icon)',
+            icon: 'photo',
+            children: [
+              {
+                label: 'Happy atmosphere (with image)',
+                img: 'https://cdn.quasar.dev/img/logo_calendar_128px.png',
+              },
+              { label: 'Good table presentation' },
+              { label: 'Pleasing decor' },
+            ],
+          },
+        ],
+      },
+    ];
+    return { dockerCommandslist, simple };
   },
 });
 </script>
 
-<style scoped lang="scss">
+<!-- <style scoped lang="scss">
 .note-content {
   margin: 5% 20%;
 }
@@ -166,4 +149,4 @@ export default defineComponent({
     background-color: transparent;
   }
 }
-</style>
+</style> -->

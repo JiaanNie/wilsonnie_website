@@ -1,8 +1,13 @@
 <template>
-  <div class="note-content">
+  <div class="note-content shadow-15">
     <h5 class="content-header">{{ contentName }}</h5>
     <q-separator color="black" />
-    <code-block v-if="commandLine" :code-string="commandLine"></code-block>
+
+    <code-block
+      v-if="commandLine"
+      :code-string="commandLine"
+      class="shadow-15"
+    />
     <ol v-if="contentDetails">
       <li v-for="detail in contentDetails" :key="detail">
         {{ detail }}
@@ -47,11 +52,17 @@ export default defineComponent({
 <style scoped>
 .content-header {
   background-color: white;
-  margin-bottom: 0;
+  margin-top: 0;
   margin-bottom: 1%;
 }
 
 .note-content {
-  margin: 5% 20%;
+  /* margin-top: 5%;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-bottom: 0px; */
+  margin: 5% 20% 0;
+  background-color: white;
+  padding: 1%;
 }
 </style>
