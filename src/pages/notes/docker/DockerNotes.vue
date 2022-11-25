@@ -3,7 +3,7 @@
     <table-of-content
       table-name="Docker Basic"
       table-icon="test"
-      :table-section="tableSections"
+      :table-sections="tableSections"
     />
     <content-block
       v-for="(command, index) in dockerCommandslist"
