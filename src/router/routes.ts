@@ -2,7 +2,7 @@ import { RouteRecordRaw } from 'vue-router';
 import GithubNotes from 'src/pages/notes/github/GithubNotes.vue';
 import AWSNotes from 'src/pages/notes/aws/AWSNotes.vue';
 import DockerNotes from 'src/pages/notes/docker/DockerNotes.vue';
-import GridNotes from 'src/pages/notes/CSS/GridNotes.vue';
+import GridNotes from 'src/pages/notes/css/GridNotes.vue';
 import RickAndRoll from 'src/pages/notes/others/RickAndRoll.vue';
 import BasicDeployingQuasarApp from 'src/pages/notes/others/BasicDeployingQuasarApp.vue';
 
