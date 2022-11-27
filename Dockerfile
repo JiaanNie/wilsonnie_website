@@ -2,11 +2,12 @@
 FROM ubuntu:latest
 
 # update the continer
-RUN apt-get update
+RUN apt-get -y update
 
 # install curl and nginx and git
 
-RUN apt-get install curl nginx git
+RUN apt-get install -y curl nginx git
+
 
 # install node 16 distrubtion via curl
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
@@ -18,6 +19,12 @@ RUN apt-get install -y nodejs
 #clears the local repository of retrieved package files that are left in /var/cache
 RUN apt-get clean -y
 
+# setting up a work dir
+WORKDIR /app
+
+# Copy our source code into the container
+COPY . .
+
 
 # install quasar globally
 
@@ -26,6 +33,8 @@ RUN npm install -g @quasar/cli
 
 # installs project dependeinces
 RUN npm install
+
+RUN ls
 
 # build quasar project to a SPA for production uses
 Run quasar build
@@ -42,16 +51,7 @@ RUN cp -r /app/dist/spa/* .
 #remove everything in the app folder after the production build copy over to the workdir
 RUN rm -rf /app
 
+EXPOSE 80
+
+
 CMD ["nginx", "-g", "daemon off;"]
-
-
-
-
-# clone the project
-
-
-# build the project
-
-
-
-

@@ -1,0 +1,44 @@
+problem 1 with ubuntu version 22.04
+
+it seem by when you install nodejs at the first time it install node version 12 even after you run
+
+
+ curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+
+
+
+dpkg: error processing archive /var/cache/apt/archives/nodejs_18.12.1-deb-1nodesource1_amd64.deb (--unpack):
+ trying to overwrite '/usr/include/node/common.gypi', which is also in package libnode-dev 12.22.9~dfsg-1ubuntu3
+dpkg-deb: error: paste subprocess was killed by signal (Broken pipe)
+Errors were encountered while processing:
+ /var/cache/apt/archives/nodejs_18.12.1-deb-1nodesource1_amd64.deb
+E: Sub-process /usr/bin/dpkg returned an error code (1)
+ubuntu@ip-172-31-23-247:~$ curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+
+
+
+solution and source :
+
+sudo dpkg --remove --force-remove-reinstreq libnode-dev
+sudo dpkg --remove --force-remove-reinstreq libnode72:amd64
+
+
+
+https://github.com/nodesource/distributions/issues/1157
+
+
+problem 2 when use enter a vaild path i get 404
+
+https://serverfault.com/questions/1106010/nginx-404-not-found-when-entering-a-specific-url-path
+
+
+Basic understanding of nginx:
+
+when you first install nginx it come with the default config files
+
+lets look at nginx.confg:
+
+user workr_process, error_log and pid they are the config for nginx itself not for any server config
+
+
+
