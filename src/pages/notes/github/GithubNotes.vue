@@ -81,12 +81,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style scoped lang="scss">
-.note-content {
-  margin: 5% 20%;
-}
-.header-space {
-  margin-bottom: 1%;
-}
-</style>
