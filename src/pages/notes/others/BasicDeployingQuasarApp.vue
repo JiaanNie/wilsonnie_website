@@ -1,23 +1,39 @@
 <template>
-  <content-block
-    v-for="(command, index) in procedure"
-    :key="index"
-    :content-name="command.description"
-    :content-description="command.description"
-    :command-line="command.command"
-    :content-details="command.details"
-  />
+  <q-page class="row justify-evenly">
+    <div class="col-2">
+      <table-of-content
+        table-name="Docker Basic"
+        table-icon="test"
+        :table-sections="tableSections"
+      />
+    </div>
+    <div class="col">
+      <content-block
+        v-for="(command, index) in procedure"
+        :key="index"
+        :content-name="command.description"
+        :content-description="command.description"
+        :command-line="command.command"
+        :content-details="command.details"
+        :id="`${command.description.replace(/\s/g, '')}-${index.toString()}`"
+      />
+    </div>
+  </q-page>
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive } from 'vue';
 import { Step } from 'src/components/Schemas/ComponentSchema';
 import ContentBlock from 'src/components/composition-components/ContentBlock.vue';
+import { TableContent } from 'src/components/Schemas/ComponentSchema';
+import TableOfContent from 'src/components/single_components/TableOfContent.vue';
+import { highLightNode } from 'src/utils/helper';
 
 export default defineComponent({
   name: 'BasicDeployment',
   components: {
     ContentBlock,
+    TableOfContent,
   },
   setup() {
     const procedure = reactive<Step[]>([
@@ -59,11 +75,10 @@ export default defineComponent({
       },
       {
         step: 6,
-        description:
-          'bundle the quasar project',
+        description: 'bundle the quasar project',
         command: 'quasar build',
         details: [
-          'attempt to build quasar application. you should see a dist folder show up that where your production build located'
+          'attempt to build quasar application. you should see a dist folder show up that where your production build located',
         ],
       },
       {
@@ -129,7 +144,14 @@ export default defineComponent({
         details: [],
       },
     ]);
-    return { procedure };
+    let tableSections: Array<TableContent> = procedure.map((item) => {
+      const result: TableContent = {
+        label: item.description,
+        handler: highLightNode,
+      };
+      return result;
+    });
+    return { procedure, tableSections };
   },
 });
 </script>
