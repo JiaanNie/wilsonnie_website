@@ -1,7 +1,7 @@
 <template>
   <q-page class="row justify-evenly">
     <div class="q-pa-md">
-      <div class="q-gutter-md q-gutter-y-lg">
+      <div class="q-gutter-md">
         <q-carousel
           v-model="slide"
           transition-prev="scale"
@@ -40,18 +40,18 @@
             </div>
           </q-carousel-slide>
         </q-carousel>
-      </div>
-      <div class="row q-gutter-x-md">
-        <clickable-card-vue
-          name="Notes"
-          icon="fas fa-graduation-cap"
-          @click="test"
-        />
-        <clickable-card-vue
-          name="Hackerman tips"
-          icon="fas fa-user-secret"
-          @click="secret"
-        />
+        <div class="row q-gutter-x-md">
+          <clickable-card-vue
+            name="Notes"
+            icon="fas fa-graduation-cap"
+            @click="test"
+          />
+          <clickable-card-vue
+            name="Hackerman tips"
+            icon="fas fa-user-secret"
+            @click="secret"
+          />
+        </div>
       </div>
     </div>
   </q-page>
