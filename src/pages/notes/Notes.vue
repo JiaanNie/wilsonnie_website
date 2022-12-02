@@ -25,14 +25,21 @@
       icon="fa-solid fa-grip"
       @click="test('css-grid')"
     />
+    <clickable-card-vue
+      v-for="(topic, index) in topics"
+      :key="index"
+      :name="topic.name"
+      :icon="topic.icon"
+      @click="test('css-grid')"
+    />
   </q-page>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import ClickableCardVue from 'src/components/single_components/ClickableCard.vue';
-
+import { Topic } from 'src/components/Schemas/ComponentSchema';
 export default defineComponent({
   name: 'GithubNotes',
   components: {
@@ -40,10 +47,22 @@ export default defineComponent({
   },
   setup() {
     const router = useRouter();
+
+    const topics = reactive<Array<Topic>>([
+      { name: 'Docker', icon: 'fa-brands fa-docker' },
+      { name: 'AWS', icon: 'fa-brands fa-aws' },
+      { name: 'Github', icon: 'fa-brands fa-github' },
+      { name: 'Python', icon: 'fas fa-file' },
+      { name: 'TypeScript/JavaScript', icon: 'fa-brands fa-js' },
+      { name: 'Kubernetes', icon: 'fas fa-network-wired' },
+      { name: 'Deployment to AWS', icon: 'fas fa-file' },
+      { name: 'React', icon: 'fas fa-file' },
+      { name: 'Nginx', icon: 'fa-solid fa-server' },
+    ]);
     const test = (path = 'github') => {
       router.push({ path: `/notes/${path}-notes` });
     };
-    return { test };
+    return { test, topics };
   },
 });
 </script>

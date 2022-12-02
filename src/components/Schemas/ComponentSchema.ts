@@ -21,3 +21,8 @@ export interface TableContent {
   icon?: string;
   handler: (elementId: string) => void;
 }
+
+export interface Topic {
+  name: string;
+  icon: string;
+}
