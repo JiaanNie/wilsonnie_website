@@ -72,21 +72,11 @@ function toggleLeftDrawer() {
 }
 
 function toggleDarkMode() {
-  console.log('hello');
-  console.log($q.dark.isActive); // true, false
 
-  // get configured status
-  console.log($q.dark.mode); // "auto", true, false
-
-  // set status
   // $q.dark.set(true); // or false or "auto"
 
   // toggle
   $q.dark.toggle();
-  console.log($q.dark.isActive); // true, false
-
-  // get configured status
-  console.log($q.dark.mode); // "auto", true, false
 }
 </script>
 
