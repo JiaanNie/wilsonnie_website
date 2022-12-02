@@ -1,15 +1,57 @@
 <template>
-  <q-page class="row items-center justify-evenly">
-    <clickable-card-vue
-      name="Notes"
-      icon="fas fa-graduation-cap"
-      @click="test"
-    />
+  <q-page class="row justify-evenly">
+    <div class="q-pa-md">
+      <div class="q-gutter-md">
+        <q-carousel
+          v-model="slide"
+          transition-prev="scale"
+          transition-next="scale"
+          swipeable
+          animated
+          control-color="white"
+          navigation
+          padding
+          arrows
+          height="300px"
+          class="bg-primary text-white shadow-1 rounded-borders"
+        >
+          <q-carousel-slide name="style" class="column no-wrap flex-center">
+            <q-icon name="style" size="56px" />
+            <div class="q-mt-md text-center">
+              {{ lorem }}
+            </div>
+          </q-carousel-slide>
+          <q-carousel-slide name="tv" class="column no-wrap flex-center">
+            <q-icon name="live_tv" size="56px" />
+            <div class="q-mt-md text-center">
+              {{ lorem }}
+            </div>
+          </q-carousel-slide>
+          <q-carousel-slide name="layers" class="column no-wrap flex-center">
+            <q-icon name="layers" size="56px" />
+            <div class="q-mt-md text-center">
+              {{ lorem }}
+            </div>
+          </q-carousel-slide>
+          <q-carousel-slide name="map" class="column no-wrap flex-center">
+            <q-icon name="terrain" size="56px" />
+            <div class="q-mt-md text-center">
+              {{ lorem }}
+            </div>
+          </q-carousel-slide>
+        </q-carousel>
+        <clickable-card-vue
+          name="Notes"
+          icon="fas fa-graduation-cap"
+          @click="test"
+        />
+      </div>
+    </div>
   </q-page>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import ClickableCardVue from 'src/components/single_components/ClickableCard.vue';
 
@@ -19,10 +61,14 @@ export default defineComponent({
   },
   setup() {
     const router = useRouter();
+    const slide = ref('style');
+    const lorem = ref(
+      'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque voluptatem totam, architecto cupiditate officia rerum, error dignissimos praesentium libero ab nemo.'
+    );
     const test = () => {
       router.push({ path: '/notes' });
     };
-    return { test };
+    return { test, slide, lorem };
   },
 });
 </script>
