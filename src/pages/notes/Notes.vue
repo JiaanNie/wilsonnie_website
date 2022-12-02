@@ -1,13 +1,11 @@
 <template>
-  <q-page class="row items-center justify-evenly">
-    <clickable-card-vue
-      v-for="(topic, index) in topics"
-      :key="index"
-      :name="topic.name"
-      :icon="topic.icon"
-      @click="test(topic.path)"
-    />
-  </q-page>
+  <clickable-card-vue
+    v-for="(topic, index) in topics"
+    :key="index"
+    :name="topic.name"
+    :icon="topic.icon"
+    @click="test(topic.path)"
+  />
 </template>
 
 <script lang="ts">
@@ -16,7 +14,7 @@ import { useRouter } from 'vue-router';
 import ClickableCardVue from 'src/components/single_components/ClickableCard.vue';
 import { Topic } from 'src/components/Schemas/ComponentSchema';
 export default defineComponent({
-  name: 'GithubNotes',
+  name: 'NotesSection',
   components: {
     ClickableCardVue,
   },

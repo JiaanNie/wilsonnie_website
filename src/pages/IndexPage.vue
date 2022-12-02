@@ -41,16 +41,7 @@
           </q-carousel-slide>
         </q-carousel>
         <div class="row q-gutter-x-md">
-          <clickable-card-vue
-            name="Notes"
-            icon="fas fa-graduation-cap"
-            @click="test"
-          />
-          <clickable-card-vue
-            name="Hackerman tips"
-            icon="fas fa-user-secret"
-            @click="secret"
-          />
+          <notes-section />
         </div>
       </div>
     </div>
@@ -60,11 +51,11 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import { useRouter } from 'vue-router';
-import ClickableCardVue from 'src/components/single_components/ClickableCard.vue';
+import NotesSection from 'src/pages/notes/Notes.vue';
 
 export default defineComponent({
   components: {
-    ClickableCardVue,
+    NotesSection,
   },
   setup() {
     const router = useRouter();
