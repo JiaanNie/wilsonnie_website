@@ -33,7 +33,11 @@
         </div>
 
         <div class="row q-gutter-x-md q-gutter-y-md justify-center">
-          <h1>I need something to fill the void. so here is a H1 tag</h1>
+          <img
+            src="src/assets/betrayed-bird.gif"
+            alt="this slowpoke moves"
+            width="250"
+          />
         </div>
       </div>
     </div>
