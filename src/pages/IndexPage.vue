@@ -44,7 +44,9 @@
           <notes-section />
         </div>
 
-        <div class="row q-gutter-x-md q-gutter-y-md justify-center"></div>
+        <div class="row q-gutter-x-md q-gutter-y-md justify-center">
+          <h1>I need something to fill the void. so here is the H1 tag</h1>
+        </div>
       </div>
     </div>
   </q-page>
