@@ -25,6 +25,21 @@
 
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
       <q-list>
+        <q-item-label header> About me </q-item-label>
+        <q-card>
+          <q-card-section>
+            {{ aboutMe }}
+          </q-card-section>
+        </q-card>
+
+        <q-item-label header> Objective </q-item-label>
+
+        <q-card>
+          <q-card-section>
+            {{ objective }}
+          </q-card-section>
+        </q-card>
+
         <q-item-label header> Socials </q-item-label>
 
         <EssentialLink
@@ -50,19 +65,25 @@ import { useQuasar } from 'quasar';
 
 const essentialLinks: EssentialLinkProps[] = [
   {
-    title: 'LinkIn',
-    caption: 'LinkIn',
+    title: 'LinkedIn',
+    caption: 'LinkedIn',
     icon: 'school',
     link: 'https://www.linkedin.com/in/wilsonnie/',
   },
   {
     title: 'Github',
-    caption: 'My Repos',
+    caption: 'My Github',
     icon: 'code',
     link: 'https://github.com/JiaanNie',
   },
 ];
 const isDarkMode = ref(false);
+const aboutMe = ref(
+  'Software developer with 2 years experience working in small organizations. Exposed to a wide range of technologies.'
+);
+const objective = ref(
+  'Vue-based web application to explore and experiment new skills such as containerization, configuring Nginx, deploying an application as a pod within a kubernetes cluster'
+);
 
 const leftDrawerOpen = ref(false);
 const $q = useQuasar();
@@ -72,7 +93,6 @@ function toggleLeftDrawer() {
 }
 
 function toggleDarkMode() {
-
   // $q.dark.set(true); // or false or "auto"
 
   // toggle
@@ -84,5 +104,9 @@ function toggleDarkMode() {
 .light-gray-background {
   background-color: $light-gray-background;
   /* background-color: lightgray; */
+}
+
+.about-me {
+  padding: 0;
 }
 </style>

@@ -18,25 +18,13 @@
           <q-carousel-slide name="style" class="column no-wrap flex-center">
             <q-icon name="style" size="56px" />
             <div class="q-mt-md text-center">
-              {{ lorem }}
+              {{ aboutMe }}
             </div>
           </q-carousel-slide>
           <q-carousel-slide name="tv" class="column no-wrap flex-center">
             <q-icon name="live_tv" size="56px" />
             <div class="q-mt-md text-center">
-              {{ lorem }}
-            </div>
-          </q-carousel-slide>
-          <q-carousel-slide name="layers" class="column no-wrap flex-center">
-            <q-icon name="layers" size="56px" />
-            <div class="q-mt-md text-center">
-              {{ lorem }}
-            </div>
-          </q-carousel-slide>
-          <q-carousel-slide name="map" class="column no-wrap flex-center">
-            <q-icon name="terrain" size="56px" />
-            <div class="q-mt-md text-center">
-              {{ lorem }}
+              {{ objective }}
             </div>
           </q-carousel-slide>
         </q-carousel>
@@ -45,7 +33,7 @@
         </div>
 
         <div class="row q-gutter-x-md q-gutter-y-md justify-center">
-          <h1>I need something to fill the void. so here is the H1 tag</h1>
+          <h1>I need something to fill the void. so here is a H1 tag</h1>
         </div>
       </div>
     </div>
@@ -62,10 +50,13 @@ export default defineComponent({
   },
   setup() {
     const slide = ref('style');
-    const lorem = ref(
-      'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque voluptatem totam, architecto cupiditate officia rerum, error dignissimos praesentium libero ab nemo.'
+    const aboutMe = ref(
+      'Software developer with 2 years experience working in small organizations. Exposed to a wide range of technologies.'
     );
-    return { slide, lorem };
+    const objective = ref(
+      'Vue-based web application to explore and experiment new skills such as containerization, configuring Nginx, deploying an application as a pod within a kubernetes cluster'
+    );
+    return { slide, aboutMe, objective };
   },
 });
 </script>
