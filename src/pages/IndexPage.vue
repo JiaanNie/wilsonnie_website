@@ -1,6 +1,6 @@
 <template>
   <q-page class="row justify-evenly">
-    <div class="q-pa-md">
+    <div class="q-pa-md container-page">
       <div class="q-gutter-md">
         <q-carousel
           v-model="slide"
@@ -13,7 +13,7 @@
           padding
           arrows
           height="300px"
-          class="bg-primary text-white shadow-1 rounded-borders"
+          class="bg-primary text-white shadow-1 rounded-borders justify-center"
         >
           <q-carousel-slide name="style" class="column no-wrap flex-center">
             <q-icon name="style" size="56px" />
@@ -43,6 +43,8 @@
         <div class="row q-gutter-x-md q-gutter-y-md">
           <notes-section />
         </div>
+
+        <div class="row q-gutter-x-md q-gutter-y-md justify-center"></div>
       </div>
     </div>
   </q-page>
@@ -65,3 +67,10 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped>
+.container-page {
+  margin-left: 25%;
+  margin-right: 25%;
+}
+</style>
