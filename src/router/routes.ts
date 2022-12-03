@@ -16,11 +16,6 @@ const routes: RouteRecordRaw[] = [
     path: '/notes',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      {
-        path: '',
-        name: 'Notes',
-        component: () => import('pages/notes/Notes.vue'),
-      },
       { path: 'github-notes', name: 'GithubNotes', component: GithubNotes },
       { path: 'aws-notes', name: 'AWSNotes', component: AWSNotes },
       { path: 'docker-notes', name: 'DockerNotes', component: DockerNotes },
