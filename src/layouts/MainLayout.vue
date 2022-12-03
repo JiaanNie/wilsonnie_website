@@ -15,6 +15,11 @@
             <q-breadcrumbs-el label="Home" icon="home" to="/" />
           </q-breadcrumbs>
         </q-toolbar>
+        <q-toggle
+          v-model="isDarkMode"
+          icon="alarm"
+          @update:model-value="toggleDarkMode"
+        />
       </q-toolbar>
     </q-header>
 
@@ -41,6 +46,7 @@ import { ref } from 'vue';
 import EssentialLink, {
   EssentialLinkProps,
 } from 'components/EssentialLink.vue';
+import { useQuasar } from 'quasar';
 
 const essentialLinks: EssentialLinkProps[] = [
   {
@@ -56,11 +62,21 @@ const essentialLinks: EssentialLinkProps[] = [
     link: 'https://github.com/JiaanNie',
   },
 ];
+const isDarkMode = ref(false);
 
 const leftDrawerOpen = ref(false);
+const $q = useQuasar();
 
 function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value;
+}
+
+function toggleDarkMode() {
+
+  // $q.dark.set(true); // or false or "auto"
+
+  // toggle
+  $q.dark.toggle();
 }
 </script>
 
