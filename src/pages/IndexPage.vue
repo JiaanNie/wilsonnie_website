@@ -40,7 +40,7 @@
             </div>
           </q-carousel-slide>
         </q-carousel>
-        <div class="row q-gutter-x-md">
+        <div class="row q-gutter-x-md q-gutter-y-md">
           <notes-section />
         </div>
       </div>
@@ -50,26 +50,18 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import { useRouter } from 'vue-router';
-import NotesSection from 'src/pages/notes/Notes.vue';
+import NotesSection from 'src/components/composition-components/Notes.vue';
 
 export default defineComponent({
   components: {
     NotesSection,
   },
   setup() {
-    const router = useRouter();
     const slide = ref('style');
     const lorem = ref(
       'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque voluptatem totam, architecto cupiditate officia rerum, error dignissimos praesentium libero ab nemo.'
     );
-    const test = () => {
-      router.push({ path: '/notes' });
-    };
-    const secret = () => {
-      router.push({ path: '/notes/secret' });
-    };
-    return { test, slide, lorem, secret };
+    return { slide, lorem };
   },
 });
 </script>

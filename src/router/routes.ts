@@ -25,7 +25,7 @@ const routes: RouteRecordRaw[] = [
       { path: 'aws-notes', name: 'AWSNotes', component: AWSNotes },
       { path: 'docker-notes', name: 'DockerNotes', component: DockerNotes },
       { path: 'css-grid-notes', name: 'GridNotes', component: GridNotes },
-      { path: 'secret', name: 'Secret', component: RickAndRoll },
+      { path: 'secret-notes', name: 'Secret', component: RickAndRoll },
       {
         path: 'basic-deploying-quasar-app-notes',
         name: 'BasicDeployingQuasarApp',

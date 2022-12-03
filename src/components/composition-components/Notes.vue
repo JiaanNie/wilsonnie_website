@@ -4,7 +4,7 @@
     :key="index"
     :name="topic.name"
     :icon="topic.icon"
-    @click="test(topic.path)"
+    @click="navigateTo(topic.path)"
   />
 </template>
 
@@ -39,11 +39,12 @@ export default defineComponent({
       },
       { name: 'React', icon: 'fas fa-file', path: 'react' },
       { name: 'Nginx', icon: 'fa-solid fa-server', path: 'nginx' },
+      { name: 'Fun', icon: 'fas fa-user-secret', path: 'secret' },
     ]);
-    const test = (path = 'github') => {
+    const navigateTo = (path = 'github') => {
       router.push({ path: `/notes/${path}-notes` });
     };
-    return { test, topics };
+    return { navigateTo, topics };
   },
 });
 </script>
