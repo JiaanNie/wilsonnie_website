@@ -16,13 +16,13 @@
           class="bg-primary text-white shadow-1 rounded-borders justify-center"
         >
           <q-carousel-slide name="style" class="column no-wrap flex-center">
-            <q-icon name="style" size="56px" />
+            <q-icon name="fa fa-user" size="56px" />
             <div class="q-mt-md text-center">
               {{ aboutMe }}
             </div>
           </q-carousel-slide>
           <q-carousel-slide name="tv" class="column no-wrap flex-center">
-            <q-icon name="live_tv" size="56px" />
+            <q-icon name="fa-solid fa-bullseye" size="56px" />
             <div class="q-mt-md text-center">
               {{ objective }}
             </div>

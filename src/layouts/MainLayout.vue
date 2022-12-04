@@ -32,6 +32,11 @@
           </q-card-section>
         </q-card>
 
+        <q-item-label header> Contact Info </q-item-label>
+        <q-card>
+          <q-card-section> Email: wilson.nie13@gmail.com </q-card-section>
+        </q-card>
+
         <q-item-label header> Objective </q-item-label>
 
         <q-card>
@@ -65,16 +70,22 @@ import { useQuasar } from 'quasar';
 
 const essentialLinks: EssentialLinkProps[] = [
   {
-    title: 'LinkedIn',
-    caption: 'LinkedIn',
-    icon: 'school',
-    link: 'https://www.linkedin.com/in/wilsonnie/',
-  },
-  {
     title: 'Github',
     caption: 'My Github',
-    icon: 'code',
+    icon: 'fa-brands fa-github',
     link: 'https://github.com/JiaanNie',
+  },
+  {
+    title: 'Project Repo',
+    caption: 'Website source code',
+    icon: 'code',
+    link: 'https://github.com/JiaanNie/wilsonnie_website',
+  },
+  {
+    title: 'LinkedIn',
+    caption: 'I am very inactive in LinkedIn',
+    icon: 'fab fa-linkedin-in',
+    link: 'www.linkedin.com/in/wilsonnie',
   },
 ];
 const isDarkMode = ref(false);
