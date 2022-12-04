@@ -34,7 +34,7 @@
 
         <div class="row q-gutter-x-md q-gutter-y-md justify-center">
           <img
-            src="src/assets/python.png"
+            src="~assets/betrayed-bird.gif"
             alt="this slowpoke moves"
             width="500"
           />
