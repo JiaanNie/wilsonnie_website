@@ -1,10 +1,6 @@
 <template>
   <q-page ref="video" class="row items-center justify-evenly">
     <div class="q-pa-md">
-      <!-- <q-video
-        id="video"
-        src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0"
-      /> -->
       <iframe
         id="video"
         src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
