@@ -33,7 +33,8 @@
       <template v-slot:navigation>
         <q-stepper-navigation>
           <q-btn
-            @click="$refs.stepper.next()"
+            ref="stepperNav"
+            @click="stepper.next()"
             color="primary"
             :label="step === 3 ? 'Finish' : 'Continue'"
           />
@@ -41,7 +42,7 @@
             v-if="step > 1"
             flat
             color="primary"
-            @click="$refs.stepper.previous()"
+            @click="stepper.previous()"
             label="Back"
             class="q-ml-sm"
           />
@@ -52,13 +53,19 @@
 </template>
 
 <script lang="ts">
-import { ref, defineComponent } from 'vue';
+import { ref, defineComponent, Ref, onMounted } from 'vue';
+import { Qstepper } from 'quasar';
 
 export default defineComponent({
   name: 'CoverLetterGenerator',
   setup() {
+    const stepper: Ref<Qstepper | undefined> = ref(null);
+    onMounted(() => {
+      console.log(stepper.value);
+    });
     return {
       step: ref(1),
+      stepper,
     };
   },
 });
