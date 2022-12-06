@@ -80,16 +80,6 @@ export default defineComponent({
       required: false,
       default: 'On the job, you will find me to be reliable, collaborative, and self-motivated. As an employee, I actively learn and try to understand system behaviors as I am highly motivated to develop a career in the field of software development.'
     },
-    postMaster: {
-      type: String,
-      required: false,
-      default: 'Human Resources'
-    },
-    postMaster: {
-      type: String,
-      required: false,
-      default: 'Human Resources'
-    },
   },
   setup() {
     const stepper = ref(null);
