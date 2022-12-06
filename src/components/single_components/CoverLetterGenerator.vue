@@ -57,14 +57,43 @@ import { ref, defineComponent, onMounted } from 'vue';
 
 export default defineComponent({
   name: 'CoverLetterGenerator',
+  props: {
+    postMaster: {
+      type: String,
+      required: false,
+      default: 'Human Resources'
+    },
+    companyName: {
+      type: String,
+      required: true ,
+    },
+    position: {
+      type: String,
+      required: true,
+    },
+    experience: {
+      type: String,
+      required: true
+    },
+    behavior: {
+      type: String,
+      required: false,
+      default: 'On the job, you will find me to be reliable, collaborative, and self-motivated. As an employee, I actively learn and try to understand system behaviors as I am highly motivated to develop a career in the field of software development.'
+    },
+    postMaster: {
+      type: String,
+      required: false,
+      default: 'Human Resources'
+    },
+    postMaster: {
+      type: String,
+      required: false,
+      default: 'Human Resources'
+    },
+  },
   setup() {
     const stepper = ref(null);
-    const postMaster = ref('')
-    const companyName = ref('');
-    const position = ref('');
-    const experience = ref('');
     const introductioin = ref('');
-    const behavior = ref('');
     const concludsion = ref('');
 
     return {
