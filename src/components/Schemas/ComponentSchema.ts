@@ -27,3 +27,11 @@ export interface Topic {
   icon: string;
   path: string;
 }
+
+export interface CoverLetterStep {
+  name: string;
+  inputType: string;
+  title: string;
+  icon: string;
+  description?: string;
+}
