@@ -1,7 +1,7 @@
 <template>
   <div class="q-pa-md">
     <q-stepper
-      v-model="currentStep"
+      v-model="currentStepName"
       ref="stepper"
       alternative-labels
       color="primary"
@@ -9,61 +9,65 @@
     >
       <q-step
         v-for="(step, index) in steps"
-        :key="index"
-        :name="index + 1"
+        :key="`${stepsComponentKey}-${index}`"
+        :name="step.name"
         :title="step.title"
         :icon="step.icon"
         :done="currentStep > index + 1"
-        @transition="test"
       >
         {{ step.description }}
         <q-input
           v-if="step.inputType === 'input'"
+          class="spacing"
           outlined
           v-model="step.defaultValue"
           :label="step.name"
           dense
         />
         <q-editor
+          class="spacing"
           v-else
           v-model="step.defaultValue"
           :definitions="{
             bold: { label: 'Bold', icon: null, tip: 'My bold tooltip' },
           }"
         />
-      </q-step>
 
-      <template v-slot:navigation>
-        <q-stepper-navigation>
-          <q-btn
-            @click="stepper.next()"
-            color="primary"
-            :label="currentStep === steps.length + 1 ? 'Finish' : 'Continue'"
-          />
-          <q-btn
-            v-if="currentStep > 1"
-            flat
-            color="primary"
-            @click="stepper.previous()"
-            label="Back"
-            class="q-ml-sm"
-          />
-        </q-stepper-navigation>
-      </template>
+        <q-space />
+        <q-btn
+          v-if="currentStep > 1"
+          flat
+          color="primary"
+          @click="previousPanel(steps[index - 1])"
+          label="Back"
+          class="q-ml-sm"
+        />
+        <q-btn
+          @click="nextPanel(step)"
+          color="primary"
+          :label="currentStep === steps.length ? 'Finish' : 'Continue'"
+        />
+      </q-step>
     </q-stepper>
   </div>
 </template>
 
 <script lang="ts">
-import { ref, defineComponent, reactive, watch } from 'vue';
+import { ref, defineComponent, reactive, watch, Ref } from 'vue';
 import { CoverLetterStep } from 'src/components/Schemas/ComponentSchema';
+import { QStepper } from 'quasar';
+
 
 export default defineComponent({
   name: 'CoverLetterGenerator',
   setup() {
-    const stepper = ref(null);
+    const stepper: Ref<QStepper> = ref<QStepper>(null);
     const position = ref('');
     const company = ref('');
+    const coverLetter = ref('Dear ');
+    const currentStepName = ref('receiver');
+    const currentStep = ref(1);
+    const stepsComponentKey  = ref('test')
     const steps = reactive<Array<CoverLetterStep>>([
       {
         name: 'receiver',
@@ -80,6 +84,7 @@ export default defineComponent({
         title: 'Enter the position you apply for',
         icon: 'settings',
         description: 'Enter the position you apply for',
+        defaultValue: '',
       },
       {
         name: 'company',
@@ -87,11 +92,12 @@ export default defineComponent({
         title: 'Enter the company you apply for',
         icon: 'settings',
         description: 'Enter the company you apply for',
+        defaultValue: '',
       },
       {
         name: 'introduction',
         inputType: 'editor',
-        title: 'Editor your introduction',
+        title: 'Edit your introduction',
         icon: 'settings',
         description: 'This is a default introduction feel free to edit',
         defaultValue: `It is with great interest that I submit my resume for the ${position.value} position in ${company.value}. I am seeking an opportunity to utilize my related skills that I have obtained through working, university courses and independent research. This opportunity will allow me to gain more work experience, knowledge and improve myself as a future software developer.`,
@@ -99,7 +105,7 @@ export default defineComponent({
       {
         name: 'experience',
         inputType: 'editor',
-        title: 'Editor your experience',
+        title: 'Edit your experience',
         icon: 'settings',
         description: 'Work experiences related to the job you apply for',
         defaultValue:
@@ -132,21 +138,53 @@ export default defineComponent({
         defaultValue: 'Jiaan (Wilson) Nie',
       },
     ]);
-    const currentStep = ref(1);
-    watch(currentStep, (newX) => {
-      console.log(`x is ${newX}`);
+
+    watch(steps, (newSteps) => {
+      console.log(newSteps);
     });
-    const test = () => {
-      console.log('called');
-    };
+
+    function forceRendering() {
+      stepsComponentKey
+    }
+
+    function nextPanel(step: CoverLetterStep) {
+      if (step.name === 'sender') {
+        console.log('finsihed');
+        console.log(steps);
+      }
+      if (step.name === 'position') {
+        position.value = step.defaultValue;
+        console.log(position.value);
+      }
+      if (step.name === 'company') {
+        company.value = step.defaultValue;
+      }
+
+      stepper.value.next();
+      currentStep.value += 1;
+    }
+    function previousPanel(step: CoverLetterStep) {
+      stepper.value.previous();
+      currentStep.value -= 1;
+    }
 
     return {
       currentStep,
+      currentStepName,
+      stepsComponentKey,
       steps,
       stepper,
-      ph: ref(''),
-      test,
+      nextPanel,
+      previousPanel,
+      coverLetter,
+      position,
+      company,
     };
   },
 });
 </script>
+<style scoped>
+.spacing {
+  margin: 3% 0;
+}
+</style>
