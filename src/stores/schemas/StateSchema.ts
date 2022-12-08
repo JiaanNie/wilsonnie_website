@@ -1,10 +1,11 @@
 export interface CoverLetterComponent {
-  defaultValue: string;
-  value: string;
+  defaultValue: string | ((...args: string[]) => string);
+  value: string | ((...args: string[]) => string);
   inputType: string;
   icon: string;
   description: string;
   name: string;
+  title: string;
 }
 
 export type Receiver = CoverLetterComponent;
