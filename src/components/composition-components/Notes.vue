@@ -53,8 +53,8 @@ export default defineComponent({
       { name: 'Nginx', icon: 'fa-solid fa-server', path: '/notes/nginx-notes' },
       { name: 'Fun', icon: 'fas fa-user-secret', path: '/notes/secret-notes' },
       {
-        name: 'Fun',
-        icon: 'fas fa-user-secret',
+        name: 'Cover Letter Generator',
+        icon: 'article',
         path: '/cover-letter-generator',
       },
     ]);
