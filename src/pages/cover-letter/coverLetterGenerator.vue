@@ -49,14 +49,14 @@
         />
       </q-step>
     </q-stepper>
+    <p>{{ introduction }}</p>
   </div>
 </template>
 
 <script lang="ts">
-import { ref, defineComponent, reactive, watch, Ref } from 'vue';
+import { ref, defineComponent, reactive, watch, Ref, computed } from 'vue';
 import { CoverLetterStep } from 'src/components/Schemas/ComponentSchema';
 import { QStepper } from 'quasar';
-
 
 export default defineComponent({
   name: 'CoverLetterGenerator',
@@ -67,7 +67,11 @@ export default defineComponent({
     const coverLetter = ref('Dear ');
     const currentStepName = ref('receiver');
     const currentStep = ref(1);
-    const stepsComponentKey  = ref('test')
+    const stepsComponentKey = ref('test');
+    const intro = computed(() => {
+      return `It is with great interest that I submit my resume for the ${position.value} position in ${company.value}. I am seeking an opportunity to utilize my related skills that I have obtained through working, university courses and independent research. This opportunity will allow me to gain more work experience, knowledge and improve myself as a future software developer.`;
+    });
+
     const steps = reactive<Array<CoverLetterStep>>([
       {
         name: 'receiver',
@@ -100,7 +104,7 @@ export default defineComponent({
         title: 'Edit your introduction',
         icon: 'settings',
         description: 'This is a default introduction feel free to edit',
-        defaultValue: `It is with great interest that I submit my resume for the ${position.value} position in ${company.value}. I am seeking an opportunity to utilize my related skills that I have obtained through working, university courses and independent research. This opportunity will allow me to gain more work experience, knowledge and improve myself as a future software developer.`,
+        defaultValue: intro.value,
       },
       {
         name: 'experience',
@@ -139,29 +143,25 @@ export default defineComponent({
       },
     ]);
 
-    watch(steps, (newSteps) => {
-      console.log(newSteps);
-    });
-
-    function forceRendering() {
-      stepsComponentKey
+    // watch(steps, (newSteps) => {
+    //   console.log(newSteps);
+    // });
+    function forceRerender() {
+      stepsComponentKey.value += 1;
     }
 
     function nextPanel(step: CoverLetterStep) {
-      if (step.name === 'sender') {
-        console.log('finsihed');
-        console.log(steps);
-      }
       if (step.name === 'position') {
         position.value = step.defaultValue;
-        console.log(position.value);
       }
       if (step.name === 'company') {
         company.value = step.defaultValue;
+        console.log(steps);
       }
 
       stepper.value.next();
       currentStep.value += 1;
+      forceRerender();
     }
     function previousPanel(step: CoverLetterStep) {
       stepper.value.previous();
@@ -180,6 +180,12 @@ export default defineComponent({
       position,
       company,
     };
+  },
+
+  computed: {
+    introduction(): string {
+      return `It is with great interest that I submit my resume for the ${this.position} position in ${this.company}. I am seeking an opportunity to utilize my related skills that I have obtained through working, university courses and independent research. This opportunity will allow me to gain more work experience, knowledge and improve myself as a future software developer.`;
+    },
   },
 });
 </script>

@@ -10,7 +10,7 @@ import {
   Experience,
 } from './schemas/StateSchema';
 
-export const useCounterStore = defineStore('coverLetter', {
+export const useCoverLetterStore = defineStore('coverLetter', {
   state: () => ({
     reciver: {
       name: 'reciver',
@@ -46,9 +46,7 @@ export const useCounterStore = defineStore('coverLetter', {
     introduction: {
       name: 'introduction',
       value: '',
-      defaultValue: (position: string, company: string) => {
-        return `It is with great interest that I submit my resume for the ${position} position in ${company}. I am seeking an opportunity to utilize my related skills that I have obtained through working, university courses and independent research. This opportunity will allow me to gain more work experience, knowledge and improve myself as a future software developer.`;
-      },
+      defaultValue: '',
       inputType: 'editor',
       icon: 'setting',
       description: 'This is a default introduction feel free to edit',
@@ -100,8 +98,33 @@ export const useCounterStore = defineStore('coverLetter', {
   }),
 
   getters: {
-    doubleCount(state) {
-      return state.counter * 2;
+    getReciver(state): Receiver {
+      return state.reciver;
+    },
+
+    getCompany(state): Company {
+      return state.company;
+    },
+    getPosition(state): Position {
+      return state.position;
+    },
+    getIntroduction(state): Introduction {
+      return state.introduction;
+    },
+    getExpreience(state): Experience {
+      return state.experience;
+    },
+
+    getBehavior(state): Behavior {
+      return state.behavior;
+    },
+
+    getConclusion(state): Conclusion {
+      return state.conclusion;
+    },
+
+    getSender(state): Sender {
+      return state.sender;
     },
   },
 
