@@ -9,7 +9,7 @@
     >
       <q-step
         v-for="(step, index) in steps"
-        :key="`${stepsComponentKey}-${index}`"
+        :key="index"
         :name="step.name"
         :title="step.title"
         :icon="step.icon"
@@ -49,12 +49,19 @@
         />
       </q-step>
     </q-stepper>
+    <q-editor
+      class="spacing"
+      v-model="introduction"
+      :definitions="{
+        bold: { label: 'Bold', icon: null, tip: 'My bold tooltip' },
+      }"
+    />
     <p>{{ introduction }}</p>
   </div>
 </template>
 
 <script lang="ts">
-import { ref, defineComponent, reactive, watch, Ref, computed } from 'vue';
+import { ref, defineComponent, reactive, Ref, onMounted } from 'vue';
 import { CoverLetterStep } from 'src/components/Schemas/ComponentSchema';
 import { QStepper } from 'quasar';
 
@@ -68,10 +75,7 @@ export default defineComponent({
     const currentStepName = ref('receiver');
     const currentStep = ref(1);
     const stepsComponentKey = ref('test');
-    const intro = computed(() => {
-      return `It is with great interest that I submit my resume for the ${position.value} position in ${company.value}. I am seeking an opportunity to utilize my related skills that I have obtained through working, university courses and independent research. This opportunity will allow me to gain more work experience, knowledge and improve myself as a future software developer.`;
-    });
-
+    const intro = ref('');
     const steps = reactive<Array<CoverLetterStep>>([
       {
         name: 'receiver',
@@ -104,7 +108,7 @@ export default defineComponent({
         title: 'Edit your introduction',
         icon: 'settings',
         description: 'This is a default introduction feel free to edit',
-        defaultValue: intro.value,
+        defaultValue: '',
       },
       {
         name: 'experience',
@@ -146,9 +150,6 @@ export default defineComponent({
     // watch(steps, (newSteps) => {
     //   console.log(newSteps);
     // });
-    function forceRerender() {
-      stepsComponentKey.value += 1;
-    }
 
     function nextPanel(step: CoverLetterStep) {
       if (step.name === 'position') {
@@ -156,12 +157,17 @@ export default defineComponent({
       }
       if (step.name === 'company') {
         company.value = step.defaultValue;
-        console.log(steps);
+        intro.value = `It is with great interest that I submit my resume for the ${position.value} position in ${company.value}. I am seeking an opportunity to utilize my related skills that I have obtained through working, university courses and independent research. This opportunity will allow me to gain more work experience, knowledge and improve myself as a future software developer.`;
+      }
+
+      if (step.name === 'introduction') {
+        console.log('intro');
+        intro.value = `It is with great interest that I submit my resume for the ${position.value} position in ${company.value}. I am seeking an opportunity to utilize my related skills that I have obtained through working, university courses and independent research. This opportunity will allow me to gain more work experience, knowledge and improve myself as a future software developer.`;
+        console.log(intro);
       }
 
       stepper.value.next();
       currentStep.value += 1;
-      forceRerender();
     }
     function previousPanel(step: CoverLetterStep) {
       stepper.value.previous();
@@ -179,12 +185,17 @@ export default defineComponent({
       coverLetter,
       position,
       company,
+      intro,
     };
   },
-
   computed: {
-    introduction(): string {
-      return `It is with great interest that I submit my resume for the ${this.position} position in ${this.company}. I am seeking an opportunity to utilize my related skills that I have obtained through working, university courses and independent research. This opportunity will allow me to gain more work experience, knowledge and improve myself as a future software developer.`;
+    introduction: {
+      get() {
+        return this.intro;
+      },
+      set(value) {
+        this.intro = value;
+      },
     },
   },
 });
