@@ -49,7 +49,14 @@
         />
       </q-step>
     </q-stepper>
-    <p>{{ steps[3].defaultValue }}</p>
+    <q-card class="my-card">
+      <div v-for="(step, index) in steps" :key="index">
+        <q-card-section v-if="step.displayResult !== 'disable'">{{
+          step.defaultValue
+        }}</q-card-section>
+        <br />
+      </div>
+    </q-card>
   </div>
 </template>
 
@@ -78,6 +85,7 @@ export default defineComponent({
         description:
           'To the person who going to read the cover letter, default to human resources',
         defaultValue: 'Human Resources',
+        displayResult: false,
       },
       {
         name: 'position',
@@ -86,6 +94,7 @@ export default defineComponent({
         icon: 'settings',
         description: 'Enter the position you apply for',
         defaultValue: '',
+        displayResult: 'disable',
       },
       {
         name: 'company',
@@ -94,6 +103,7 @@ export default defineComponent({
         icon: 'settings',
         description: 'Enter the company you apply for',
         defaultValue: '',
+        displayResult: 'disable',
       },
       {
         name: 'introduction',
@@ -101,7 +111,10 @@ export default defineComponent({
         title: 'Edit your introduction',
         icon: 'settings',
         description: 'This is a default introduction feel free to edit',
-        defaultValue: `It is with great interest that I submit my resume for the ${position.value} position in ${company.value}. I am seeking an opportunity to utilize my related skills that I have obtained through working, university courses and independent research. This opportunity will allow me to gain more work experience, knowledge and improve myself as a future software developer.`,
+        defaultValue: `It is with great interest that I submit my resume for the ${position.value} position in ${company.value}. \
+        I am seeking an opportunity to utilize my related skills that I have obtained through working, university courses and independent research. \
+        This opportunity will allow me to gain more work experience, knowledge and improve myself as a future software developer.`,
+        displayResult: false,
       },
       {
         name: 'experience',
@@ -110,7 +123,12 @@ export default defineComponent({
         icon: 'settings',
         description: 'Work experiences related to the job you apply for',
         defaultValue:
-          'Highlighting my qualifications for this position, I have a Bachelor Degree of Applied Science in Software System Engineering at the University of Regina, I have worked with a startup as recently as soon as I graduated and have been exposed to a wide range of technologies. I have integrated with many 3rd party software such as Stripe, Hubspot and Mapbox. I also have been developing REST endpoints for the startup company',
+          'Highlighting my qualifications for this position, \
+          I have a Bachelor Degree of Applied Science in Software System Engineering at the University of Regina, \
+          I have worked with a startup as recently as soon as I graduated and have been exposed to a wide range of technologies. \
+          I have integrated with many 3rd party software such as Stripe, Hubspot and Mapbox. \
+          I also have been developing REST endpoints for the startup company',
+        displayResult: false,
       },
       {
         name: 'behavior',
@@ -120,7 +138,9 @@ export default defineComponent({
         description:
           'talk about how will you behavior when you are at your job',
         defaultValue:
-          'On the job, you will find me to be reliable, collaborative, and self-motivated. As an employee, I actively learn and try to understand system behaviors as I am highly motivated to develop a career in the field of software development',
+          'On the job, you will find me to be reliable, collaborative, and self-motivated. \
+          As an employee, I actively learn and try to understand system behaviors as I am highly motivated to develop a career in the field of software development',
+        displayResult: false,
       },
       {
         name: 'phone number',
@@ -129,6 +149,7 @@ export default defineComponent({
         icon: 'settings',
         description: 'provide a phone number so the company can contact you:',
         defaultValue: '',
+        displayResult: false,
       },
       {
         name: 'email address',
@@ -137,6 +158,7 @@ export default defineComponent({
         icon: 'settings',
         description: 'provide a email address so the company can contact you:',
         defaultValue: 'wilson.nie13@gmail.com',
+        displayResult: false,
       },
       {
         name: 'conclusion',
@@ -144,7 +166,11 @@ export default defineComponent({
         title: 'Edit your conclusion',
         icon: 'settings',
         description: 'wrap up the cover letter',
-        defaultValue: `Given the combination of my technical background and commitment to a career in software development, I am confident that I am prepared to succeed in this position. Thank you for your consideration of my application. I look forward to an interview to discuss my potential with ${company.value}. I can be reached at 1-604-355-1472 or wilson.nie13@gmail.com.`,
+        defaultValue: `Given the combination of my technical background and commitment to a career in software development, \
+        I am confident that I am prepared to succeed in this position. Thank you for your consideration of my application. \
+        I look forward to an interview to discuss my potential with ${company.value}. \
+        I can be reached at ${phoneNumber.value} or ${emailAddress.value}.`,
+        displayResult: false,
       },
       {
         name: 'sender',
@@ -153,6 +179,7 @@ export default defineComponent({
         icon: 'settings',
         description: 'Your full name',
         defaultValue: 'Jiaan (Wilson) Nie',
+        displayResult: false,
       },
     ]);
 
@@ -165,7 +192,9 @@ export default defineComponent({
         console.log(index);
         steps[
           index + 1
-        ].defaultValue = `It is with great interest that I submit my resume for the ${position.value} position in ${company.value}. I am seeking an opportunity to utilize my related skills that I have obtained through working, university courses and independent research. This opportunity will allow me to gain more work experience, knowledge and improve myself as a future software developer.`;
+        ].defaultValue = `It is with great interest that I submit my resume for the ${position.value} position in ${company.value}.\
+         I am seeking an opportunity to utilize my related skills that I have obtained through working, university courses and independent research. \
+         This opportunity will allow me to gain more work experience, knowledge and improve myself as a future software developer.`;
       }
 
       stepper.value.next();
@@ -195,5 +224,8 @@ export default defineComponent({
 <style scoped>
 .spacing {
   margin: 3% 0;
+}
+.my-card {
+  margin: 2% 25%;
 }
 </style>

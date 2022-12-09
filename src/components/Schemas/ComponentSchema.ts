@@ -35,4 +35,5 @@ export interface CoverLetterStep {
   icon: string;
   description?: string;
   defaultValue: string;
+  displayResult?: string | boolean;
 }
