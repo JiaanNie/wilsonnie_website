@@ -76,7 +76,6 @@ export default defineComponent({
     const emailAddress = ref('');
     const currentStepName = ref('receiver');
     const currentStep = ref(1);
-    const stepsComponentKey = ref('test');
     const steps = reactive<Array<CoverLetterStep>>([
       {
         name: 'receiver',
@@ -225,7 +224,6 @@ export default defineComponent({
     return {
       currentStep,
       currentStepName,
-      stepsComponentKey,
       steps,
       stepper,
       nextPanel,
