@@ -32,7 +32,13 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/cover-letter-generator',
     component: () => import('layouts/MainLayout.vue'),
-    children: [{ path: '', name: 'CoverLetterGenerator', component: CoverLetterGenerator }],
+    children: [
+      {
+        path: '',
+        name: 'CoverLetterGenerator',
+        component: CoverLetterGenerator,
+      },
+    ],
   },
 
   // Always leave this as last one,
