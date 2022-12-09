@@ -38,30 +38,23 @@
           v-if="currentStep > 1"
           flat
           color="primary"
-          @click="previousPanel(steps[index - 1])"
+          @click="previousPanel(steps[index - 1], index)"
           label="Back"
           class="q-ml-sm"
         />
         <q-btn
-          @click="nextPanel(step)"
+          @click="nextPanel(step, index)"
           color="primary"
           :label="currentStep === steps.length ? 'Finish' : 'Continue'"
         />
       </q-step>
     </q-stepper>
-    <q-editor
-      class="spacing"
-      v-model="introduction"
-      :definitions="{
-        bold: { label: 'Bold', icon: null, tip: 'My bold tooltip' },
-      }"
-    />
-    <p>{{ introduction }}</p>
+    <p>{{ steps[3].defaultValue }}</p>
   </div>
 </template>
 
 <script lang="ts">
-import { ref, defineComponent, reactive, Ref, onMounted } from 'vue';
+import { ref, defineComponent, reactive, Ref } from 'vue';
 import { CoverLetterStep } from 'src/components/Schemas/ComponentSchema';
 import { QStepper } from 'quasar';
 
@@ -71,11 +64,11 @@ export default defineComponent({
     const stepper: Ref<QStepper> = ref<QStepper>(null);
     const position = ref('');
     const company = ref('');
-    const coverLetter = ref('Dear ');
+    const phoneNumber = ref('');
+    const emailAddress = ref('');
     const currentStepName = ref('receiver');
     const currentStep = ref(1);
     const stepsComponentKey = ref('test');
-    const intro = ref('');
     const steps = reactive<Array<CoverLetterStep>>([
       {
         name: 'receiver',
@@ -108,7 +101,7 @@ export default defineComponent({
         title: 'Edit your introduction',
         icon: 'settings',
         description: 'This is a default introduction feel free to edit',
-        defaultValue: '',
+        defaultValue: `It is with great interest that I submit my resume for the ${position.value} position in ${company.value}. I am seeking an opportunity to utilize my related skills that I have obtained through working, university courses and independent research. This opportunity will allow me to gain more work experience, knowledge and improve myself as a future software developer.`,
       },
       {
         name: 'experience',
@@ -130,6 +123,22 @@ export default defineComponent({
           'On the job, you will find me to be reliable, collaborative, and self-motivated. As an employee, I actively learn and try to understand system behaviors as I am highly motivated to develop a career in the field of software development',
       },
       {
+        name: 'phone number',
+        inputType: 'input',
+        title: 'Enter your phone number',
+        icon: 'settings',
+        description: 'provide a phone number so the company can contact you:',
+        defaultValue: '',
+      },
+      {
+        name: 'email address',
+        inputType: 'input',
+        title: 'Enter your email address',
+        icon: 'settings',
+        description: 'provide a email address so the company can contact you:',
+        defaultValue: 'wilson.nie13@gmail.com',
+      },
+      {
         name: 'conclusion',
         inputType: 'editor',
         title: 'Edit your conclusion',
@@ -147,29 +156,22 @@ export default defineComponent({
       },
     ]);
 
-    // watch(steps, (newSteps) => {
-    //   console.log(newSteps);
-    // });
-
-    function nextPanel(step: CoverLetterStep) {
+    function nextPanel(step: CoverLetterStep, index: number) {
       if (step.name === 'position') {
         position.value = step.defaultValue;
       }
       if (step.name === 'company') {
         company.value = step.defaultValue;
-        intro.value = `It is with great interest that I submit my resume for the ${position.value} position in ${company.value}. I am seeking an opportunity to utilize my related skills that I have obtained through working, university courses and independent research. This opportunity will allow me to gain more work experience, knowledge and improve myself as a future software developer.`;
-      }
-
-      if (step.name === 'introduction') {
-        console.log('intro');
-        intro.value = `It is with great interest that I submit my resume for the ${position.value} position in ${company.value}. I am seeking an opportunity to utilize my related skills that I have obtained through working, university courses and independent research. This opportunity will allow me to gain more work experience, knowledge and improve myself as a future software developer.`;
-        console.log(intro);
+        console.log(index);
+        steps[
+          index + 1
+        ].defaultValue = `It is with great interest that I submit my resume for the ${position.value} position in ${company.value}. I am seeking an opportunity to utilize my related skills that I have obtained through working, university courses and independent research. This opportunity will allow me to gain more work experience, knowledge and improve myself as a future software developer.`;
       }
 
       stepper.value.next();
       currentStep.value += 1;
     }
-    function previousPanel(step: CoverLetterStep) {
+    function previousPanel(step: CoverLetterStep, index: number) {
       stepper.value.previous();
       currentStep.value -= 1;
     }
@@ -182,21 +184,11 @@ export default defineComponent({
       stepper,
       nextPanel,
       previousPanel,
-      coverLetter,
       position,
       company,
-      intro,
+      emailAddress,
+      phoneNumber,
     };
-  },
-  computed: {
-    introduction: {
-      get() {
-        return this.intro;
-      },
-      set(value) {
-        this.intro = value;
-      },
-    },
   },
 });
 </script>
