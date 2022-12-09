@@ -6,6 +6,7 @@
       alternative-labels
       color="primary"
       animated
+      class="my-stepper shadow-19"
     >
       <q-step
         v-for="(step, index) in steps"
@@ -49,11 +50,11 @@
         />
       </q-step>
     </q-stepper>
-    <q-card class="my-card">
+    <q-card class="my-card shadow-19">
       <div v-for="(step, index) in steps" :key="index">
-        <q-card-section v-if="step.displayResult !== 'disable'">{{
-          step.defaultValue
-        }}</q-card-section>
+        <q-card-section v-if="step.displayResult">
+          {{ step.defaultValue }}
+        </q-card-section>
         <br />
       </div>
     </q-card>
@@ -85,31 +86,29 @@ export default defineComponent({
         description:
           'To the person who going to read the cover letter, default to human resources',
         defaultValue: 'Human Resources',
-        displayResult: false,
+        displayResult: true,
       },
       {
         name: 'position',
         inputType: 'input',
         title: 'Enter the position you apply for',
-        icon: 'settings',
+        icon: 'groups',
         description: 'Enter the position you apply for',
         defaultValue: '',
-        displayResult: 'disable',
       },
       {
         name: 'company',
         inputType: 'input',
         title: 'Enter the company you apply for',
-        icon: 'settings',
+        icon: 'home',
         description: 'Enter the company you apply for',
         defaultValue: '',
-        displayResult: 'disable',
       },
       {
         name: 'introduction',
         inputType: 'editor',
         title: 'Edit your introduction',
-        icon: 'settings',
+        icon: 'sentiment_very_satisfied',
         description: 'This is a default introduction feel free to edit',
         defaultValue: `It is with great interest that I submit my resume for the ${position.value} position in ${company.value}. \
         I am seeking an opportunity to utilize my related skills that I have obtained through working, university courses and independent research. \
@@ -120,7 +119,7 @@ export default defineComponent({
         name: 'experience',
         inputType: 'editor',
         title: 'Edit your experience',
-        icon: 'settings',
+        icon: 'elderly',
         description: 'Work experiences related to the job you apply for',
         defaultValue:
           'Highlighting my qualifications for this position, \
@@ -134,7 +133,7 @@ export default defineComponent({
         name: 'behavior',
         inputType: 'editor',
         title: 'Edit your behavior while you on the job',
-        icon: 'settings',
+        icon: 'help_center',
         description:
           'talk about how will you behavior when you are at your job',
         defaultValue:
@@ -143,28 +142,26 @@ export default defineComponent({
         displayResult: false,
       },
       {
-        name: 'phone number',
+        name: 'phoneNumber',
         inputType: 'input',
         title: 'Enter your phone number',
-        icon: 'settings',
+        icon: 'cell_wifi',
         description: 'provide a phone number so the company can contact you:',
         defaultValue: '',
-        displayResult: false,
       },
       {
-        name: 'email address',
+        name: 'emailAddress',
         inputType: 'input',
         title: 'Enter your email address',
-        icon: 'settings',
+        icon: 'mail',
         description: 'provide a email address so the company can contact you:',
         defaultValue: 'wilson.nie13@gmail.com',
-        displayResult: false,
       },
       {
         name: 'conclusion',
         inputType: 'editor',
         title: 'Edit your conclusion',
-        icon: 'settings',
+        icon: 'sos',
         description: 'wrap up the cover letter',
         defaultValue: `Given the combination of my technical background and commitment to a career in software development, \
         I am confident that I am prepared to succeed in this position. Thank you for your consideration of my application. \
@@ -176,7 +173,7 @@ export default defineComponent({
         name: 'sender',
         inputType: 'input',
         title: 'Enter the sender name',
-        icon: 'settings',
+        icon: 'family_restroom',
         description: 'Your full name',
         defaultValue: 'Jiaan (Wilson) Nie',
         displayResult: false,
@@ -189,19 +186,39 @@ export default defineComponent({
       }
       if (step.name === 'company') {
         company.value = step.defaultValue;
-        console.log(index);
         steps[
           index + 1
         ].defaultValue = `It is with great interest that I submit my resume for the ${position.value} position in ${company.value}.\
          I am seeking an opportunity to utilize my related skills that I have obtained through working, university courses and independent research. \
          This opportunity will allow me to gain more work experience, knowledge and improve myself as a future software developer.`;
       }
+      if (step.name === 'emailAddress') {
+        emailAddress.value = step.defaultValue;
+        steps[
+          index + 1
+        ].defaultValue = `Given the combination of my technical background and commitment to a career in software development, \
+        I am confident that I am prepared to succeed in this position. Thank you for your consideration of my application. \
+        I look forward to an interview to discuss my potential with ${company.value}. \
+        I can be reached at ${phoneNumber.value} or ${emailAddress.value}.`;
+      }
 
+      if (steps[index + 1].displayResult === false) {
+        steps[index + 1].displayResult = true;
+      }
+
+      if (step.name === 'phoneNumber') {
+        phoneNumber.value = step.defaultValue;
+      }
+
+      console.log(step);
       stepper.value.next();
       currentStep.value += 1;
     }
     function previousPanel(step: CoverLetterStep, index: number) {
       stepper.value.previous();
+      if (steps[index].displayResult === true) {
+        steps[index].displayResult = false;
+      }
       currentStep.value -= 1;
     }
 
@@ -226,6 +243,10 @@ export default defineComponent({
   margin: 3% 0;
 }
 .my-card {
+  margin: 2% 25%;
+}
+
+.my-stepper {
   margin: 2% 25%;
 }
 </style>
