@@ -5,6 +5,7 @@ import DockerNotes from 'src/pages/notes/docker/DockerNotes.vue';
 import GridNotes from 'src/pages/notes/css-notes/GridNotes.vue';
 import RickAndRoll from 'src/pages/notes/others/RickAndRoll.vue';
 import BasicDeployingQuasarApp from 'src/pages/notes/others/BasicDeployingQuasarApp.vue';
+import CoverLetterGenerator from 'src/pages/coverletter/CoverLetterGenerator.vue';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -25,6 +26,17 @@ const routes: RouteRecordRaw[] = [
         path: 'basic-deploying-quasar-app-notes',
         name: 'BasicDeployingQuasarApp',
         component: BasicDeployingQuasarApp,
+      },
+    ],
+  },
+  {
+    path: '/cover-letter-generator',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      {
+        path: '',
+        name: 'CoverLetterGenerator',
+        component: CoverLetterGenerator,
       },
     ],
   },
