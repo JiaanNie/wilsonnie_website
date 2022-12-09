@@ -85,7 +85,7 @@ export default defineComponent({
         icon: 'settings',
         description:
           'To the person who going to read the cover letter, default to human resources',
-        defaultValue: 'Human Resources',
+        defaultValue: 'Dear Human Resources',
         displayResult: true,
       },
       {

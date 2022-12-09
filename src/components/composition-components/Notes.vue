@@ -22,27 +22,44 @@ export default defineComponent({
     const router = useRouter();
 
     const topics = reactive<Array<Topic>>([
-      { name: 'Docker', icon: 'fa-brands fa-docker', path: 'docker' },
-      { name: 'AWS', icon: 'fa-brands fa-aws', path: 'aws' },
-      { name: 'Github', icon: 'fa-brands fa-github', path: 'github' },
-      { name: 'Python', icon: 'fas fa-file', path: 'python' },
+      {
+        name: 'Docker',
+        icon: 'fa-brands fa-docker',
+        path: '/notes/docker-notes',
+      },
+      { name: 'AWS', icon: 'fa-brands fa-aws', path: '/notes/aws-notes' },
+      {
+        name: 'Github',
+        icon: 'fa-brands fa-github',
+        path: '/notes/github-notes',
+      },
+      { name: 'Python', icon: 'fas fa-file', path: '/notes/python-notes' },
       {
         name: 'TypeScript/JavaScript',
         icon: 'fa-brands fa-js',
-        path: 'javascript',
+        path: '/notes/javascript-notes',
       },
-      { name: 'Kubernetes', icon: 'fas fa-network-wired', path: 'kubernetes' },
+      {
+        name: 'Kubernetes',
+        icon: 'fas fa-network-wired',
+        path: '/notes/kubernetes-notes',
+      },
       {
         name: 'Deployment to AWS',
         icon: 'fas fa-file',
-        path: 'basic-deploying-quasar-app',
+        path: '/notes/basic-deploying-quasar-app-notes',
       },
-      { name: 'React', icon: 'fas fa-file', path: 'react' },
-      { name: 'Nginx', icon: 'fa-solid fa-server', path: 'nginx' },
-      { name: 'Fun', icon: 'fas fa-user-secret', path: 'secret' },
+      { name: 'React', icon: 'fas fa-file', path: '/notes/react-notes' },
+      { name: 'Nginx', icon: 'fa-solid fa-server', path: '/notes/nginx-notes' },
+      { name: 'Fun', icon: 'fas fa-user-secret', path: '/notes/secret-notes' },
+      {
+        name: 'Fun',
+        icon: 'fas fa-user-secret',
+        path: '/cover-letter-generator',
+      },
     ]);
-    const navigateTo = (path = 'github') => {
-      router.push({ path: `/notes/${path}-notes` });
+    const navigateTo = (path = '/notes/github-notes') => {
+      router.push({ path: path });
     };
     return { navigateTo, topics };
   },
