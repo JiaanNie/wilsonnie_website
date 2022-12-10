@@ -6,6 +6,7 @@ import GridNotes from 'src/pages/notes/css-notes/GridNotes.vue';
 import RickAndRoll from 'src/pages/notes/others/RickAndRoll.vue';
 import BasicDeployingQuasarApp from 'src/pages/notes/others/BasicDeployingQuasarApp.vue';
 import CoverLetterGenerator from 'src/pages/coverletter/CoverLetterGenerator.vue';
+import MyResume from 'src/pages/resume/Resume.vue';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -37,6 +38,18 @@ const routes: RouteRecordRaw[] = [
         path: '',
         name: 'CoverLetterGenerator',
         component: CoverLetterGenerator,
+      },
+    ],
+  },
+
+  {
+    path: '/resume',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      {
+        path: '',
+        name: 'MyResume',
+        component: MyResume,
       },
     ],
   },
