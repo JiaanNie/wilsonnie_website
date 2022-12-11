@@ -7,8 +7,8 @@ export interface Experience {
   company: string;
   title: string;
   location: string;
-  timeStarted: string;
-  timeEnded?: string;
+  dateStarted: string;
+  dateEnded?: string;
   tasks: Array<Task>;
 }
 
