@@ -1,4 +1,3 @@
-import { link } from 'fs';
 import { defineStore } from 'pinia';
 import {
   Experience,
@@ -150,14 +149,36 @@ export const useResumeStore = defineStore('resume', {
   }),
 
   getters: {
-    getReciver(state): Receiver {
-      return state.reciver;
+    getExperiences(state): Array<Experience> {
+      return state.experiences;
+    },
+    getEducations(state): Array<Education> {
+      return state.education;
+    },
+    getSoicals(state): Array<Soical> {
+      return state.socials;
+    },
+    getSkills(state): Array<Skill> {
+      return state.skills;
+    },
+    getProjects(state): Array<Project> {
+      return state.projects;
+    },
+    getAboutMe(state): AboutMe {
+      return state.aboutMe;
+    },
+    getLocation(state): Location {
+      return state.location;
+    },
+    getContact(state): Contact {
+      return state.contact;
     },
   },
 
   actions: {
-    increment() {
-      this.counter++;
-    },
+    // Example
+    // increment() {
+    //   this.counter++;
+    // },
   },
 });
