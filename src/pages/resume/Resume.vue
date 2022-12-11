@@ -1,6 +1,31 @@
 <template>
   <q-page class="row items-center justify-evenly">
-    <div>Basic AWS Notes</div>
+    <div class="q-px-lg q-pb-md">
+      <q-timeline
+        color="secondary"
+        v-for="(experience, index) in experiences"
+        :key="index"
+      >
+        <q-timeline-entry heading>
+          {{ `${experience.company} - ${experience.title}` }}
+        </q-timeline-entry>
+
+        <q-timeline-entry
+          v-for="(task, index) in experience.tasks"
+          :key="index"
+          :title="task.title"
+          :subtitle="`${experiences[0].dateStarted} - ${experiences[0].dateEnded}`"
+          icon="settings"
+          color="blue"
+        >
+          <div v-for="(item, index) in task.items" :key="index">
+            <div>
+              {{ item }}
+            </div>
+          </div>
+        </q-timeline-entry>
+      </q-timeline>
+    </div>
   </q-page>
 </template>
 
@@ -34,3 +59,5 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped></style>
