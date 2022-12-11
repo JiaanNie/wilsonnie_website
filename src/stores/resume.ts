@@ -1,8 +1,6 @@
 import { defineStore } from 'pinia';
-import { date } from 'quasar';
 import {
   Experience,
-  Task,
   Project,
   Soical,
   AboutMe,
@@ -60,13 +58,26 @@ export const useResumeStore = defineStore('resume', {
         dateStarted: 'May 2019',
         dateEnded: 'August 2020',
         tasks: [
-          {},
-          {},
-          {}
-        ]
-
+          {
+            title: 'Troubleshooting and Documenting existing web application',
+          },
+          {
+            title:
+              'Creating VBA and Python scripts to increase office productivity',
+          },
+          {
+            title: 'Data Visualization for presentation uses',
+          },
+        ],
       },
     ] as Array<Experience>,
+    projects: [] as Array<Project>,
+    education: [] as Array<Education>,
+    skills: [] as Array<Skill>,
+    aboutMe: {} as AboutMe,
+    socials: [] as Array<Soical>,
+    contact: {} as Contact,
+    location: {} as Location,
   }),
 
   getters: {
