@@ -1,3 +1,4 @@
+import { link } from 'fs';
 import { defineStore } from 'pinia';
 import {
   Experience,
@@ -71,13 +72,81 @@ export const useResumeStore = defineStore('resume', {
         ],
       },
     ] as Array<Experience>,
-    projects: [] as Array<Project>,
-    education: [] as Array<Education>,
-    skills: [] as Array<Skill>,
-    aboutMe: {} as AboutMe,
-    socials: [] as Array<Soical>,
-    contact: {} as Contact,
-    location: {} as Location,
+    projects: [
+      {
+        title: 'Personal Website',
+        descriptions:
+          'Vue-based web application to explore and experiment new skills such as containerization,\
+         configuring Nginx, deploying an application as a pod within a kubernetes cluster',
+        links: ['https://www.wilsonnie.ca'],
+      },
+    ] as Array<Project>,
+    education: [
+      {
+        name: 'University of Regina',
+        dateStarted: 'Sept 2014',
+        dateEnded: 'August 2021',
+        descriptions:
+          'Bachelor of Applied Science- Software Systems Engineering with Internship,\
+         University of Regina, Saskatchewan',
+        otherDetails: [
+          'Capstone: Photo Organizer using machine learning  to classify landmarks',
+        ],
+      },
+    ] as Array<Education>,
+    skills: [
+      {
+        name: 'AWS Services',
+        details: ['EC2', 'ECR', 'ECS', 'Dynamodb'],
+      },
+      {
+        name: 'Programming Languages',
+        details: [
+          'Python',
+          'Typescript',
+          'HTML',
+          'CSS',
+          'Javascript',
+          'Python',
+          'SQLAlchemy',
+          'NoSQL',
+        ],
+      },
+      {
+        name: 'Frameworks',
+        details: ['VueJS', 'Quasar', 'FastAPI', 'ReactJS'],
+      },
+      {
+        name: 'Others',
+        details: ['Git', 'Github', 'Linux'],
+      },
+    ] as Array<Skill>,
+    aboutMe: {
+      details:
+        'Software developer with 2 years experience working in small organizations.\
+       Exposed to a wide range of technologies.',
+    } as AboutMe,
+    socials: [
+      {
+        name: 'GitHub',
+        link: 'https://github.com/JiaanNie',
+      },
+      {
+        name: 'Personal Site',
+        link: 'https://www.wilsonnie.ca/',
+      },
+      {
+        name: 'LinkedIn',
+        link: 'www.linkedin.com/in/wilsonnie',
+      },
+    ] as Array<Soical>,
+    contact: {
+      email: 'wilson.nie13@gmail.com',
+    } as Contact,
+    location: {
+      city: 'Richmond',
+      province: 'BC',
+    } as Location,
   }),
 
   getters: {

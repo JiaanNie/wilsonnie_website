@@ -20,8 +20,8 @@ export interface Project {
 
 export interface Education {
   name: string;
-  timeStarted: string;
-  timeEnded: string;
+  dateStarted: string;
+  dateEnded: string;
   descriptions: string;
   otherDetails?: Array<string>;
 }
