@@ -40,12 +40,69 @@
           </div>
         </q-timeline-entry>
       </q-timeline>
+      <h3>Projects</h3>
+      <q-separator color="black" />
+
+      <div class="q-pa-md">
+        <q-expansion-item>
+          <template v-slot:header="{ expanded }">
+            <q-item-section avatar>
+              <q-icon color="purple" name="signal_wifi_off" />
+            </q-item-section>
+
+            <q-item-section>
+              Item {{ expanded ? 'expanded' : 'collapsed' }}
+            </q-item-section>
+          </template>
+
+          <q-card>
+            <q-card-section>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem,
+              eius reprehenderit eos corrupti commodi magni quaerat ex numquam,
+              dolorum officiis modi facere maiores architecto suscipit iste
+              eveniet doloribus ullam aliquid.
+            </q-card-section>
+          </q-card>
+        </q-expansion-item>
+      </div>
+
+      <q-separator />
+      <h3>Educations</h3>
+      <q-separator color="black" />
+      <h3>Skills</h3>
+      <q-separator color="black" />
+      <h3>Socials</h3>
+      <q-separator color="black" />
+      <div class="q-pa-md">
+        <q-expansion-item>
+          <template v-slot:header="{ expanded }">
+            <q-item-section avatar>
+              <q-avatar>
+                <img src="https://cdn.quasar.dev/img/boy-avatar.png" />
+              </q-avatar>
+            </q-item-section>
+
+            <q-item-section>
+              Item {{ expanded ? 'expanded' : 'collapsed' }}
+            </q-item-section>
+          </template>
+
+          <q-card>
+            <q-card-section>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem,
+              eius reprehenderit eos corrupti commodi magni quaerat ex numquam,
+              dolorum officiis modi facere maiores architecto suscipit iste
+              eveniet doloribus ullam aliquid.
+            </q-card-section>
+          </q-card>
+        </q-expansion-item>
+      </div>
     </div>
   </q-page>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 import { useResumeStore } from 'src/stores/resume';
 
 export default defineComponent({
@@ -60,6 +117,7 @@ export default defineComponent({
     const socials = store.getSoicals;
     const projects = store.getProjects;
     const aboutMe = store.getAboutMe;
+    const expanded = ref(true);
 
     return {
       skills,
@@ -70,6 +128,7 @@ export default defineComponent({
       socials,
       projects,
       aboutMe,
+      expanded,
     };
   },
 });
