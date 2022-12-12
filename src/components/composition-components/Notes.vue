@@ -23,9 +23,24 @@ export default defineComponent({
 
     const topics = reactive<Array<Topic>>([
       {
+        name: 'Resume',
+        icon: 'work',
+        path: '/resume',
+      },
+      {
+        name: 'Cover Letter Generator',
+        icon: 'article',
+        path: '/cover-letter-generator',
+      },
+      {
         name: 'Docker',
         icon: 'fa-brands fa-docker',
         path: '/notes/docker-notes',
+      },
+      {
+        name: 'Deployment to AWS',
+        icon: 'fas fa-file',
+        path: '/notes/basic-deploying-quasar-app-notes',
       },
       { name: 'AWS', icon: 'fa-brands fa-aws', path: '/notes/aws-notes' },
       {
@@ -44,19 +59,9 @@ export default defineComponent({
         icon: 'fas fa-network-wired',
         path: '/notes/kubernetes-notes',
       },
-      {
-        name: 'Deployment to AWS',
-        icon: 'fas fa-file',
-        path: '/notes/basic-deploying-quasar-app-notes',
-      },
       { name: 'React', icon: 'fas fa-file', path: '/notes/react-notes' },
       { name: 'Nginx', icon: 'fa-solid fa-server', path: '/notes/nginx-notes' },
       { name: 'Fun', icon: 'fas fa-user-secret', path: '/notes/secret-notes' },
-      {
-        name: 'Cover Letter Generator',
-        icon: 'article',
-        path: '/cover-letter-generator',
-      },
     ]);
     const navigateTo = (path = '/notes/github-notes') => {
       router.push({ path: path });
