@@ -79,6 +79,12 @@ export const useResumeStore = defineStore('resume', {
          configuring Nginx, deploying an application as a pod within a kubernetes cluster',
         links: ['https://www.wilsonnie.ca'],
       },
+      {
+        title: 'eIDEAS',
+        descriptions:
+          'Web application for collaborative idea creation, sharing and tracking for\
+        e-Health Saskatchewan.',
+      },
     ] as Array<Project>,
     education: [
       {

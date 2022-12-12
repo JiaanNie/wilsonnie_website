@@ -44,14 +44,14 @@
       <q-separator color="black" />
 
       <div class="q-pa-md">
-        <q-expansion-item>
-          <template v-slot:header="{ expanded }">
+        <q-expansion-item v-for="(project, index) in projects" :key="index">
+          <template v-slot:header="{}">
             <q-item-section avatar>
-              <q-icon color="purple" name="signal_wifi_off" />
+              <q-icon color="blue" name="lightbulb" />
             </q-item-section>
 
             <q-item-section>
-              Item {{ expanded ? 'expanded' : 'collapsed' }}
+              {{ project.title }}
             </q-item-section>
           </template>
 
