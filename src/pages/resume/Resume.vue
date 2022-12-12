@@ -1,6 +1,17 @@
 <template>
   <q-page class="row items-center justify-evenly">
-    <div class="q-px-lg q-pb-md">
+    <div class="q-px-lg q-pb-md container">
+      <h1>Jiaan (Wilson) Nie</h1>
+
+      <h3>About Me</h3>
+      <q-separator color="black" />
+      <p class="space">
+        Hello, I am a {{ aboutMe.details }} located in {{ location.province }},
+        {{ location.city }} my contact email is {{ contact.email }}
+      </p>
+
+      <h3>Experiences</h3>
+      <q-separator color="black" />
       <q-timeline
         color="secondary"
         v-for="(experience, index) in experiences"
@@ -14,7 +25,11 @@
           v-for="(task, index) in experience.tasks"
           :key="index"
           :title="task.title"
-          :subtitle="`${experiences[0].dateStarted} - ${experiences[0].dateEnded}`"
+          :subtitle="
+            index == 0
+              ? `${experience.dateStarted} - ${experience.dateEnded}`
+              : ''
+          "
           icon="settings"
           color="blue"
         >
@@ -60,4 +75,12 @@ export default defineComponent({
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.container {
+  background-color: white;
+  max-width: 45%;
+}
+.space {
+  margin-top: 3%;
+}
+</style>
