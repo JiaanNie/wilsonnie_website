@@ -48,6 +48,7 @@ export const useResumeStore = defineStore('resume', {
           {
             title:
               'Maintaining AWS infrastructure to ensure minimal downtime for services',
+            items: ['Debugging fault using service logs'],
           },
         ],
       },
@@ -60,6 +61,7 @@ export const useResumeStore = defineStore('resume', {
         tasks: [
           {
             title: 'Troubleshooting and Documenting existing web application',
+            items: ['Creating a user manual for whole application'],
           },
           {
             title:
@@ -78,6 +80,11 @@ export const useResumeStore = defineStore('resume', {
           'Vue-based web application to explore and experiment new skills such as containerization,\
          configuring Nginx, deploying an application as a pod within a kubernetes cluster',
         links: ['https://www.wilsonnie.ca'],
+      },
+      {
+        title: 'Photos Organizer',
+        descriptions:
+          'A web and mobile app that uses AI to classify landmarks and group the photo together',
       },
       {
         title: 'eIDEAS',
@@ -128,8 +135,8 @@ export const useResumeStore = defineStore('resume', {
     ] as Array<Skill>,
     aboutMe: {
       details:
-        'Software developer with 2 years experience working in small organizations.\
-       Exposed to a wide range of technologies.',
+        'Enthusiastic software developer with a background in building a startup! \
+        Experience with a wide arsenal of different front/back end technologies and a variety of frameworks.',
     } as AboutMe,
     socials: [
       {

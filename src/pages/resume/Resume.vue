@@ -59,21 +59,21 @@
         </div>
       </div>
 
-      <h3>Educations</h3>
+      <!-- <h3>Educations</h3>
       <q-separator color="black" />
       <h3>Skills</h3>
       <q-separator color="black" />
       <h3>Socials</h3>
       <q-separator color="black" />
       <div class="q-pa-md">
-        <q-expansion-item v-for="(project, index) in projects" :key="index">
+        <q-expansion-item v-for="(social, index) in socials" :key="index">
           <template v-slot:header="{}">
             <q-item-section avatar>
               <q-icon color="blue" name="lightbulb" />
             </q-item-section>
 
             <q-item-section>
-              {{ project.title }}
+              {{ social.name }}
             </q-item-section>
           </template>
 
@@ -86,7 +86,7 @@
             </q-card-section>
           </q-card>
         </q-expansion-item>
-      </div>
+      </div> -->
     </div>
   </q-page>
 </template>
