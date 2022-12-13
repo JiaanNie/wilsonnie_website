@@ -1,30 +1,30 @@
 <template>
   <q-card class="my-card">
-    <div class="q-pa-md">
+    <div>
       <q-avatar
         color="pink"
         text-color="white"
-        icon="work"
-        style="top: 0; left: 22px; transform: translateY(-90%)"
+        :icon="icon"
+        style="top: 0; left: 22px; transform: translateY(-60%)"
       >
       </q-avatar>
     </div>
 
     <q-card-section>
-      <div class="text-h6">Our Changing Planet</div>
-      <div class="text-subtitle2">by John Doe</div>
+      <div class="text-h6">{{ title }}</div>
+      <div class="text-subtitle2">{{ subTitle }}</div>
     </q-card-section>
 
     <q-separator inset />
 
-    <q-card-section>
-      {{ lorem }}
+    <q-card-section style="height: 50%">
+      {{ details }}
     </q-card-section>
     <q-separator />
 
     <q-card-actions>
-      <q-btn flat round icon="event" />
-      <q-btn flat color="primary"> Getting Started </q-btn>
+      <q-btn flat round :icon="actionIcon" />
+      <q-btn flat color="primary"> {{ actionName }} </q-btn>
     </q-card-actions>
   </q-card>
 </template>
@@ -34,6 +34,32 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'ProductCard',
+  props: {
+    icon: {
+      type: String,
+      require: true,
+    },
+    title: {
+      type: String,
+      required: true,
+    },
+    subTitle: {
+      type: String,
+      required: false,
+    },
+    details: {
+      type: String,
+      required: true,
+    },
+    actionIcon: {
+      type: String,
+      required: true,
+    },
+    actionName: {
+      type: String,
+      required: true,
+    },
+  },
   setup() {
     return {
       lorem:
@@ -47,6 +73,8 @@ export default defineComponent({
 .my-card
   width: 100%
   max-width: 250px
+  height: 100%
+
 
 .q-pa-md
   width: 0

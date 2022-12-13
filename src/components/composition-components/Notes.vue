@@ -42,25 +42,25 @@ export default defineComponent({
         icon: 'fas fa-file',
         path: '/notes/basic-deploying-quasar-app-notes',
       },
-      { name: 'AWS', icon: 'fa-brands fa-aws', path: '/notes/aws-notes' },
-      {
-        name: 'Github',
-        icon: 'fa-brands fa-github',
-        path: '/notes/github-notes',
-      },
-      { name: 'Python', icon: 'fas fa-file', path: '/notes/python-notes' },
-      {
-        name: 'TypeScript/JavaScript',
-        icon: 'fa-brands fa-js',
-        path: '/notes/javascript-notes',
-      },
-      {
-        name: 'Kubernetes',
-        icon: 'fas fa-network-wired',
-        path: '/notes/kubernetes-notes',
-      },
-      { name: 'React', icon: 'fas fa-file', path: '/notes/react-notes' },
-      { name: 'Nginx', icon: 'fa-solid fa-server', path: '/notes/nginx-notes' },
+      // { name: 'AWS', icon: 'fa-brands fa-aws', path: '/notes/aws-notes' },
+      // {
+      //   name: 'Github',
+      //   icon: 'fa-brands fa-github',
+      //   path: '/notes/github-notes',
+      // },
+      // { name: 'Python', icon: 'fas fa-file', path: '/notes/python-notes' },
+      // {
+      //   name: 'TypeScript/JavaScript',
+      //   icon: 'fa-brands fa-js',
+      //   path: '/notes/javascript-notes',
+      // },
+      // {
+      //   name: 'Kubernetes',
+      //   icon: 'fas fa-network-wired',
+      //   path: '/notes/kubernetes-notes',
+      // },
+      // { name: 'React', icon: 'fas fa-file', path: '/notes/react-notes' },
+      // { name: 'Nginx', icon: 'fa-solid fa-server', path: '/notes/nginx-notes' },
       { name: 'Fun', icon: 'fas fa-user-secret', path: '/notes/secret-notes' },
     ]);
     const navigateTo = (path = '/notes/github-notes') => {

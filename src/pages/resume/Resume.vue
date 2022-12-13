@@ -5,7 +5,7 @@
 
       <h3>About Me</h3>
       <q-separator color="black" />
-      <p class="space">
+      <p class="card-space">
         Hello, I am a {{ aboutMe.details }} located in {{ location.province }},
         {{ location.city }} my contact email is {{ contact.email }}
       </p>
@@ -42,7 +42,29 @@
       </q-timeline>
       <h3>Projects</h3>
       <q-separator color="black" />
+      <div class="row q-gutter-x-xl">
+        <div
+          v-for="project in projects"
+          :key="project.title"
+          style="margin-top: 6%"
+        >
+          <product-card
+            :details="project.descriptions"
+            icon="lightbulb"
+            :title="project.title"
+            action-name="Getting Started"
+            action-icon="preview"
+          >
+          </product-card>
+        </div>
+      </div>
 
+      <h3>Educations</h3>
+      <q-separator color="black" />
+      <h3>Skills</h3>
+      <q-separator color="black" />
+      <h3>Socials</h3>
+      <q-separator color="black" />
       <div class="q-pa-md">
         <q-expansion-item v-for="(project, index) in projects" :key="index">
           <template v-slot:header="{}">
@@ -65,38 +87,6 @@
           </q-card>
         </q-expansion-item>
       </div>
-
-      <q-separator />
-      <h3>Educations</h3>
-      <q-separator color="black" />
-      <h3>Skills</h3>
-      <q-separator color="black" />
-      <h3>Socials</h3>
-      <q-separator color="black" />
-      <div class="q-pa-md">
-        <q-expansion-item>
-          <template v-slot:header="{ expanded }">
-            <q-item-section avatar>
-              <q-avatar>
-                <img src="https://cdn.quasar.dev/img/boy-avatar.png" />
-              </q-avatar>
-            </q-item-section>
-
-            <q-item-section>
-              Item {{ expanded ? 'expanded' : 'collapsed' }}
-            </q-item-section>
-          </template>
-
-          <q-card>
-            <q-card-section>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem,
-              eius reprehenderit eos corrupti commodi magni quaerat ex numquam,
-              dolorum officiis modi facere maiores architecto suscipit iste
-              eveniet doloribus ullam aliquid.
-            </q-card-section>
-          </q-card>
-        </q-expansion-item>
-      </div>
     </div>
   </q-page>
 </template>
@@ -104,9 +94,13 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import { useResumeStore } from 'src/stores/resume';
+import ProductCard from 'src/components/single_components/ProductCard.vue';
 
 export default defineComponent({
   name: 'MyResume',
+  components: {
+    ProductCard,
+  },
   setup() {
     const store = useResumeStore();
     const experiences = store.getExperiences;
