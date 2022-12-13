@@ -59,17 +59,37 @@
         </div>
       </div>
 
-      <!-- <h3>Educations</h3>
+      <h3>Educations</h3>
       <q-separator color="black" />
-      <h3>Skills</h3>
-      <q-separator color="black" />
+      <q-card
+        bordered
+        class="space edu-card"
+        v-for="education in educations"
+        :key="education.name"
+      >
+        <q-card-section>
+          <div class="text-h6">{{ education.name }}</div>
+          <div class="text-subtitle2">
+            {{ `${education.dateStarted} - ${education.dateEnded}` }}
+          </div>
+        </q-card-section>
+
+        <q-separator inset />
+
+        <q-card-section>
+          {{ education.descriptions }}
+        </q-card-section>
+      </q-card>
+      <!-- <h3>Skills</h3>
+      <q-separator color="black" /> -->
+
       <h3>Socials</h3>
       <q-separator color="black" />
       <div class="q-pa-md">
         <q-expansion-item v-for="(social, index) in socials" :key="index">
           <template v-slot:header="{}">
             <q-item-section avatar>
-              <q-icon color="blue" name="lightbulb" />
+              <q-icon color="blue" :name="social.icon" />
             </q-item-section>
 
             <q-item-section>
@@ -79,14 +99,11 @@
 
           <q-card>
             <q-card-section>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem,
-              eius reprehenderit eos corrupti commodi magni quaerat ex numquam,
-              dolorum officiis modi facere maiores architecto suscipit iste
-              eveniet doloribus ullam aliquid.
+              <a :href="social.link">{{ social.link }}</a>
             </q-card-section>
           </q-card>
         </q-expansion-item>
-      </div> -->
+      </div>
     </div>
   </q-page>
 </template>
@@ -135,5 +152,9 @@ export default defineComponent({
 }
 .space {
   margin-top: 3%;
+}
+.edu-card {
+  width: 100%;
+  max-width: 450px;
 }
 </style>

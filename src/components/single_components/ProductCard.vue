@@ -1,5 +1,5 @@
 <template>
-  <q-card class="my-card">
+  <q-card class="my-card full-height column">
     <div>
       <q-avatar
         color="pink"
@@ -17,7 +17,7 @@
 
     <q-separator inset />
 
-    <q-card-section style="height: 50%">
+    <q-card-section class="col">
       {{ details }}
     </q-card-section>
     <q-separator />
@@ -61,10 +61,7 @@ export default defineComponent({
     },
   },
   setup() {
-    return {
-      lorem:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    };
+    return {};
   },
 });
 </script>
@@ -73,10 +70,4 @@ export default defineComponent({
 .my-card
   width: 100%
   max-width: 250px
-  height: 100%
-
-
-.q-pa-md
-  width: 0
-  height: 0
 </style>

@@ -99,8 +99,7 @@ export const useResumeStore = defineStore('resume', {
         dateStarted: 'Sept 2014',
         dateEnded: 'August 2021',
         descriptions:
-          'Bachelor of Applied Science- Software Systems Engineering with Internship,\
-         University of Regina, Saskatchewan',
+          'BASC - Software Systems Engineering, Coop, University of Regina, Saskatchewan',
         otherDetails: [
           'Capstone: Photo Organizer using machine learning  to classify landmarks',
         ],
@@ -142,14 +141,17 @@ export const useResumeStore = defineStore('resume', {
       {
         name: 'GitHub',
         link: 'https://github.com/JiaanNie',
+        icon: 'fa-brands fa-github',
       },
       {
         name: 'Personal Site',
         link: 'https://www.wilsonnie.ca/',
+        icon: 'computer',
       },
       {
         name: 'LinkedIn',
         link: 'www.linkedin.com/in/wilsonnie',
+        icon: 'fab fa-linkedin-in',
       },
     ] as Array<Soical>,
     contact: {
