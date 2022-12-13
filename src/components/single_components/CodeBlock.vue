@@ -22,7 +22,7 @@ export default defineComponent({
   props: {
     codeString: {
       type: String,
-      require: true,
+      required: true,
     },
   },
   setup() {

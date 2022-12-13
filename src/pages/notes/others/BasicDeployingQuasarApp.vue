@@ -109,7 +109,7 @@ export default defineComponent({
       },
       {
         step: 10,
-        description: 'cloning the repo from github into the instance',
+        description: 'start acme-companion container',
         command: `sudo docker run --detach
     --name nginx-proxy-acme
     --volumes-from nginx-proxy
@@ -121,9 +121,9 @@ export default defineComponent({
       },
       {
         step: 11,
-        description: 'cloning the repo from github into the instance',
+        description: 'starting your app container that you wanted proixed',
         command: `sudo docker run --detach
-    --name pathfinder-frontend-test
+    --name <your-container-name>
     --env "VIRTUAL_HOST=wilsonnie.ca"
     --env "LETSENCRYPT_HOST=wilsonnie.ca"
     <image-id>`,
@@ -131,7 +131,7 @@ export default defineComponent({
       },
       {
         step: 12,
-        description: 'cloning the repo from github into the instance',
+        description: 'start the nginx proxy container',
         command: `sudo docker run --detach
     --name nginx-proxy
     --publish 80:80

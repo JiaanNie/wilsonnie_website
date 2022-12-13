@@ -5,7 +5,7 @@
 
       <h3>About Me</h3>
       <q-separator color="black" />
-      <p class="space">
+      <p class="card-space">
         Hello, I am a {{ aboutMe.details }} located in {{ location.province }},
         {{ location.city }} my contact email is {{ contact.email }}
       </p>
@@ -40,16 +40,67 @@
           </div>
         </q-timeline-entry>
       </q-timeline>
+      <h3>Projects</h3>
+      <q-separator color="black" />
+      <div class="row q-gutter-x-xl">
+        <div
+          v-for="project in projects"
+          :key="project.title"
+          style="margin-top: 6%"
+        >
+          <product-card
+            :details="project.descriptions"
+            icon="lightbulb"
+            :title="project.title"
+            action-name="Getting Started"
+            action-icon="preview"
+          >
+          </product-card>
+        </div>
+      </div>
+
+      <!-- <h3>Educations</h3>
+      <q-separator color="black" />
+      <h3>Skills</h3>
+      <q-separator color="black" />
+      <h3>Socials</h3>
+      <q-separator color="black" />
+      <div class="q-pa-md">
+        <q-expansion-item v-for="(social, index) in socials" :key="index">
+          <template v-slot:header="{}">
+            <q-item-section avatar>
+              <q-icon color="blue" name="lightbulb" />
+            </q-item-section>
+
+            <q-item-section>
+              {{ social.name }}
+            </q-item-section>
+          </template>
+
+          <q-card>
+            <q-card-section>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem,
+              eius reprehenderit eos corrupti commodi magni quaerat ex numquam,
+              dolorum officiis modi facere maiores architecto suscipit iste
+              eveniet doloribus ullam aliquid.
+            </q-card-section>
+          </q-card>
+        </q-expansion-item>
+      </div> -->
     </div>
   </q-page>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 import { useResumeStore } from 'src/stores/resume';
+import ProductCard from 'src/components/single_components/ProductCard.vue';
 
 export default defineComponent({
   name: 'MyResume',
+  components: {
+    ProductCard,
+  },
   setup() {
     const store = useResumeStore();
     const experiences = store.getExperiences;
@@ -60,6 +111,7 @@ export default defineComponent({
     const socials = store.getSoicals;
     const projects = store.getProjects;
     const aboutMe = store.getAboutMe;
+    const expanded = ref(true);
 
     return {
       skills,
@@ -70,6 +122,7 @@ export default defineComponent({
       socials,
       projects,
       aboutMe,
+      expanded,
     };
   },
 });

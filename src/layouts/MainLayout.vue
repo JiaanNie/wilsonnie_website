@@ -25,26 +25,6 @@
 
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
       <q-list>
-        <q-item-label header> About me </q-item-label>
-        <q-card>
-          <q-card-section>
-            {{ aboutMe }}
-          </q-card-section>
-        </q-card>
-
-        <q-item-label header> Contact Info </q-item-label>
-        <q-card>
-          <q-card-section> Email: wilson.nie13@gmail.com </q-card-section>
-        </q-card>
-
-        <q-item-label header> Objective </q-item-label>
-
-        <q-card>
-          <q-card-section>
-            {{ objective }}
-          </q-card-section>
-        </q-card>
-
         <q-item-label header> Socials </q-item-label>
 
         <EssentialLink
@@ -89,12 +69,6 @@ const essentialLinks: EssentialLinkProps[] = [
   },
 ];
 const isDarkMode = ref(false);
-const aboutMe = ref(
-  'Software developer with 2 years experience working in small organizations. Exposed to a wide range of technologies.'
-);
-const objective = ref(
-  'Vue-based web application to explore and experiment new skills such as containerization, configuring Nginx, deploying an application as a pod within a kubernetes cluster'
-);
 
 const leftDrawerOpen = ref(false);
 const $q = useQuasar();

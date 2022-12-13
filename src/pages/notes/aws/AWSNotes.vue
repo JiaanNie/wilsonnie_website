@@ -1,6 +1,6 @@
 <template>
   <q-page class="row items-center justify-evenly">
-    <div>Basic AWS Notes</div>
+    <div>aws basic notes</div>
   </q-page>
 </template>
 
@@ -9,5 +9,8 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'AWSbNotes',
+  setup() {
+    return {};
+  },
 });
 </script>
