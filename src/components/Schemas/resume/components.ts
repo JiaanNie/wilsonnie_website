@@ -29,6 +29,7 @@ export interface Education {
 export interface Soical {
   name: string;
   link: string;
+  icon: string;
 }
 
 export interface AboutMe {
