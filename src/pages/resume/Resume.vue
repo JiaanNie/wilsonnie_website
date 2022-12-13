@@ -59,7 +59,7 @@
         </div>
       </div>
 
-      <!-- <h3>Educations</h3>
+      <h3>Educations</h3>
       <q-separator color="black" />
       <h3>Skills</h3>
       <q-separator color="black" />
@@ -86,7 +86,7 @@
             </q-card-section>
           </q-card>
         </q-expansion-item>
-      </div> -->
+      </div>
     </div>
   </q-page>
 </template>
