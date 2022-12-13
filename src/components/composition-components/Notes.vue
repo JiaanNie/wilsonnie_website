@@ -61,7 +61,7 @@ export default defineComponent({
       // },
       // { name: 'React', icon: 'fas fa-file', path: '/notes/react-notes' },
       // { name: 'Nginx', icon: 'fa-solid fa-server', path: '/notes/nginx-notes' },
-      { name: 'Fun', icon: 'fas fa-user-secret', path: '/notes/secret-notes' },
+      // { name: 'Fun', icon: 'fas fa-user-secret', path: '/notes/secret-notes' },
     ]);
     const navigateTo = (path = '/notes/github-notes') => {
       router.push({ path: path });
