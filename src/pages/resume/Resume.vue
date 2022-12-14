@@ -80,8 +80,33 @@
           {{ education.descriptions }}
         </q-card-section>
       </q-card>
-      <!-- <h3>Skills</h3>
-      <q-separator color="black" /> -->
+
+      <h3>Skills</h3>
+      <q-separator color="black" />
+      <div class="row q-gutter-x-xl">
+        <q-card
+          class="space skill-card"
+          v-for="skill in skills"
+          :key="skill.name"
+        >
+          <q-card-section>
+            <div class="text-h6">{{ skill.name }}</div>
+          </q-card-section>
+
+          <q-separator />
+          <q-list>
+            <q-item
+              clickable
+              v-for="(item, index) in skill.details"
+              :key="index"
+            >
+              <q-item-section>
+                <q-item-label>{{ item }}</q-item-label>
+              </q-item-section>
+            </q-item>
+          </q-list>
+        </q-card>
+      </div>
 
       <h3>Socials</h3>
       <q-separator color="black" />
@@ -148,7 +173,7 @@ export default defineComponent({
 <style scoped>
 .container {
   background-color: white;
-  max-width: 45%;
+  max-width: 50%;
 }
 .space {
   margin-top: 3%;
@@ -156,5 +181,10 @@ export default defineComponent({
 .edu-card {
   width: 100%;
   max-width: 450px;
+}
+
+.skill-card {
+  width: 100%;
+  max-width: 250px;
 }
 </style>
