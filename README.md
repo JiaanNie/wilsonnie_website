@@ -2,42 +2,26 @@
 
 Jiaan Wilson Nie Personal Website
 
-## Install the dependencies
+## Method 1: Running Appliaction locally
 
-```bash
-yarn
-# or
-npm install
-```
+### Requirements:
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
+- Node v16.x
+- NPM v8.x
+- Quasar v1.3x
 
-```bash
-quasar dev
-```
+## On Your Local Machine
 
-### Lint the files
+![Open in Cloud Shell](https://i.imgur.com/AO0yzUS.gif)
 
-```bash
-yarn lint
-# or
-npm run lint
-```
+- Clone this repository
+- Go into the project folder
+- Run `npm install`
+- Run `quasar dev`
 
-### Format the files
+## Method 2: Running Appliaction with docker
 
-```bash
-yarn format
-# or
-npm run format
-```
-
-### Build the app for production
-
-```bash
-quasar build
-```
-
-### Customize the configuration
-
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).
+- Clone this repository
+- Go into the project folder
+- Run `docker build -t <image-name>`
+- Run `docker run -d -p 80:9000 <image-name> `
