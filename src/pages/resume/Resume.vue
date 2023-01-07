@@ -33,11 +33,11 @@
           icon="settings"
           color="blue"
         >
-          <div v-for="(item, index) in task.items" :key="index">
-            <div>
+          <ul v-for="(item, index) in task.items" :key="index">
+            <li>
               {{ item }}
-            </div>
-          </div>
+            </li>
+          </ul>
         </q-timeline-entry>
       </q-timeline>
       <h3>Projects</h3>
