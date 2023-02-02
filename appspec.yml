@@ -1,0 +1,20 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ubuntu/app
+hooks:
+  BeforeInstall:
+    - location: scripts/app_spec_scripts/before_install/softwares_check.sh
+    - location: scripts/app_spec_scripts/before_install/tear_down.sh
+      timeout: 300
+      runas: root
+  AfterInstall:
+    - location: /scripts/app_spec_scripts/after_install/config_enviorment.sh
+    - location: /scripts/app_spec_scripts/after_install/get_newest_docker_image.sh
+      timeout: 300
+      runas: root
+  ApplicationStart:
+    - location: /scripts/app_spec_scripts/application_start/run_latest_docker_image.sh
+      timeout: 300
+      runas: root
