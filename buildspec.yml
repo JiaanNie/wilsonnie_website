@@ -1,0 +1,40 @@
+version: 0.2
+
+env:
+  variables:
+    AWS_DEFAULT_REGION: "ca-central-1"
+    AWS_ACCOUNT_ID: "372197329908"
+    REPOSITORY_URI: "372197329908.dkr.ecr.ca-central-1.amazonaws.com/my-site"
+  secrets-manager:
+    DOCKER_USERNAME: arn:aws:secretsmanager:ca-central-1:372197329908:secret:prod/my-site/docker-Oa8iDw:docker-user-name
+    DOCKER_PASSWORD: arn:aws:secretsmanager:ca-central-1:372197329908:secret:prod/my-site/docker-Oa8iDw:docker-password
+
+phases:
+  pre_build:
+    commands:
+      - echo Pre build phase
+      - docker -v
+      - aws --version
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $REPOSITORY_URI
+      - COMMIT_ID=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-8)
+      - echo $CODEBUILD_RESOLVED_SOURCE_VERSION
+      - echo $COMMIT_ID
+
+  build:
+    commands:
+      - echo Building the Docker image...
+      - docker build -t $REPOSITORY_URI:latest -t $REPOSITORY_URI:$COMMIT_ID  .
+
+  post_build:
+    commands:
+    - echo Pushing the Docker images to ECR...
+    - docker push $REPOSITORY_URI:latest
+    - docker push $REPOSITORY_URI:$COMMIT_ID
+    - echo Writing image definitions file...
+    - printf '{"name":"my-site","imageUri":"%s"}' $REPOSITORY_URI:$COMMIT_ID > imagedefinitions.json
+artifacts:
+  files:
+    - imagedefinitions.json
+    - scripts/**/*
+    - appspec.yml

@@ -1,41 +1,27 @@
 # wilsonnie (wilsonnie-website)
 
-A Quasar Project
+Jiaan Wilson Nie Personal Website
 
-## Install the dependencies
-```bash
-yarn
-# or
-npm install
-```
+## Method 1: Running Appliaction locally
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
-```bash
-quasar dev
-```
+### Requirements:
 
+- Node v16.x
+- NPM v8.x
+- Quasar v1.3x
 
-### Lint the files
-```bash
-yarn lint
-# or
-npm run lint
-```
+## On Your Local Machine
 
+![Open in Cloud Shell](https://i.imgur.com/AO0yzUS.gif)
 
-### Format the files
-```bash
-yarn format
-# or
-npm run format
-```
+- Clone this repository
+- Go into the project folder
+- Run `npm install`
+- Run `quasar dev`
 
+## Method 2: Running Appliaction with docker
 
-
-### Build the app for production
-```bash
-quasar build
-```
-
-### Customize the configuration
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).
+- Clone this repository
+- Go into the project folder
+- Run `docker build -t <image-name>`
+- Run `docker run -d -p 80:9000 <image-name> `
