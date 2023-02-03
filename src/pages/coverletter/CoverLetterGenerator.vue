@@ -58,6 +58,14 @@
         <br />
       </div>
     </q-card>
+    <q-card class="my-card shadow-19">
+      <div v-for="(step, index) in steps" :key="index">
+        <q-card-section v-if="step.displayResult">
+          {{ step.defaultValue }}
+        </q-card-section>
+        <br />
+      </div>
+    </q-card>
   </div>
 </template>
 
@@ -76,6 +84,7 @@ export default defineComponent({
     const emailAddress = ref('');
     const currentStepName = ref('receiver');
     const currentStep = ref(1);
+
     const steps = reactive<Array<CoverLetterStep>>([
       {
         name: 'receiver',
