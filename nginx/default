@@ -1,13 +1,6 @@
 server {
-        listen 80;
-        listen 443;
-
-        root /var/www/html;
-        server_name wilsonnie.ca www.wilsonnie.ca;
-
-        location / {
-                # First attempt to serve request as file, then
-                # as directory, then fall back to displaying a 404.
-                try_files $uri $uri/ /index.html;
-        }
+  location / {
+      root /var/www/html;
+      try_files $uri $uri/ /index.html;
+  }
 }
