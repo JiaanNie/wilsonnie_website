@@ -45,7 +45,6 @@ Run quasar build
 # Setting work dir
 WORKDIR /var/www/html
 
-
 #copy everything from the quasar build which is located in /app/dist/spa/* .
 
 RUN cp -r /app/dist/spa/* .
