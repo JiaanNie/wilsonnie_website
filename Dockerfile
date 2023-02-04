@@ -13,7 +13,7 @@ RUN apt-get install -y curl nginx git
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
 
 COPY nginx/default.conf /etc/nginx/default.conf
-COPY nginx/personal_site.conf  /etc/nginx/conf.d/personal_site.conf
+COPY nginx/default2.conf  /etc/nginx/conf.d/default
 
 # install nodejs in the container y flag is just you dont need to answer any prompt when installing apt
 RUN apt-get install -y nodejs
@@ -45,7 +45,6 @@ Run quasar build
 # Setting work dir
 WORKDIR /var/www/html
 
-
 #copy everything from the quasar build which is located in /app/dist/spa/* .
 
 RUN cp -r /app/dist/spa/* .
@@ -54,7 +53,5 @@ RUN cp -r /app/dist/spa/* .
 RUN rm -rf /app
 
 EXPOSE 80
-EXPOSE 443
-
 
 CMD ["nginx", "-g", "daemon off;"]
