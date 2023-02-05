@@ -30,7 +30,7 @@
               ? `${experience.dateStarted} - ${experience.dateEnded}`
               : ''
           "
-          icon="settings"
+          :icon="task.icon === undefined ? 'settings' : `${task.icon}`"
           color="blue"
         >
           <ul v-for="(item, index) in task.items" :key="index">
@@ -154,6 +154,7 @@ export default defineComponent({
     const projects = store.getProjects;
     const aboutMe = store.getAboutMe;
     const expanded = ref(true);
+    console.log(experiences);
 
     return {
       skills,

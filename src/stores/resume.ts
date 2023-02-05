@@ -15,81 +15,122 @@ export const useResumeStore = defineStore('resume', {
     experiences: [
       {
         company: 'eHelply Inc',
+        overview:
+          'ehelply Inc is a startup developing applications for clients based on their requirements and has a suite of APIs that contains common features for Appointments, Reviews and Places... My role involved both professional services and SASS developments.',
         title: 'Software Developer',
         location: 'Regina Saskatchewan',
         dateStarted: 'June 2021',
         dateEnded: 'September 2022',
         tasks: [
           {
-            title: 'Responsibility for professional services role',
+            title: 'Setup New Deployment Procedure',
             items: [
-              'Develop a process for building and deploying the frontend and backend of client’s app to an EC2 instance, including setting up test and prod environments, for easy use by other team members when making updates or adding new features.',
-              'implement the features, and test them to ensure they meet the requirements. Present the new features to the team for a final check before allowing the client to try them out in the test environment.',
-              "If the client's feature requests can be integrated with our services, I will do so to accelerate the development process",
-              'I consider the use of EC2 versus other AWS services based on cost efficiency for the client. For example, switching to using ECS and ECR and setting up an auto-deployment pipeline may provide scalability, but the increased cost may not be justified in the current situation',
+              'Implemented the features, and tested them to ensure they meet the requirements. Present the new features to the team for a final check before allowing the client to try them out in the test environment.',
             ],
           },
           {
-            title: 'Features Development',
+            title: 'Testing and QA',
             items: [
               'Creating new REST APIs for various services, including fetching and geocoding places, managing reviews for entities (create, update, read, delete), and booking and editing appointments',
             ],
           },
           {
-            title: 'Integration with 3rd party software',
+            title: 'Request Intake and Prioritization:',
+            items: [
+              "Assessed if  the client's feature requests can be performed by our services,  accelerating their development process.",
+            ],
+          },
+          {
+            title: 'Maintaining and Updating Microservice',
+            items: [
+              'Managed microservices such as Billing, Places, Appointments, and Reviews services. Migrate them work with new version of Python.',
+            ],
+          },
+          {
+            title: 'Creating New REST APIs for Various Services',
+            items: [
+              'Fetching geocode for locations, managing reviews for entities (create, update, read, delete), and booking and editing appointments.',
+            ],
+          },
+          {
+            title: 'Integration with Stripe',
             items: [
               'Implementing a billing flow using Stripe, which will automatically email receipts to users with detailed information about their charges after payment is made.',
-              'Implementing a ticket system using HubSpot, where users can submit tickets about any issues they encounter with the SASS platform. One of our developers will then assist them in resolving the issue',
             ],
           },
           {
-            title: 'Frontend Development',
+            title: 'Integration with Hubspot',
             items: [
-              'We have utilized MVC development principles to enable the frontend platform to communicate with the server',
-              'Creating reusable component library',
+              'Implementing a ticket system using HubSpot, where users can submit tickets about any issues they encounter with the SASS platform. One of our developers will then assist them in resolving the issue.',
             ],
           },
           {
-            title: 'Services Maintainces',
+            title: 'Integration of Frontend with Backend',
             items: [
-              'use service logs to debug faults and quickly push out patches to fix bugs',
-              'Refactoring code base to reduce tech debt',
-              'I am responsible for maintaining and updating a number of microservices, including the Billing, Places, Appointments, and Reviews services. Each of these microservices has CRUD (create, read, update, delete) endpoints',
+              'Utilized MVC development principles to enable the frontend platform to communicate with the server.',
+            ],
+          },
+          {
+            title: 'Debugging',
+            items: [
+              'Use service logs to debug faults and quickly push out patches to fix bugs. Refactoring code base to reduce tech debt.',
+            ],
+          },
+          {
+            title: 'Achievements',
+            icon: 'star',
+            items: [
+              'Developed SDK from the ground up  to speed up feature development.',
+              'Significantly reduced manual work by 10% for our clients by using our APIs.',
+              'Built and deployed a full stack web application for clients.',
             ],
           },
         ],
       },
       {
         company: 'Online Therapy Unit',
+        overview:
+          'The Online Therapy Unit of UofR is a program that offers free, effective, and convenient online therapy for various mental health concerns. It provides online educational  material, and provides  free therapy by licensed professionals. My role involved assisting the development team with bug fixes and documentation.',
         location: 'Regina  Saskatchewan',
         title: 'Software Developer',
         dateStarted: 'May 2019',
         dateEnded: 'August 2020',
         tasks: [
           {
-            title: 'Troubleshooting and Documenting existing web application',
+            title: 'Documentation',
             items: [
               'Creating a user manual for the whole web application which allows new and current team members to use the application.',
             ],
           },
           {
-            title:
-              'Creating VBA and Python scripts to increase office productivity',
+            title: 'Creating Automation Scripts',
             items: [
               'Writing and maintaining automation scripts using VBA and Python',
               'My automation scripts parse excel files. Removing unnecessary columns and  reduced labor required by 1 to 2 days per month!',
             ],
           },
           {
-            title: 'Data Visualization for presentation uses',
+            title: 'Data Visualization',
             items: [
-              'create a visualization using users data, such as a heatmap, to identify regions where the applications are being accessed from within Saskatchewan. This visualization will be used for presentation purposes.',
+              ' Using users data, such as a heatmap, to identify regions where the applications are being accessed from within Saskatchewan. This visualization will be used for presentation purposes.',
+            ],
+          },
+          {
+            title: 'Achievements',
+            icon: 'star',
+            items: [
+              'My automation scripts parse excel files. Removing unnecessary columns and  reduced labor required by 1 to 2 days per month.',
             ],
           },
         ],
       },
     ] as Array<Experience>,
     projects: [
+      {
+        title: 'Setting up CICD Pipeline',
+        descriptions:
+          'Setting up a CICD pipeline using AWS CodeBuild, CodeDeploy and CodePipline.',
+      },
       {
         title: 'Personal Website',
         descriptions:
@@ -124,7 +165,18 @@ export const useResumeStore = defineStore('resume', {
     skills: [
       {
         name: 'AWS Services',
-        details: ['EC2', 'ECR', 'ECS', 'Dynamodb'],
+        details: [
+          'CodeCommit',
+          'CodeBuild',
+          'CodeDeploy',
+          'CodePipline',
+          'S3',
+          'Secret Manager',
+          'EC2',
+          'ECR',
+          'ECS',
+          'Dynamodb',
+        ],
       },
       {
         name: 'Programming Languages',

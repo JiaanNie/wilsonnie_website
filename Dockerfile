@@ -12,8 +12,8 @@ RUN apt-get install -y curl nginx git
 # install node 16 distrubtion via curl
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
 
-COPY nginx/default.conf /etc/nginx/default.conf
-COPY nginx/default2.conf  /etc/nginx/conf.d/default
+COPY nginx/nginx.conf /etc/nginx/nginx.conf
+COPY nginx/default.conf  /etc/nginx/conf.d/default.conf
 
 # install nodejs in the container y flag is just you dont need to answer any prompt when installing apt
 RUN apt-get install -y nodejs

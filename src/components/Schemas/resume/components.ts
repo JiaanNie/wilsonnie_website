@@ -1,10 +1,12 @@
 export interface Task {
+  icon?: string;
   title: string;
   items?: Array<string>;
 }
 
 export interface Experience {
   company: string;
+  overview: string;
   title: string;
   location: string;
   dateStarted: string;
