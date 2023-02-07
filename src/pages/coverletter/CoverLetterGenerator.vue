@@ -48,6 +48,13 @@
           color="primary"
           :label="currentStep === steps.length ? 'Finish' : 'Continue'"
         />
+        <q-btn
+          class="on-right"
+          @click="rephase(step.defaultValue)"
+          v-if="step.inputType !== 'input'"
+          color="primary"
+          label="Rephase"
+        />
       </q-step>
     </q-stepper>
     <q-card class="my-card shadow-19">
@@ -55,16 +62,18 @@
         <q-card-section v-if="step.displayResult">
           {{ step.defaultValue }}
         </q-card-section>
-        <br />
       </div>
     </q-card>
     <q-card class="my-card shadow-19">
-      <div v-for="(step, index) in steps" :key="index">
-        <q-card-section v-if="step.displayResult">
-          {{ step.defaultValue }}
-        </q-card-section>
-        <br />
-      </div>
+      <q-card-section>
+        {{ aiResponse }}
+      </q-card-section>
+      <q-inner-loading :showing="visible">
+        <q-spinner-gears size="50px" color="primary" />
+      </q-inner-loading>
+      <q-card-actions align="right">
+        <q-btn color="primary">use it</q-btn>
+      </q-card-actions>
     </q-card>
   </div>
 </template>
@@ -73,6 +82,7 @@
 import { ref, defineComponent, reactive, Ref } from 'vue';
 import { CoverLetterStep } from 'src/components/Schemas/ComponentSchema';
 import { QStepper } from 'quasar';
+import { Configuration, OpenAIApi } from 'openai';
 
 export default defineComponent({
   name: 'CoverLetterGenerator',
@@ -84,6 +94,8 @@ export default defineComponent({
     const emailAddress = ref('');
     const currentStepName = ref('receiver');
     const currentStep = ref(1);
+    const aiResponse = ref('');
+    const visible = ref(true);
 
     const steps = reactive<Array<CoverLetterStep>>([
       {
@@ -229,6 +241,21 @@ export default defineComponent({
       }
       currentStep.value -= 1;
     }
+    console.log(process.env);
+
+    async function rephase(input: string) {
+      const configuration = new Configuration({
+        apiKey: '',
+      });
+      const openai = new OpenAIApi(configuration);
+      const prompt = ref(`reword the following: ${input}`);
+      const completion = await openai.createCompletion({
+        max_tokens: 4000,
+        model: 'text-davinci-003',
+        prompt: prompt.value,
+      });
+      aiResponse.value = completion.data.choices[0].text;
+    }
 
     return {
       currentStep,
@@ -241,6 +268,9 @@ export default defineComponent({
       company,
       emailAddress,
       phoneNumber,
+      rephase,
+      aiResponse,
+      visible,
     };
   },
 });
