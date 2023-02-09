@@ -52,19 +52,13 @@
           class="on-right"
           @click="rephase(step.defaultValue)"
           v-if="step.inputType !== 'input'"
+          :disable="disable"
           color="primary"
           label="Rephase"
         />
       </q-step>
     </q-stepper>
-    <q-card class="my-card shadow-19">
-      <div v-for="(step, index) in steps" :key="index">
-        <q-card-section v-if="step.displayResult">
-          {{ step.defaultValue }}
-        </q-card-section>
-      </div>
-    </q-card>
-    <q-card class="my-card shadow-19">
+    <q-card v-if="startProcessing" class="my-card shadow-19">
       <q-card-section>
         {{ aiResponse }}
       </q-card-section>
@@ -72,8 +66,20 @@
         <q-spinner-gears size="50px" color="primary" />
       </q-inner-loading>
       <q-card-actions align="right">
-        <q-btn color="primary">use it</q-btn>
+        <q-btn
+          color="primary"
+          :disable="disable"
+          @click="replaceText(aiResponse, currentStep)"
+          >use it</q-btn
+        >
       </q-card-actions>
+    </q-card>
+    <q-card class="my-card shadow-19">
+      <div v-for="(step, index) in steps" :key="index">
+        <q-card-section v-if="step.displayResult">
+          {{ step.defaultValue }}
+        </q-card-section>
+      </div>
     </q-card>
   </div>
 </template>
@@ -96,6 +102,8 @@ export default defineComponent({
     const currentStep = ref(1);
     const aiResponse = ref('');
     const visible = ref(true);
+    const startProcessing = ref(false);
+    const disable = ref(false);
 
     const steps = reactive<Array<CoverLetterStep>>([
       {
@@ -200,7 +208,13 @@ export default defineComponent({
       },
     ]);
 
+    const currentInputType = ref(steps[0].inputType);
+
     function nextPanel(step: CoverLetterStep, index: number) {
+      currentInputType.value = steps[index + 1].inputType;
+      visible.value = true;
+      startProcessing.value = false;
+      aiResponse.value = '';
       if (step.name === 'position') {
         position.value = step.defaultValue;
       }
@@ -229,21 +243,25 @@ export default defineComponent({
       if (step.name === 'phoneNumber') {
         phoneNumber.value = step.defaultValue;
       }
-
-      console.log(step);
       stepper.value.next();
       currentStep.value += 1;
     }
     function previousPanel(step: CoverLetterStep, index: number) {
+      currentInputType.value = step.inputType;
       stepper.value.previous();
       if (steps[index].displayResult === true) {
         steps[index].displayResult = false;
       }
       currentStep.value -= 1;
     }
-    console.log(process.env);
+
+    function replaceText(aiResponse: string, stepNumber: number) {
+      steps[stepNumber - 1].defaultValue = aiResponse;
+    }
 
     async function rephase(input: string) {
+      disable.value = true;
+      startProcessing.value = true;
       const configuration = new Configuration({
         apiKey: '',
       });
@@ -255,6 +273,8 @@ export default defineComponent({
         prompt: prompt.value,
       });
       aiResponse.value = completion.data.choices[0].text;
+      visible.value = false;
+      disable.value = false;
     }
 
     return {
@@ -271,6 +291,10 @@ export default defineComponent({
       rephase,
       aiResponse,
       visible,
+      currentInputType,
+      startProcessing,
+      disable,
+      replaceText,
     };
   },
 });
