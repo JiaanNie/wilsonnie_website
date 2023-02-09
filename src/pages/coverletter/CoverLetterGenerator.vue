@@ -263,7 +263,7 @@ export default defineComponent({
       disable.value = true;
       startProcessing.value = true;
       const configuration = new Configuration({
-        apiKey: '',
+        apiKey: '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',
       });
       const openai = new OpenAIApi(configuration);
       const prompt = ref(`reword the following: ${input}`);
