@@ -48,22 +48,48 @@
           color="primary"
           :label="currentStep === steps.length ? 'Finish' : 'Continue'"
         />
+        <q-btn
+          class="on-right"
+          @click="gettingApiKey"
+          v-if="step.inputType !== 'input'"
+          :disable="disable"
+          color="primary"
+          label="Rephase"
+        />
       </q-step>
     </q-stepper>
-    <q-card class="my-card shadow-19">
-      <div v-for="(step, index) in steps" :key="index">
-        <q-card-section v-if="step.displayResult">
-          {{ step.defaultValue }}
-        </q-card-section>
-        <br />
-      </div>
+    <q-card v-if="startProcessing" class="my-card shadow-19">
+      <q-card-section>
+        <q-input v-model="apiKey" label="Api Key" />
+      </q-card-section>
+      <q-card-actions align="right">
+        <q-btn flat @click="cancelRephaseProcess">Cancle</q-btn>
+        <q-btn flat color="primary" @click="getRephaseFromOpenAI"
+          >Rephase</q-btn
+        >
+      </q-card-actions>
+    </q-card>
+    <q-card v-if="gettingResponse" class="my-card shadow-19">
+      <q-card-section>
+        {{ aiResponse }}
+      </q-card-section>
+      <q-inner-loading :showing="visible">
+        <q-spinner-gears size="50px" color="primary" />
+      </q-inner-loading>
+      <q-card-actions align="right">
+        <q-btn
+          color="primary"
+          :disable="disable"
+          @click="replaceText(aiResponse, currentStep)"
+          >use it</q-btn
+        >
+      </q-card-actions>
     </q-card>
     <q-card class="my-card shadow-19">
       <div v-for="(step, index) in steps" :key="index">
         <q-card-section v-if="step.displayResult">
           {{ step.defaultValue }}
         </q-card-section>
-        <br />
       </div>
     </q-card>
   </div>
@@ -73,6 +99,7 @@
 import { ref, defineComponent, reactive, Ref } from 'vue';
 import { CoverLetterStep } from 'src/components/Schemas/ComponentSchema';
 import { QStepper } from 'quasar';
+import { Configuration, OpenAIApi } from 'openai';
 
 export default defineComponent({
   name: 'CoverLetterGenerator',
@@ -84,6 +111,12 @@ export default defineComponent({
     const emailAddress = ref('');
     const currentStepName = ref('receiver');
     const currentStep = ref(1);
+
+    const aiResponse = ref('');
+    const visible = ref(true);
+    const startProcessing = ref(false);
+    const gettingResponse = ref(false);
+    const disable = ref(false);
 
     const steps = reactive<Array<CoverLetterStep>>([
       {
@@ -188,7 +221,20 @@ export default defineComponent({
       },
     ]);
 
+    const currentInputType = ref(steps[0].inputType);
+
+    function cancelRephaseProcess() {
+      disable.value = false;
+      startProcessing.value = false;
+      gettingResponse.value = false;
+      visible.value = true;
+    }
+
     function nextPanel(step: CoverLetterStep, index: number) {
+      currentInputType.value = steps[index + 1].inputType;
+      visible.value = true;
+      startProcessing.value = false;
+      aiResponse.value = '';
       if (step.name === 'position') {
         position.value = step.defaultValue;
       }
@@ -217,17 +263,46 @@ export default defineComponent({
       if (step.name === 'phoneNumber') {
         phoneNumber.value = step.defaultValue;
       }
-
-      console.log(step);
       stepper.value.next();
       currentStep.value += 1;
     }
     function previousPanel(step: CoverLetterStep, index: number) {
+      currentInputType.value = step.inputType;
       stepper.value.previous();
       if (steps[index].displayResult === true) {
         steps[index].displayResult = false;
       }
       currentStep.value -= 1;
+    }
+
+    function replaceText(aiResponse: string, stepNumber: number) {
+      steps[stepNumber - 1].defaultValue = aiResponse;
+    }
+
+    const apiKey = ref('');
+
+    async function gettingApiKey() {
+      disable.value = true;
+      startProcessing.value = true;
+    }
+    async function getRephaseFromOpenAI() {
+      gettingResponse.value = true;
+      console.log(steps[currentStep.value - 1].defaultValue);
+      const configuration = new Configuration({
+        apiKey: apiKey.value,
+      });
+      const openai = new OpenAIApi(configuration);
+      const prompt = ref(
+        `reword the following: ${steps[currentStep.value - 1].defaultValue}`
+      );
+      const completion = await openai.createCompletion({
+        max_tokens: 4000,
+        model: 'text-davinci-003',
+        prompt: prompt.value,
+      });
+      aiResponse.value = completion.data.choices[0].text;
+      visible.value = false;
+      disable.value = false;
     }
 
     return {
@@ -241,6 +316,17 @@ export default defineComponent({
       company,
       emailAddress,
       phoneNumber,
+      gettingApiKey,
+      aiResponse,
+      visible,
+      currentInputType,
+      startProcessing,
+      disable,
+      replaceText,
+      apiKey,
+      cancelRephaseProcess,
+      gettingResponse,
+      getRephaseFromOpenAI,
     };
   },
 });
