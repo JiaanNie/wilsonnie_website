@@ -42,7 +42,7 @@ export default defineComponent({
         icon: 'fas fa-file',
         path: '/notes/basic-deploying-quasar-app-notes',
       },
-      { name: 'AWS', icon: 'fa-brands fa-aws', path: '/notes/aws-notes' },
+      // { name: 'AWS', icon: 'fa-brands fa-aws', path: '/notes/aws-notes' },
       // {
       //   name: 'Github',
       //   icon: 'fa-brands fa-github',
