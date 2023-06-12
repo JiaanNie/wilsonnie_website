@@ -255,6 +255,7 @@ export default defineComponent({
         I look forward to an interview to discuss my potential with ${company.value}. \
         I can be reached at ${phoneNumber.value} or ${emailAddress.value}.`;
       }
+      // test added
 
       if (steps[index + 1].displayResult === false) {
         steps[index + 1].displayResult = true;
